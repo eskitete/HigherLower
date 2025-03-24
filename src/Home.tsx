@@ -65,7 +65,7 @@ function Home() {
           {sports.map((sport) => (
             <button
               key={sport.id}
-              onClick={() => navigate(`/game/${sport.id}`)}
+              onClick={() => navigate(`/${sport.id}`)}
               className="group relative overflow-hidden rounded-xl bg-gradient-to-br p-8 transition-all hover:scale-105 hover:shadow-lg"
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${sport.gradient} opacity-20 group-hover:opacity-30 transition-opacity`} />
