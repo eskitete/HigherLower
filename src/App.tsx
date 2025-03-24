@@ -227,7 +227,17 @@ function App() {
                   <div key={index} className="player-card p-4 rounded-lg">
                     <div className="flex items-center gap-4">
                       <img
-                        src={`https://www.basketball-reference.com/req/202106291/images/headshots/${player.Name.toLowerCase().replace(/[^a-z]/g, '').substring(0, 5)}${player.Name.split(' ')[0].toLowerCase().substring(0, 2)}01.jpg`}
+                        src={`https://www.basketball-reference.com/req/202106291/images/headshots/${
+                          player.Name.split(' ')[1]
+                            .replace(/[^a-zA-Z]/g, '')
+                            .substring(0, 5)
+                            .toLowerCase()
+                        }${
+                          player.Name.split(' ')[0]
+                            .replace(/[^a-zA-Z]/g, '')
+                            .substring(0, 2)
+                            .toLowerCase()
+                        }01.jpg`}
                         alt={player.Name}
                         className="w-16 h-16 rounded-full object-cover"
                         onError={(e) => {
