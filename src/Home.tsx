@@ -52,7 +52,7 @@ function Home() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen py-8 px-4">
+    <div className="min-h-screen py-8 px-4 bg-[#1a1a1a]">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <header className="text-center mb-12">

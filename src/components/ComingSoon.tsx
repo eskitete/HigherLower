@@ -18,7 +18,7 @@ function ComingSoon({ sport }: ComingSoonProps) {
             onClick={() => navigate('/')}
             className="p-2 rounded-full hover:bg-white/10 transition-colors"
           >
-            <ArrowLeft className="w-6 h-6" />
+            <ArrowLeft className="w-6 h-6 text-white" />
           </button>
           <h1 className="game-title text-5xl">{sport.toUpperCase()} TRIVIA</h1>
         </header>
