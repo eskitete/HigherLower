@@ -105,7 +105,8 @@ function App() {
     }
   };
 
-  const compareStats = (stat: keyof Player, guessed: number, target: number) => {
+  const compareStats = (stat: keyof Player, guessed: number, target: number | string) => {
+    if (typeof target !== 'number') return null;
     if (guessed === target) return <Check className="w-5 h-5 text-green-500" />;
     return guessed > target ? 
       <ArrowDown className="w-5 h-5 text-red-500" /> : 
@@ -252,12 +253,14 @@ function App() {
                             return (
                               <div key={key} className="text-center">
                                 <div className="stat-value">{value}</div>
-                                <div className="text-white/60 text-sm">{key}</div>
-                                {targetPlayer && (
-                                  <div className="mt-1">
-                                    {compareStats(key as keyof Player, value, targetPlayer[key as keyof Player])}
-                                  </div>
-                                )}
+                                <div className="text-white/60 text-sm flex items-center justify-center gap-1">
+                                  {key}
+                                  {targetPlayer && typeof value === 'number' && (
+                                    <div className="inline-block">
+                                      {compareStats(key as keyof Player, value, targetPlayer[key as keyof Player])}
+                                    </div>
+                                  )}
+                                </div>
                               </div>
                             );
                           })}
