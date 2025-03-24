@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Basketball, Football, Soccer, Boxing, Car } from 'lucide-react';
+import { Circle, CircleDot } from 'lucide-react';
 
 interface SportCard {
   id: string;
@@ -14,35 +14,35 @@ const sports: SportCard[] = [
   {
     id: 'nba',
     name: 'NBA',
-    icon: <Basketball className="w-12 h-12" />,
+    icon: <Circle className="w-12 h-12" />,
     color: 'text-orange-500',
     gradient: 'from-orange-500 to-red-500'
   },
   {
     id: 'nfl',
     name: 'NFL',
-    icon: <Football className="w-12 h-12" />,
+    icon: <Circle className="w-12 h-12" />,
     color: 'text-green-500',
     gradient: 'from-green-500 to-emerald-500'
   },
   {
     id: 'soccer',
     name: 'Soccer',
-    icon: <Soccer className="w-12 h-12" />,
+    icon: <Circle className="w-12 h-12" />,
     color: 'text-blue-500',
     gradient: 'from-blue-500 to-cyan-500'
   },
   {
     id: 'ufc',
     name: 'UFC',
-    icon: <Boxing className="w-12 h-12" />,
+    icon: <CircleDot className="w-12 h-12" />,
     color: 'text-red-500',
     gradient: 'from-red-500 to-pink-500'
   },
   {
     id: 'f1',
     name: 'F1',
-    icon: <Car className="w-12 h-12" />,
+    icon: <CircleDot className="w-12 h-12" />,
     color: 'text-purple-500',
     gradient: 'from-purple-500 to-indigo-500'
   }
