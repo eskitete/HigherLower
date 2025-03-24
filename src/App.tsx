@@ -180,7 +180,15 @@ function App() {
           ) : (
             <div className="space-y-6">
               <div className="flex justify-between items-center text-white mb-6">
-                <span className="text-lg">Attempts: {attempts}/6</span>
+                <div className="flex items-center gap-4">
+                  <button
+                    onClick={resetGame}
+                    className="p-2 rounded-full hover:bg-white/10 transition-colors"
+                  >
+                    <ArrowUp className="w-6 h-6 rotate-90" />
+                  </button>
+                  <span className="text-lg">Attempts: {attempts}/6</span>
+                </div>
                 <span className="text-lg">Difficulty: {difficulty.toUpperCase()}</span>
               </div>
               
