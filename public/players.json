@@ -1,0 +1,158 @@
+{
+  "players": [
+    {
+      "Name": "Michael Jordan",
+      "All-Star": 14,
+      "DPOY": 1,
+      "MVP": 5,
+      "ROTY": 1,
+      "FMVP": 6,
+      "Six-Man": 0,
+      "All-NBA": 11,
+      "Draft-Year": 1984
+    },
+    {
+      "Name": "LeBron James",
+      "All-Star": 20,
+      "DPOY": 0,
+      "MVP": 4,
+      "ROTY": 1,
+      "FMVP": 4,
+      "Six-Man": 0,
+      "All-NBA": 20,
+      "Draft-Year": 2003
+    },
+    {
+      "Name": "Kevin Durant",
+      "All-Star": 14,
+      "DPOY": 0,
+      "MVP": 1,
+      "ROTY": 1,
+      "FMVP": 2,
+      "Six-Man": 0,
+      "All-NBA": 11,
+      "Draft-Year": 2007
+    },
+    {
+      "Name": "Stephen Curry",
+      "All-Star": 10,
+      "DPOY": 0,
+      "MVP": 2,
+      "ROTY": 0,
+      "FMVP": 1,
+      "Six-Man": 0,
+      "All-NBA": 10,
+      "Draft-Year": 2009
+    },
+    {
+      "Name": "Giannis Antetokounmpo",
+      "All-Star": 8,
+      "DPOY": 1,
+      "MVP": 2,
+      "ROTY": 0,
+      "FMVP": 1,
+      "Six-Man": 0,
+      "All-NBA": 8,
+      "Draft-Year": 2013
+    },
+    {
+      "Name": "Nikola Jokic",
+      "All-Star": 6,
+      "DPOY": 0,
+      "MVP": 2,
+      "ROTY": 0,
+      "FMVP": 1,
+      "Six-Man": 0,
+      "All-NBA": 6,
+      "Draft-Year": 2014
+    },
+    {
+      "Name": "Joel Embiid",
+      "All-Star": 7,
+      "DPOY": 0,
+      "MVP": 1,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 5,
+      "Draft-Year": 2014
+    },
+    {
+      "Name": "Luka Doncic",
+      "All-Star": 5,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 4,
+      "Draft-Year": 2018
+    },
+    {
+      "Name": "Jayson Tatum",
+      "All-Star": 4,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 3,
+      "Draft-Year": 2017
+    },
+    {
+      "Name": "Devin Booker",
+      "All-Star": 4,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 2,
+      "Draft-Year": 2015
+    },
+    {
+      "Name": "Donovan Mitchell",
+      "All-Star": 4,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 2017
+    },
+    {
+      "Name": "Ja Morant",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 2019
+    },
+    {
+      "Name": "Anthony Edwards",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 2020
+    },
+    {
+      "Name": "Victor Wembanyama",
+      "All-Star": 0,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 2023
+    }
+  ]
+}
