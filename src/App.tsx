@@ -231,7 +231,7 @@ function App() {
                         alt={player.Name}
                         className="w-16 h-16 rounded-full object-cover"
                         onError={(e) => {
-                          (e.target as HTMLImageElement).src = 'https://via.placeholder.com/150?text=Player';
+                          (e.target as HTMLImageElement).src = '/placeholder.svg';
                         }}
                       />
                       <div className="flex-1">
