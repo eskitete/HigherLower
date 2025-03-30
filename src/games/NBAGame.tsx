@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Trophy, Info, X, ArrowUp, ArrowDown, Check } from 'lucide-react';
+import { Trophy, Info, X, ArrowUp, ArrowDown, Check, Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Player {
   Name: string;
@@ -19,6 +20,28 @@ interface Score {
   medium: { wins: number; losses: number };
   hard: { wins: number; losses: number };
 }
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  }
+};
 
 function NBAGame() {
   const navigate = useNavigate();
@@ -132,120 +155,195 @@ function NBAGame() {
   };
 
   return (
-    <div className="min-h-screen py-8 px-4">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen py-8 px-4 bg-[#0a0a0a] relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a]/95 to-[#0a0a0a]" />
+      
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -left-40 w-80 h-80 bg-orange-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob" />
+        <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-red-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-yellow-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000" />
+      </div>
+
+      {/* Content */}
+      <div className="max-w-4xl mx-auto relative">
         {/* Header */}
-        <header className="flex justify-between items-center mb-8">
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => navigate('/')}
-              className="p-2 rounded-full hover:bg-white/10 transition-colors"
-            >
-              <ArrowUp className="w-6 h-6 rotate-90" />
-            </button>
-            <h1 className="game-title text-5xl">NBA TRIVIA</h1>
-          </div>
+        <motion.header 
+          className="flex justify-between items-center mb-8"
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.button
+            onClick={() => navigate('/')}
+            className="p-2 rounded-full hover:bg-white/10 transition-colors group"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <ArrowUp className="w-6 h-6 rotate-90 text-white group-hover:rotate-[-90deg] transition-transform duration-300" />
+          </motion.button>
+          <motion.h1 
+            className="game-title text-5xl bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70"
+            initial={{ x: 20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
+            NBA HIGHER/LOWER
+          </motion.h1>
           <div className="flex gap-4">
-            <button
+            <motion.button
               onClick={() => setShowModal(true)}
               className="p-2 rounded-full hover:bg-white/10 transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
             >
               <Info className="w-6 h-6 text-white" />
-            </button>
-            <button
+            </motion.button>
+            <motion.button
               onClick={() => setShowScoreModal(true)}
               className="p-2 rounded-full hover:bg-white/10 transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
             >
               <Trophy className="w-6 h-6 text-[var(--gold)]" />
-            </button>
+            </motion.button>
           </div>
-        </header>
+        </motion.header>
 
         {/* Main Game Area */}
-        <div className="scoreboard rounded-xl p-8 mb-8">
+        <motion.div 
+          className="scoreboard rounded-2xl p-8 mb-8 backdrop-blur-md border border-white/10"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+        >
           {gameState === 'selection' ? (
             <div className="text-center">
-              <h2 className="game-title text-3xl mb-8 text-white">SELECT DIFFICULTY</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <button
+              <motion.h2 
+                className="game-title text-3xl mb-8 text-white"
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                SELECT DIFFICULTY
+              </motion.h2>
+              <motion.div 
+                className="grid grid-cols-1 md:grid-cols-3 gap-4"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <motion.button
                   onClick={() => handleDifficultySelect('easy')}
-                  className="difficulty-btn bg-green-500 text-white py-4 px-8 rounded-lg text-xl"
+                  className="difficulty-btn bg-green-500/20 text-white py-4 px-8 rounded-xl text-xl backdrop-blur-sm border border-green-500/30 hover:bg-green-500/30 transition-colors"
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   EASY
-                </button>
-                <button
+                </motion.button>
+                <motion.button
                   onClick={() => handleDifficultySelect('medium')}
-                  className="difficulty-btn bg-yellow-500 text-white py-4 px-8 rounded-lg text-xl"
+                  className="difficulty-btn bg-yellow-500/20 text-white py-4 px-8 rounded-xl text-xl backdrop-blur-sm border border-yellow-500/30 hover:bg-yellow-500/30 transition-colors"
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   MEDIUM
-                </button>
-                <button
+                </motion.button>
+                <motion.button
                   onClick={() => handleDifficultySelect('hard')}
-                  className="difficulty-btn bg-red-500 text-white py-4 px-8 rounded-lg text-xl"
+                  className="difficulty-btn bg-red-500/20 text-white py-4 px-8 rounded-xl text-xl backdrop-blur-sm border border-red-500/30 hover:bg-red-500/30 transition-colors"
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   HARD
-                </button>
-              </div>
+                </motion.button>
+              </motion.div>
             </div>
           ) : (
             <div className="space-y-6">
               <div className="flex justify-between items-center text-white mb-6">
                 <div className="flex items-center gap-4">
-                  <button
+                  <motion.button
                     onClick={resetGame}
                     className="p-2 rounded-full hover:bg-white/10 transition-colors"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     <ArrowUp className="w-6 h-6 rotate-90" />
-                  </button>
+                  </motion.button>
                   <span className="text-lg">Attempts: {attempts}/6</span>
                 </div>
-                <span className="text-lg">Difficulty: {difficulty.toUpperCase()}</span>
+                <span className="text-lg capitalize">{difficulty}</span>
               </div>
               
               {gameState === 'playing' && (
                 <div className="relative">
-                  <input
-                    type="text"
-                    value={searchTerm}
-                    onChange={(e) => {
-                      setSearchTerm(e.target.value);
-                      setShowSuggestions(true);
-                    }}
-                    onKeyPress={handleKeyPress}
-                    className="player-input w-full py-3 px-4 rounded-lg text-lg"
-                    placeholder="Search for a player..."
-                    autoComplete="off"
-                  />
+                  <div className="relative">
+                    <input
+                      type="text"
+                      value={searchTerm}
+                      onChange={(e) => {
+                        setSearchTerm(e.target.value);
+                        setShowSuggestions(true);
+                      }}
+                      onKeyPress={handleKeyPress}
+                      className="player-input w-full py-3 px-4 pl-12 rounded-xl text-lg bg-white/5 border border-white/10 focus:border-white/20 focus:outline-none transition-colors"
+                      placeholder="Search for a player..."
+                      autoComplete="off"
+                    />
+                    <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/50 w-5 h-5" />
+                  </div>
                   {showSuggestions && filteredPlayers.length > 0 && (
-                    <div className="absolute z-10 w-full mt-1 bg-white rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                    <motion.div 
+                      className="absolute z-10 w-full mt-1 bg-white/5 backdrop-blur-md rounded-xl shadow-lg max-h-60 overflow-y-auto border border-white/10"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                    >
                       {filteredPlayers.map((player) => (
-                        <button
+                        <motion.button
                           key={player.Name}
-                          className="w-full text-left px-4 py-2 hover:bg-gray-100 transition-colors"
+                          className="w-full text-left px-4 py-2 hover:bg-white/10 transition-colors"
+                          whileHover={{ x: 5 }}
                           onClick={() => {
                             setSearchTerm(player.Name);
                             setShowSuggestions(false);
                           }}
                         >
                           {player.Name}
-                        </button>
+                        </motion.button>
                       ))}
-                    </div>
+                    </motion.div>
                   )}
-                  <button 
+                  <motion.button 
                     onClick={handleGuess}
-                    className="submit-btn absolute right-2 top-2 px-6 py-1 rounded-md"
+                    className="submit-btn absolute right-2 top-2 px-6 py-1 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     GUESS
-                  </button>
+                  </motion.button>
                 </div>
               )}
 
-              <div className="grid gap-4">
+              <motion.div 
+                className="grid gap-4"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+              >
                 {guessedPlayers.map((player, index) => (
-                  <div key={index} className="player-card p-4 rounded-lg">
+                  <motion.div 
+                    key={index} 
+                    className="player-card p-4 rounded-xl backdrop-blur-sm border border-white/10"
+                    variants={itemVariants}
+                  >
                     <div className="flex items-center gap-4">
-                      <img
+                      <motion.img
                         src={`https://www.basketball-reference.com/req/202106291/images/headshots/${
                           player.Name.split(' ')[1]
                             .replace(/[^a-zA-Z]/g, '')
@@ -258,10 +356,13 @@ function NBAGame() {
                             .toLowerCase()
                         }01.jpg`}
                         alt={player.Name}
-                        className="w-16 h-16 rounded-full object-cover"
+                        className="w-16 h-16 rounded-full object-cover border-2 border-white/20"
                         onError={(e) => {
                           (e.target as HTMLImageElement).src = '/placeholder.svg';
                         }}
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: "spring", stiffness: 260, damping: 20 }}
                       />
                       <div className="flex-1">
                         <h3 className="text-white text-xl mb-2">{player.Name}</h3>
@@ -285,79 +386,119 @@ function NBAGame() {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
 
               {gameState === 'ended' && (
-                <div className="text-center mt-8">
+                <motion.div 
+                  className="text-center mt-8"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                >
                   <h3 className="text-2xl text-white mb-4">
                     {guessedPlayers[0]?.Name === targetPlayer?.Name ? 'Congratulations!' : 'Game Over!'}
                   </h3>
                   <p className="text-white mb-4">The player was: {targetPlayer?.Name}</p>
-                  <button
+                  <motion.button
                     onClick={resetGame}
-                    className="bg-[var(--electric-blue)] text-white px-8 py-3 rounded-lg text-xl hover:bg-opacity-90 transition-colors"
+                    className="bg-white/10 text-white px-8 py-3 rounded-xl text-xl hover:bg-white/20 transition-colors backdrop-blur-sm border border-white/10"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     Play Again
-                  </button>
-                </div>
+                  </motion.button>
+                </motion.div>
               )}
             </div>
           )}
-        </div>
+        </motion.div>
 
         {/* Info Modal */}
-        {showModal && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4">
-            <div className="bg-white rounded-xl p-6 max-w-lg w-full">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold">How to Play</h2>
-                <button onClick={() => setShowModal(false)}>
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
-              <div className="prose">
-                <p>Guess the mystery NBA player in 6 attempts or less!</p>
-                <ol>
-                  <li>Choose your difficulty level</li>
-                  <li>Enter your guess in the search box</li>
-                  <li>Compare stats with the mystery player</li>
-                  <li>Use the arrows as hints:</li>
-                  <ul>
-                    <li>↑ means the mystery player has a higher value</li>
-                    <li>↓ means the mystery player has a lower value</li>
-                    <li>✓ means you've matched the exact value</li>
-                  </ul>
-                </ol>
-              </div>
-            </div>
-          </div>
-        )}
+        <AnimatePresence>
+          {showModal && (
+            <motion.div 
+              className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <motion.div 
+                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 max-w-lg w-full border border-white/10"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+              >
+                <div className="flex justify-between items-center mb-4">
+                  <h2 className="text-2xl font-bold text-white">How to Play</h2>
+                  <motion.button 
+                    onClick={() => setShowModal(false)}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <X className="w-6 h-6 text-white" />
+                  </motion.button>
+                </div>
+                <div className="prose prose-invert">
+                  <p className="text-white/80">Guess the mystery NBA player in 6 attempts or less!</p>
+                  <ol className="text-white/80">
+                    <li>Choose your difficulty level</li>
+                    <li>Enter your guess in the search box</li>
+                    <li>Compare stats with the mystery player</li>
+                    <li>Use the arrows as hints:
+                      <ul>
+                        <li>↑ means the mystery player has a higher value</li>
+                        <li>↓ means the mystery player has a lower value</li>
+                        <li>✓ means you've matched the exact value</li>
+                      </ul>
+                    </li>
+                  </ol>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Score Modal */}
-        {showScoreModal && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4">
-            <div className="bg-white rounded-xl p-6 max-w-lg w-full">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold">All-Time Score</h2>
-                <button onClick={() => setShowScoreModal(false)}>
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
-              <div className="space-y-4">
-                {Object.entries(score).map(([difficulty, stats]) => (
-                  <div key={difficulty} className="flex justify-between items-center">
-                    <span className="text-lg capitalize">{difficulty}</span>
-                    <span className="text-lg">
-                      Wins: {stats.wins} | Losses: {stats.losses}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
+        <AnimatePresence>
+          {showScoreModal && (
+            <motion.div 
+              className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <motion.div 
+                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 max-w-lg w-full border border-white/10"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+              >
+                <div className="flex justify-between items-center mb-4">
+                  <h2 className="text-2xl font-bold text-white">All-Time Score</h2>
+                  <motion.button 
+                    onClick={() => setShowScoreModal(false)}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <X className="w-6 h-6 text-white" />
+                  </motion.button>
+                </div>
+                <div className="space-y-4">
+                  {Object.entries(score).map(([difficulty, stats]) => (
+                    <div key={difficulty} className="flex justify-between items-center text-white/80">
+                      <span className="text-lg capitalize">{difficulty}</span>
+                      <span className="text-lg">
+                        Wins: {stats.wins} | Losses: {stats.losses}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
