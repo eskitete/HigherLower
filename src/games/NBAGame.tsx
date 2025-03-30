@@ -291,15 +291,15 @@ function NBAGame() {
                         setShowSuggestions(true);
                       }}
                       onKeyPress={handleKeyPress}
-                      className="player-input w-full py-3 px-4 pl-12 rounded-xl text-lg bg-white/5 border border-white/10 focus:border-white/20 focus:outline-none transition-colors"
+                      className="player-input w-full py-3 px-4 pl-12 rounded-xl text-lg bg-white text-black border border-white/20 focus:border-white/40 focus:outline-none transition-colors placeholder:text-gray-500"
                       placeholder="Search for a player..."
                       autoComplete="off"
                     />
-                    <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/50 w-5 h-5" />
+                    <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
                   </div>
                   {showSuggestions && filteredPlayers.length > 0 && (
                     <motion.div 
-                      className="absolute z-10 w-full mt-1 bg-white/5 backdrop-blur-md rounded-xl shadow-lg max-h-60 overflow-y-auto border border-white/10"
+                      className="absolute z-10 w-full mt-1 bg-white rounded-xl shadow-lg max-h-60 overflow-y-auto border border-gray-200"
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
@@ -307,7 +307,7 @@ function NBAGame() {
                       {filteredPlayers.map((player) => (
                         <motion.button
                           key={player.Name}
-                          className="w-full text-left px-4 py-2 hover:bg-white/10 transition-colors"
+                          className="w-full text-left px-4 py-2 hover:bg-gray-100 transition-colors text-black"
                           whileHover={{ x: 5 }}
                           onClick={() => {
                             setSearchTerm(player.Name);
