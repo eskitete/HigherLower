@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Trophy, Info, X, ArrowUp, ArrowDown, Check, Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import playersData from '../../json/nbaeasy.json';
+import playersMediumData from '../../json/nbamedium.json';
+import playersHardData from '../../json/nbahard.json';
 
 interface Player {
   Name: string;
@@ -13,6 +16,7 @@ interface Player {
   "Six-Man": number;
   "All-NBA": number;
   "Draft-Year": number;
+  imageUrl?: string;
 }
 
 interface Score {
@@ -68,12 +72,37 @@ function NBAGame() {
       setScore(JSON.parse(savedScore));
     }
 
-    // Load player data
-    fetch('/players.json')
-      .then(response => response.json())
-      .then(data => setPlayers(data.players))
-      .catch(error => console.error('Error loading players:', error));
-  }, []);
+    // Load players based on difficulty
+    const loadPlayers = async () => {
+      try {
+        let selectedData;
+        switch (difficulty) {
+          case 'easy':
+            selectedData = playersData;
+            break;
+          case 'medium':
+            selectedData = playersMediumData;
+            break;
+          case 'hard':
+            selectedData = playersHardData;
+            break;
+          default:
+            selectedData = playersData;
+        }
+        
+        const players = selectedData.players.map(player => ({
+          ...player,
+          imageUrl: `https://cdn.nba.com/headshots/nba/latest/1040x760/${player.Name.toLowerCase().replace(/\s+/g, '')}.png`
+        }));
+        setPlayers(players);
+        setTargetPlayer(players[Math.floor(Math.random() * players.length)]);
+      } catch (error) {
+        console.error('Error loading players:', error);
+      }
+    };
+
+    loadPlayers();
+  }, [difficulty]);
 
   const handleDifficultySelect = (level: string) => {
     setDifficulty(level);
@@ -344,17 +373,7 @@ function NBAGame() {
                   >
                     <div className="flex items-center gap-4">
                       <motion.img
-                        src={`https://www.basketball-reference.com/req/202106291/images/headshots/${
-                          player.Name.split(' ')[1]
-                            .replace(/[^a-zA-Z]/g, '')
-                            .substring(0, 5)
-                            .toLowerCase()
-                        }${
-                          player.Name.split(' ')[0]
-                            .replace(/[^a-zA-Z]/g, '')
-                            .substring(0, 2)
-                            .toLowerCase()
-                        }01.jpg`}
+                        src={player.imageUrl}
                         alt={player.Name}
                         className="w-16 h-16 rounded-full object-cover border-2 border-white/20"
                         onError={(e) => {
@@ -368,18 +387,25 @@ function NBAGame() {
                         <h3 className="text-white text-xl mb-2">{player.Name}</h3>
                         <div className="grid grid-cols-4 gap-4">
                           {Object.entries(player).map(([key, value]) => {
-                            if (key === 'Name') return null;
+                            if (key === 'Name' || key === 'imageUrl' || value === undefined) return null;
+                            const targetValue = targetPlayer?.[key as keyof Player];
+                            if (typeof value === 'number' && typeof targetValue === 'number') {
+                              return (
+                                <div key={key} className="text-center">
+                                  <div className="stat-value">{value}</div>
+                                  <div className="text-white/60 text-sm flex items-center justify-center gap-1">
+                                    {key}
+                                    <div className="inline-block">
+                                      {compareStats(key as keyof Player, value, targetValue)}
+                                    </div>
+                                  </div>
+                                </div>
+                              );
+                            }
                             return (
                               <div key={key} className="text-center">
                                 <div className="stat-value">{value}</div>
-                                <div className="text-white/60 text-sm flex items-center justify-center gap-1">
-                                  {key}
-                                  {targetPlayer && typeof value === 'number' && (
-                                    <div className="inline-block">
-                                      {compareStats(key as keyof Player, value, targetPlayer[key as keyof Player])}
-                                    </div>
-                                  )}
-                                </div>
+                                <div className="text-white/60 text-sm">{key}</div>
                               </div>
                             );
                           })}
