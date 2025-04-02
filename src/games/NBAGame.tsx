@@ -108,21 +108,23 @@ function NBAGame() {
   const handleDifficultySelect = (level: string) => {
     setDifficulty(level as 'easy' | 'medium' | 'hard');
     setGameState('playing');
-    // Select random player based on difficulty
-    const filteredPlayers = players.filter(player => {
-      switch(level) {
-        case 'easy':
-          return player["All-Star"] >= 10;
-        case 'medium':
-          return player["All-Star"] >= 5 && player["All-Star"] < 10;
-        case 'hard':
-          return player["All-Star"] < 5;
-        default:
-          return false;
-      }
-    });
-    const randomPlayer = filteredPlayers[Math.floor(Math.random() * filteredPlayers.length)];
-    setTargetPlayer(randomPlayer);
+    
+    // Get the appropriate difficulty players
+    const difficultyPlayers = {
+      easy: easyPlayers.players,
+      medium: mediumPlayers.players,
+      hard: hardPlayers.players
+    };
+    
+    // Set the players for the current difficulty
+    const currentPlayers = difficultyPlayers[level as keyof typeof difficultyPlayers];
+    setPlayers(currentPlayers);
+    
+    // Select a random player from the current difficulty
+    if (currentPlayers && currentPlayers.length > 0) {
+      const randomIndex = Math.floor(Math.random() * currentPlayers.length);
+      setTargetPlayer(currentPlayers[randomIndex]);
+    }
   };
 
   const handleGuess = () => {

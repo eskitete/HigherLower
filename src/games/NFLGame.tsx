@@ -85,33 +85,54 @@ const NFLGame: React.FC = () => {
       hard: hardPlayers.players
     };
     setPlayers(difficultyPlayers[difficulty]);
-    setTargetPlayer(players[Math.floor(Math.random() * players.length)]);
+    
+    // Select random player after players are set
+    const currentPlayers = difficultyPlayers[difficulty];
+    if (currentPlayers && currentPlayers.length > 0) {
+      setTargetPlayer(currentPlayers[Math.floor(Math.random() * currentPlayers.length)]);
+    }
   }, [difficulty]);
 
   const handleDifficultySelect = (level: string) => {
     setDifficulty(level as 'easy' | 'medium' | 'hard');
     setGameState('playing');
-    // Select random player based on difficulty
-    const filteredPlayers = players.filter(player => {
-      switch(level) {
-        case 'easy':
-          return player.MVP >= 2 || player["Super Bowl Wins"] >= 3;
-        case 'medium':
-          return player.MVP >= 1 || player["Super Bowl Wins"] >= 1;
-        case 'hard':
-          return player.MVP < 1 && player["Super Bowl Wins"] < 1;
-        default:
-          return false;
-      }
-    });
-    const randomPlayer = filteredPlayers[Math.floor(Math.random() * filteredPlayers.length)];
-    setTargetPlayer(randomPlayer);
+    
+    // Get the appropriate difficulty players
+    const difficultyPlayers = {
+      easy: easyPlayers.players,
+      medium: mediumPlayers.players,
+      hard: hardPlayers.players
+    };
+    
+    // Set the players for the current difficulty
+    const currentPlayers = difficultyPlayers[level as keyof typeof difficultyPlayers];
+    setPlayers(currentPlayers);
+    
+    // Select a random player from the current difficulty
+    if (currentPlayers && currentPlayers.length > 0) {
+      const randomIndex = Math.floor(Math.random() * currentPlayers.length);
+      setTargetPlayer(currentPlayers[randomIndex]);
+    }
   };
 
   const handleGuess = () => {
     if (!searchQuery || !targetPlayer) return;
 
-    const guessedPlayer = players.find(p => p.Name.toLowerCase() === searchQuery.toLowerCase());
+    // First try to find the player in the current difficulty players
+    let guessedPlayer = players.find(p => p.Name.toLowerCase() === searchQuery.toLowerCase());
+    
+    // If not found, try to find in the main players list
+    if (!guessedPlayer) {
+      const mainPlayer = playersData.players.find(p => 
+        p.Name.toLowerCase() === searchQuery.toLowerCase()
+      );
+      
+      if (mainPlayer) {
+        // Use the player from the main list
+        guessedPlayer = mainPlayer;
+      }
+    }
+
     if (!guessedPlayer) {
       alert('Please select a valid player from the list');
       return;
