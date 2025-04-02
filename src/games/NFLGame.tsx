@@ -308,6 +308,7 @@ const NFLGame: React.FC = () => {
                       value={searchQuery}
                       onChange={(e) => {
                         setSearchQuery(e.target.value);
+                        handleSearch(e.target.value);
                         setShowSuggestions(true);
                       }}
                       onKeyPress={handleKeyPress}

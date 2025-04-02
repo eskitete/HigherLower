@@ -7,6 +7,18 @@ import easyPlayers from '../../json/nba_easy.json';
 import mediumPlayers from '../../json/nba_medium.json';
 import hardPlayers from '../../json/nba_hard.json';
 
+// Interface for the main nba.json file
+interface MainPlayer {
+  Name: string;
+  MVP: number;
+  "All Star": number;
+  "All NBA": number;
+  "All Defense": number;
+  Championships: number;
+  imageUrl?: string;
+}
+
+// Interface for the difficulty-specific files
 interface Player {
   Name: string;
   "All-Star": number;
@@ -60,6 +72,7 @@ function NBAGame() {
   const [showModal, setShowModal] = useState(false);
   const [showScoreModal, setShowScoreModal] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [searchResults, setSearchResults] = useState<Player[]>([]);
   const [score, setScore] = useState<Score>({
     easy: { wins: 0, losses: 0 },
     medium: { wins: 0, losses: 0 },
@@ -75,7 +88,7 @@ function NBAGame() {
     }
 
     // Load all players for search
-    setAllPlayers(playersData.players);
+    setAllPlayers(playersData.players as unknown as Player[]);
     
     // Load difficulty-specific players for the game
     const difficultyPlayers = {
@@ -84,7 +97,12 @@ function NBAGame() {
       hard: hardPlayers.players
     };
     setPlayers(difficultyPlayers[difficulty]);
-    setTargetPlayer(players[Math.floor(Math.random() * players.length)]);
+    
+    // Select random player after players are set
+    const currentPlayers = difficultyPlayers[difficulty];
+    if (currentPlayers && currentPlayers.length > 0) {
+      setTargetPlayer(currentPlayers[Math.floor(Math.random() * currentPlayers.length)]);
+    }
   }, [difficulty]);
 
   const handleDifficultySelect = (level: string) => {
@@ -110,7 +128,32 @@ function NBAGame() {
   const handleGuess = () => {
     if (!searchQuery || !targetPlayer) return;
 
-    const guessedPlayer = players.find(p => p.Name.toLowerCase() === searchQuery.toLowerCase());
+    // First try to find the player in the current difficulty players
+    let guessedPlayer = players.find(p => p.Name.toLowerCase() === searchQuery.toLowerCase());
+    
+    // If not found, try to find in the main players list
+    if (!guessedPlayer) {
+      const mainPlayer = (playersData.players as MainPlayer[]).find(p => 
+        p.Name.toLowerCase() === searchQuery.toLowerCase()
+      );
+      
+      if (mainPlayer) {
+        // Convert to Player format
+        guessedPlayer = {
+          Name: mainPlayer.Name,
+          "All-Star": mainPlayer["All Star"],
+          DPOY: 0,
+          MVP: mainPlayer.MVP,
+          ROTY: 0,
+          FMVP: 0,
+          "Six-Man": 0,
+          "All-NBA": mainPlayer["All NBA"],
+          "Draft-Year": 0,
+          imageUrl: mainPlayer.imageUrl
+        };
+      }
+    }
+
     if (!guessedPlayer) {
       alert('Please select a valid player from the list');
       return;
@@ -157,10 +200,26 @@ function NBAGame() {
       return;
     }
     
-    const results = allPlayers.filter(player => 
+    // Search in all players (main nba.json format)
+    const mainResults = (playersData.players as MainPlayer[]).filter(player => 
       player.Name.toLowerCase().includes(query.toLowerCase())
     );
-    setSearchResults(results.slice(0, 5));
+    
+    // Convert to Player format for display
+    const convertedResults = mainResults.map(player => ({
+      Name: player.Name,
+      "All-Star": player["All Star"],
+      DPOY: 0, // Default values for missing fields
+      MVP: player.MVP,
+      ROTY: 0,
+      FMVP: 0,
+      "Six-Man": 0,
+      "All-NBA": player["All NBA"],
+      "Draft-Year": 0,
+      imageUrl: player.imageUrl
+    }));
+    
+    setSearchResults(convertedResults.slice(0, 5));
   };
 
   const resetGame = () => {
@@ -307,6 +366,7 @@ function NBAGame() {
                       value={searchQuery}
                       onChange={(e) => {
                         setSearchQuery(e.target.value);
+                        handleSearch(e.target.value);
                         setShowSuggestions(true);
                       }}
                       onKeyPress={handleKeyPress}
