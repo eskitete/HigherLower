@@ -15,7 +15,7 @@ function App() {
         <Route path="/soccer" element={<ComingSoon sport="Soccer" />} />
         <Route path="/ufc" element={<ComingSoon sport="UFC" />} />
         <Route path="/f1" element={<ComingSoon sport="F1" />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
   );

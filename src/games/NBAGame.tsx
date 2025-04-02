@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Trophy, Info, X, ArrowUp, ArrowDown, Check, Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import playersData from '../../json/nbaeasy.json';
-import playersMediumData from '../../json/nbamedium.json';
-import playersHardData from '../../json/nbahard.json';
+import playersData from '../../json/nba.json';
+import easyPlayers from '../../json/nba_easy.json';
+import mediumPlayers from '../../json/nba_medium.json';
+import hardPlayers from '../../json/nba_hard.json';
 
 interface Player {
   Name: string;
@@ -50,10 +51,10 @@ const itemVariants = {
 function NBAGame() {
   const navigate = useNavigate();
   const [gameState, setGameState] = useState<'selection' | 'playing' | 'ended'>('selection');
-  const [difficulty, setDifficulty] = useState('');
+  const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>('easy');
   const [attempts, setAttempts] = useState(0);
   const [targetPlayer, setTargetPlayer] = useState<Player | null>(null);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
   const [players, setPlayers] = useState<Player[]>([]);
   const [guessedPlayers, setGuessedPlayers] = useState<Player[]>([]);
   const [showModal, setShowModal] = useState(false);
@@ -64,6 +65,7 @@ function NBAGame() {
     medium: { wins: 0, losses: 0 },
     hard: { wins: 0, losses: 0 }
   });
+  const [allPlayers, setAllPlayers] = useState<Player[]>([]);
 
   useEffect(() => {
     // Load saved scores from localStorage
@@ -72,40 +74,21 @@ function NBAGame() {
       setScore(JSON.parse(savedScore));
     }
 
-    // Load players based on difficulty
-    const loadPlayers = async () => {
-      try {
-        let selectedData;
-        switch (difficulty) {
-          case 'easy':
-            selectedData = playersData;
-            break;
-          case 'medium':
-            selectedData = playersMediumData;
-            break;
-          case 'hard':
-            selectedData = playersHardData;
-            break;
-          default:
-            selectedData = playersData;
-        }
-        
-        const players = selectedData.players.map(player => ({
-          ...player,
-          imageUrl: `https://cdn.nba.com/headshots/nba/latest/1040x760/${player.Name.toLowerCase().replace(/\s+/g, '')}.png`
-        }));
-        setPlayers(players);
-        setTargetPlayer(players[Math.floor(Math.random() * players.length)]);
-      } catch (error) {
-        console.error('Error loading players:', error);
-      }
+    // Load all players for search
+    setAllPlayers(playersData.players);
+    
+    // Load difficulty-specific players for the game
+    const difficultyPlayers = {
+      easy: easyPlayers.players,
+      medium: mediumPlayers.players,
+      hard: hardPlayers.players
     };
-
-    loadPlayers();
+    setPlayers(difficultyPlayers[difficulty]);
+    setTargetPlayer(players[Math.floor(Math.random() * players.length)]);
   }, [difficulty]);
 
   const handleDifficultySelect = (level: string) => {
-    setDifficulty(level);
+    setDifficulty(level as 'easy' | 'medium' | 'hard');
     setGameState('playing');
     // Select random player based on difficulty
     const filteredPlayers = players.filter(player => {
@@ -125,9 +108,9 @@ function NBAGame() {
   };
 
   const handleGuess = () => {
-    if (!searchTerm || !targetPlayer) return;
+    if (!searchQuery || !targetPlayer) return;
 
-    const guessedPlayer = players.find(p => p.Name.toLowerCase() === searchTerm.toLowerCase());
+    const guessedPlayer = players.find(p => p.Name.toLowerCase() === searchQuery.toLowerCase());
     if (!guessedPlayer) {
       alert('Please select a valid player from the list');
       return;
@@ -135,7 +118,7 @@ function NBAGame() {
 
     setAttempts(prev => prev + 1);
     setGuessedPlayers(prev => [guessedPlayer, ...prev]);
-    setSearchTerm('');
+    setSearchQuery('');
     setShowSuggestions(false);
 
     if (guessedPlayer.Name === targetPlayer.Name || attempts >= 5) {
@@ -167,19 +150,26 @@ function NBAGame() {
       <ArrowUp className="w-5 h-5 text-red-500" />;
   };
 
-  const filteredPlayers = searchTerm
-    ? players
-        .filter(p => p.Name.toLowerCase().includes(searchTerm.toLowerCase()))
-        .slice(0, 5)
-    : [];
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    if (query.trim() === '') {
+      setSearchResults([]);
+      return;
+    }
+    
+    const results = allPlayers.filter(player => 
+      player.Name.toLowerCase().includes(query.toLowerCase())
+    );
+    setSearchResults(results.slice(0, 5));
+  };
 
   const resetGame = () => {
     setGameState('selection');
-    setDifficulty('');
+    setDifficulty('easy');
     setAttempts(0);
     setTargetPlayer(null);
     setGuessedPlayers([]);
-    setSearchTerm('');
+    setSearchQuery('');
     setShowSuggestions(false);
   };
 
@@ -314,9 +304,9 @@ function NBAGame() {
                   <div className="relative">
                     <input
                       type="text"
-                      value={searchTerm}
+                      value={searchQuery}
                       onChange={(e) => {
-                        setSearchTerm(e.target.value);
+                        setSearchQuery(e.target.value);
                         setShowSuggestions(true);
                       }}
                       onKeyPress={handleKeyPress}
@@ -326,20 +316,20 @@ function NBAGame() {
                     />
                     <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
                   </div>
-                  {showSuggestions && filteredPlayers.length > 0 && (
+                  {showSuggestions && searchResults.length > 0 && (
                     <motion.div 
                       className="absolute z-10 w-full mt-1 bg-white rounded-xl shadow-lg max-h-60 overflow-y-auto border border-gray-200"
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                     >
-                      {filteredPlayers.map((player) => (
+                      {searchResults.map((player) => (
                         <motion.button
                           key={player.Name}
                           className="w-full text-left px-4 py-2 hover:bg-gray-100 transition-colors text-black"
                           whileHover={{ x: 5 }}
                           onClick={() => {
-                            setSearchTerm(player.Name);
+                            setSearchQuery(player.Name);
                             setShowSuggestions(false);
                           }}
                         >

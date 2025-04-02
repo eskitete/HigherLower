@@ -1,8 +1,11 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ArrowUp, ArrowDown, Trophy, X, ChevronLeft, Check, Info } from 'lucide-react';
+import { ArrowLeft, Search, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import playersData from '../../json/nfleasy.json';
+import playersData from '../../json/nfl.json';
+import easyPlayers from '../../json/nfl_easy.json';
+import mediumPlayers from '../../json/nfl_medium.json';
+import hardPlayers from '../../json/nfl_hard.json';
 
 interface Player {
   Name: string;
@@ -14,503 +17,228 @@ interface Player {
   "Comeback Player": number;
   "Super Bowl MVP": number;
   "Super Bowl Wins": number;
-  imageUrl?: string;
 }
 
-interface Score {
-  easy: { wins: number; losses: number };
-  medium: { wins: number; losses: number };
-  hard: { wins: number; losses: number };
-}
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut"
-    }
-  }
-};
-
-function NFLGame() {
+const NFLGame: React.FC = () => {
   const navigate = useNavigate();
-  const [gameState, setGameState] = useState<'selection' | 'playing' | 'ended'>('selection');
-  const [difficulty, setDifficulty] = useState('');
-  const [attempts, setAttempts] = useState(0);
-  const [targetPlayer, setTargetPlayer] = useState<Player | null>(null);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>('easy');
   const [players, setPlayers] = useState<Player[]>([]);
-  const [guessedPlayers, setGuessedPlayers] = useState<Player[]>([]);
-  const [showModal, setShowModal] = useState(false);
-  const [showScoreModal, setShowScoreModal] = useState(false);
-  const [showSuggestions, setShowSuggestions] = useState(false);
-  const [score, setScore] = useState<Score>({
-    easy: { wins: 0, losses: 0 },
-    medium: { wins: 0, losses: 0 },
-    hard: { wins: 0, losses: 0 }
-  });
+  const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
+  const [nextPlayer, setNextPlayer] = useState<Player | null>(null);
+  const [score, setScore] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState<Player[]>([]);
+  const [showSearch, setShowSearch] = useState(false);
+  const [allPlayers, setAllPlayers] = useState<Player[]>([]);
 
   useEffect(() => {
-    // Load saved scores from localStorage
-    const savedScore = localStorage.getItem('nflTrivia_score');
-    if (savedScore) {
-      setScore(JSON.parse(savedScore));
-    }
-
-    // Load players based on difficulty
-    const loadPlayers = async () => {
-      try {
-        const players = playersData.players.map(player => ({
-          ...player,
-          imageUrl: `https://static.www.nfl.com/image/private/f_auto/league/${player.Name.toLowerCase().replace(/\s+/g, '')}`
-        }));
-        setPlayers(players);
-        setTargetPlayer(players[Math.floor(Math.random() * players.length)]);
-      } catch (error) {
-        console.error('Error loading players:', error);
-      }
+    // Load all players for search
+    setAllPlayers(playersData.players);
+    
+    // Load difficulty-specific players for the game
+    const difficultyPlayers = {
+      easy: easyPlayers.players,
+      medium: mediumPlayers.players,
+      hard: hardPlayers.players
     };
-
-    loadPlayers();
+    setPlayers(difficultyPlayers[difficulty]);
+    
+    // Select initial players
+    const randomIndex = Math.floor(Math.random() * difficultyPlayers[difficulty].length);
+    setCurrentPlayer(difficultyPlayers[difficulty][randomIndex]);
+    const nextIndex = (randomIndex + 1) % difficultyPlayers[difficulty].length;
+    setNextPlayer(difficultyPlayers[difficulty][nextIndex]);
   }, [difficulty]);
 
-  const handleDifficultySelect = (level: string) => {
-    setDifficulty(level);
-    setGameState('playing');
-    // Select random player based on difficulty
-    const filteredPlayers = players.filter(player => {
-      switch(level) {
-        case 'easy':
-          return player.MVP >= 2 || player["Super Bowl Wins"] >= 3;
-        case 'medium':
-          return player.MVP >= 1 || player["Super Bowl Wins"] >= 1;
-        case 'hard':
-          return player.MVP < 1 && player["Super Bowl Wins"] < 1;
-        default:
-          return false;
-      }
-    });
-    const randomPlayer = filteredPlayers[Math.floor(Math.random() * filteredPlayers.length)];
-    setTargetPlayer(randomPlayer);
-  };
-
-  const handleGuess = () => {
-    if (!searchTerm || !targetPlayer) return;
-
-    const guessedPlayer = players.find(p => p.Name.toLowerCase() === searchTerm.toLowerCase());
-    if (!guessedPlayer) {
-      alert('Please select a valid player from the list');
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    if (query.trim() === '') {
+      setSearchResults([]);
       return;
     }
+    
+    const results = allPlayers.filter(player => 
+      player.Name.toLowerCase().includes(query.toLowerCase())
+    );
+    setSearchResults(results.slice(0, 5));
+  };
 
-    setAttempts(prev => prev + 1);
-    setGuessedPlayers(prev => [guessedPlayer, ...prev]);
-    setSearchTerm('');
-    setShowSuggestions(false);
-
-    if (guessedPlayer.Name === targetPlayer.Name || attempts >= 5) {
-      const isWin = guessedPlayer.Name === targetPlayer.Name;
-      const newScore = {
-        ...score,
-        [difficulty]: {
-          ...score[difficulty as keyof Score],
-          [isWin ? 'wins' : 'losses']: score[difficulty as keyof Score][isWin ? 'wins' : 'losses'] + 1
-        }
-      };
-      setScore(newScore);
-      localStorage.setItem('nflTrivia_score', JSON.stringify(newScore));
-      setGameState('ended');
+  const handleHigher = () => {
+    if (!currentPlayer || !nextPlayer) return;
+    
+    const currentValue = getPlayerValue(currentPlayer);
+    const nextValue = getPlayerValue(nextPlayer);
+    
+    if (currentValue < nextValue) {
+      setScore(score + 1);
+      setCurrentPlayer(nextPlayer);
+      const nextIndex = (players.indexOf(nextPlayer) + 1) % players.length;
+      setNextPlayer(players[nextIndex]);
+    } else {
+      setGameOver(true);
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleGuess();
+  const handleLower = () => {
+    if (!currentPlayer || !nextPlayer) return;
+    
+    const currentValue = getPlayerValue(currentPlayer);
+    const nextValue = getPlayerValue(nextPlayer);
+    
+    if (currentValue > nextValue) {
+      setScore(score + 1);
+      setCurrentPlayer(nextPlayer);
+      const nextIndex = (players.indexOf(nextPlayer) + 1) % players.length;
+      setNextPlayer(players[nextIndex]);
+    } else {
+      setGameOver(true);
     }
   };
 
-  const compareStats = (stat: keyof Player, guessed: number, target: number | string) => {
-    if (typeof target !== 'number') return null;
-    if (guessed === target) return <Check className="w-5 h-5 text-green-500" />;
-    return guessed > target ? 
-      <ArrowDown className="w-5 h-5 text-red-500" /> : 
-      <ArrowUp className="w-5 h-5 text-red-500" />;
+  const getPlayerValue = (player: Player): number => {
+    switch (difficulty) {
+      case 'easy':
+        return player["Super Bowl Wins"];
+      case 'medium':
+        return player.MVP + player["Super Bowl MVP"];
+      case 'hard':
+        return player.MVP + player["Offensive Player"] + player["Defensive Player"] + 
+               player["Offensive Rookie"] + player["Defensive Rookie"] + 
+               player["Comeback Player"] + player["Super Bowl MVP"] + 
+               player["Super Bowl Wins"];
+      default:
+        return 0;
+    }
   };
-
-  const filteredPlayers = searchTerm
-    ? players
-        .filter(p => p.Name.toLowerCase().includes(searchTerm.toLowerCase()))
-        .slice(0, 5)
-    : [];
 
   const resetGame = () => {
-    setGameState('selection');
-    setDifficulty('');
-    setAttempts(0);
-    setTargetPlayer(null);
-    setGuessedPlayers([]);
-    setSearchTerm('');
-    setShowSuggestions(false);
+    setScore(0);
+    setGameOver(false);
+    const randomIndex = Math.floor(Math.random() * players.length);
+    setCurrentPlayer(players[randomIndex]);
+    const nextIndex = (randomIndex + 1) % players.length;
+    setNextPlayer(players[nextIndex]);
   };
 
   return (
-    <div className="min-h-screen py-8 px-4 bg-[#0a0a0a] relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a]/95 to-[#0a0a0a]" />
-      
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob" />
-        <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-red-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-white rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000" />
-      </div>
-
-      {/* Content */}
-      <div className="max-w-4xl mx-auto relative">
-        {/* Header */}
-        <motion.header 
-          className="flex justify-between items-center mb-8"
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <motion.button
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white p-4">
+      <div className="max-w-4xl mx-auto">
+        <div className="flex items-center justify-between mb-8">
+          <button
             onClick={() => navigate('/')}
-            className="p-2 rounded-full hover:bg-white/10 transition-colors group"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
+            className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors"
           >
-            <ChevronLeft className="w-6 h-6 text-white group-hover:rotate-[-90deg] transition-transform duration-300" />
-          </motion.button>
-          <motion.h1 
-            className="game-title text-5xl bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70"
-            initial={{ x: 20, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-          >
-            NFL HIGHER/LOWER
-          </motion.h1>
-          <div className="flex gap-4">
-            <motion.button
-              onClick={() => setShowModal(true)}
-              className="p-2 rounded-full hover:bg-white/10 transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+            <ArrowLeft className="w-5 h-5" />
+            <span>Back to Home</span>
+          </button>
+          <div className="flex space-x-4">
+            <button
+              onClick={() => setDifficulty('easy')}
+              className={`px-4 py-2 rounded-lg ${
+                difficulty === 'easy' ? 'bg-green-500' : 'bg-gray-700'
+              }`}
             >
-              <Info className="w-6 h-6 text-white" />
-            </motion.button>
-            <motion.button
-              onClick={() => setShowScoreModal(true)}
-              className="p-2 rounded-full hover:bg-white/10 transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+              Easy
+            </button>
+            <button
+              onClick={() => setDifficulty('medium')}
+              className={`px-4 py-2 rounded-lg ${
+                difficulty === 'medium' ? 'bg-yellow-500' : 'bg-gray-700'
+              }`}
             >
-              <Trophy className="w-6 h-6 text-[var(--gold)]" />
-            </motion.button>
+              Medium
+            </button>
+            <button
+              onClick={() => setDifficulty('hard')}
+              className={`px-4 py-2 rounded-lg ${
+                difficulty === 'hard' ? 'bg-red-500' : 'bg-gray-700'
+              }`}
+            >
+              Hard
+            </button>
           </div>
-        </motion.header>
+        </div>
 
-        {/* Main Game Area */}
-        <motion.div 
-          className="scoreboard rounded-2xl p-8 mb-8 backdrop-blur-md border border-white/10"
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-4xl font-bold text-center mb-8"
         >
-          {gameState === 'selection' ? (
-            <div className="text-center">
-              <motion.h2 
-                className="game-title text-3xl mb-8 text-white"
-                initial={{ y: -20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                SELECT DIFFICULTY
-              </motion.h2>
-              <motion.div 
-                className="grid grid-cols-1 md:grid-cols-3 gap-4"
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-              >
-                <motion.button
-                  onClick={() => handleDifficultySelect('easy')}
-                  className="difficulty-btn bg-green-500/20 text-white py-4 px-8 rounded-xl text-xl backdrop-blur-sm border border-green-500/30 hover:bg-green-500/30 transition-colors"
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  EASY
-                </motion.button>
-                <motion.button
-                  onClick={() => handleDifficultySelect('medium')}
-                  className="difficulty-btn bg-yellow-500/20 text-white py-4 px-8 rounded-xl text-xl backdrop-blur-sm border border-yellow-500/30 hover:bg-yellow-500/30 transition-colors"
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  MEDIUM
-                </motion.button>
-                <motion.button
-                  onClick={() => handleDifficultySelect('hard')}
-                  className="difficulty-btn bg-red-500/20 text-white py-4 px-8 rounded-xl text-xl backdrop-blur-sm border border-red-500/30 hover:bg-red-500/30 transition-colors"
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  HARD
-                </motion.button>
-              </motion.div>
-            </div>
-          ) : (
-            <div className="space-y-6">
-              <div className="flex justify-between items-center text-white mb-6">
-                <div className="flex items-center gap-4">
-                  <motion.button
-                    onClick={resetGame}
-                    className="p-2 rounded-full hover:bg-white/10 transition-colors"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <ChevronLeft className="w-6 h-6" />
-                  </motion.button>
-                  <span className="text-lg">Attempts: {attempts}/6</span>
-                </div>
-                <span className="text-lg capitalize">{difficulty}</span>
-              </div>
-              
-              {gameState === 'playing' && (
-                <div className="relative">
-                  <div className="relative">
-                    <input
-                      type="text"
-                      value={searchTerm}
-                      onChange={(e) => {
-                        setSearchTerm(e.target.value);
-                        setShowSuggestions(true);
-                      }}
-                      onKeyPress={handleKeyPress}
-                      className="player-input w-full py-3 px-4 pl-12 rounded-xl text-lg bg-white text-black border border-white/20 focus:border-white/40 focus:outline-none transition-colors placeholder:text-gray-500"
-                      placeholder="Search for a player..."
-                      autoComplete="off"
-                    />
-                    <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
-                  </div>
-                  {showSuggestions && filteredPlayers.length > 0 && (
-                    <motion.div 
-                      className="absolute z-10 w-full mt-1 bg-white rounded-xl shadow-lg max-h-60 overflow-y-auto border border-gray-200"
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                    >
-                      {filteredPlayers.map((player) => (
-                        <motion.button
-                          key={player.Name}
-                          className="w-full text-left px-4 py-2 hover:bg-gray-100 transition-colors text-black"
-                          whileHover={{ x: 5 }}
-                          onClick={() => {
-                            setSearchTerm(player.Name);
-                            setShowSuggestions(false);
-                          }}
-                        >
-                          {player.Name}
-                        </motion.button>
-                      ))}
-                    </motion.div>
-                  )}
-                  <motion.button 
-                    onClick={handleGuess}
-                    className="submit-btn absolute right-2 top-2 px-6 py-1 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    GUESS
-                  </motion.button>
-                </div>
-              )}
+          NFL HIGHER/LOWER
+        </motion.h1>
 
-              <motion.div 
-                className="grid gap-4"
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-              >
-                {guessedPlayers.map((player, index) => (
-                  <motion.div 
-                    key={index} 
-                    className="player-card p-4 rounded-xl backdrop-blur-sm border border-white/10"
-                    variants={itemVariants}
-                  >
-                    <div className="flex items-center gap-4">
-                      <motion.img
-                        src={player.imageUrl}
-                        alt={player.Name}
-                        className="w-16 h-16 rounded-full object-cover border-2 border-white/20"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src = '/placeholder.svg';
-                        }}
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                      />
-                      <div className="flex-1">
-                        <h3 className="text-white text-xl mb-2">{player.Name}</h3>
-                        <div className="grid grid-cols-4 gap-4">
-                          {Object.entries(player).map(([key, value]) => {
-                            if (key === 'Name' || key === 'imageUrl' || value === undefined) return null;
-                            const targetValue = targetPlayer?.[key as keyof Player];
-                            if (typeof value === 'number' && typeof targetValue === 'number') {
-                              return (
-                                <div key={key} className="text-center">
-                                  <div className="stat-value">{value}</div>
-                                  <div className="text-white/60 text-sm flex items-center justify-center gap-1">
-                                    {key}
-                                    <div className="inline-block">
-                                      {compareStats(key as keyof Player, value, targetValue)}
-                                    </div>
-                                  </div>
-                                </div>
-                              );
-                            }
-                            return (
-                              <div key={key} className="text-center">
-                                <div className="stat-value">{value}</div>
-                                <div className="text-white/60 text-sm">{key}</div>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
+        <div className="text-center mb-8">
+          <h2 className="text-2xl font-semibold mb-2">Score: {score}</h2>
+          <p className="text-gray-400">
+            {difficulty === 'easy' ? 'Super Bowl Wins' :
+             difficulty === 'medium' ? 'MVP + Super Bowl MVP' :
+             'All Awards Combined'}
+          </p>
+        </div>
 
-              {gameState === 'ended' && (
-                <motion.div 
-                  className="text-center mt-8"
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <h3 className="text-2xl text-white mb-4">
-                    {guessedPlayers[0]?.Name === targetPlayer?.Name ? 'Congratulations!' : 'Game Over!'}
-                  </h3>
-                  <p className="text-white mb-4">The player was: {targetPlayer?.Name}</p>
-                  <motion.button
-                    onClick={resetGame}
-                    className="bg-white/10 text-white px-8 py-3 rounded-xl text-xl hover:bg-white/20 transition-colors backdrop-blur-sm border border-white/10"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Play Again
-                  </motion.button>
-                </motion.div>
-              )}
-            </div>
-          )}
-        </motion.div>
-
-        {/* Info Modal */}
-        <AnimatePresence>
-          {showModal && (
-            <motion.div 
-              className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 backdrop-blur-sm"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+        {!gameOver ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="bg-gray-800 rounded-xl p-6 shadow-lg"
             >
-              <motion.div 
-                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 max-w-lg w-full border border-white/10"
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.8, opacity: 0 }}
-              >
-                <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-2xl font-bold text-white">How to Play</h2>
-                  <motion.button 
-                    onClick={() => setShowModal(false)}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <X className="w-6 h-6 text-white" />
-                  </motion.button>
-                </div>
-                <div className="prose prose-invert">
-                  <p className="text-white/80">Guess the mystery NFL player in 6 attempts or less!</p>
-                  <ol className="text-white/80">
-                    <li>Choose your difficulty level</li>
-                    <li>Enter your guess in the search box</li>
-                    <li>Compare stats with the mystery player</li>
-                    <li>Use the arrows as hints:
-                      <ul>
-                        <li>↑ means the mystery player has a higher value</li>
-                        <li>↓ means the mystery player has a lower value</li>
-                        <li>✓ means you've matched the exact value</li>
-                      </ul>
-                    </li>
-                  </ol>
-                </div>
-              </motion.div>
+              <h3 className="text-xl font-semibold mb-4">Current Player</h3>
+              <p className="text-2xl font-bold">{currentPlayer?.Name}</p>
+              <p className="text-gray-400 mt-2">
+                Value: {currentPlayer ? getPlayerValue(currentPlayer) : 0}
+              </p>
             </motion.div>
-          )}
-        </AnimatePresence>
 
-        {/* Score Modal */}
-        <AnimatePresence>
-          {showScoreModal && (
-            <motion.div 
-              className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 backdrop-blur-sm"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="bg-gray-800 rounded-xl p-6 shadow-lg"
             >
-              <motion.div 
-                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 max-w-lg w-full border border-white/10"
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.8, opacity: 0 }}
-              >
-                <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-2xl font-bold text-white">All-Time Score</h2>
-                  <motion.button 
-                    onClick={() => setShowScoreModal(false)}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <X className="w-6 h-6 text-white" />
-                  </motion.button>
-                </div>
-                <div className="space-y-4">
-                  {Object.entries(score).map(([difficulty, stats]) => (
-                    <div key={difficulty} className="flex justify-between items-center text-white/80">
-                      <span className="text-lg capitalize">{difficulty}</span>
-                      <span className="text-lg">
-                        Wins: {stats.wins} | Losses: {stats.losses}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
+              <h3 className="text-xl font-semibold mb-4">Next Player</h3>
+              <p className="text-2xl font-bold">{nextPlayer?.Name}</p>
+              <p className="text-gray-400 mt-2">
+                Value: {nextPlayer ? getPlayerValue(nextPlayer) : 0}
+              </p>
             </motion.div>
-          )}
-        </AnimatePresence>
+          </div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-center"
+          >
+            <h2 className="text-3xl font-bold mb-4">Game Over!</h2>
+            <p className="text-xl mb-8">Final Score: {score}</p>
+            <button
+              onClick={resetGame}
+              className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold transition-colors"
+            >
+              Play Again
+            </button>
+          </motion.div>
+        )}
+
+        {!gameOver && (
+          <div className="flex justify-center space-x-4 mt-8">
+            <button
+              onClick={handleLower}
+              className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-lg text-lg font-semibold transition-colors"
+            >
+              Lower
+            </button>
+            <button
+              onClick={handleHigher}
+              className="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-lg text-lg font-semibold transition-colors"
+            >
+              Higher
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
-}
+};
 
 export default NFLGame; 
