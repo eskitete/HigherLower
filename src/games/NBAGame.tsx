@@ -381,9 +381,14 @@ function NBAGame() {
   const compareStats = (stat: keyof Player, guessed: number, target: number | string) => {
     if (typeof target !== 'number') return null;
     if (guessed === target) return <Check className="w-5 h-5 text-green-500" />;
+    
+    // Check if within 2 years for Draft-Year
+    const isClose = stat === 'Draft-Year' && Math.abs(guessed - target) <= 2;
+    const arrowColor = isClose ? 'text-yellow-500' : 'text-red-500';
+
     return guessed > target ? 
-      <ArrowDown className="w-5 h-5 text-red-500" /> : 
-      <ArrowUp className="w-5 h-5 text-red-500" />;
+      <ArrowDown className={`w-5 h-5 ${arrowColor}`} /> : 
+      <ArrowUp className={`w-5 h-5 ${arrowColor}`} />;
   };
 
   const handleSearch = (query: string) => {
@@ -983,6 +988,11 @@ function NBAGame() {
             </motion.div>
           )}
         </AnimatePresence>
+      </div>
+      {/* Footer in bottom left */}
+      <div className="absolute bottom-4 left-4 z-10 text-white text-xs font-light select-none flex flex-col gap-0.5">
+        <span>Created by Rayane Hamoudi & Rafay Syed</span>
+        <span>Images: Basketball Reference</span>
       </div>
     </div>
   );

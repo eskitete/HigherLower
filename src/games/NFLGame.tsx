@@ -965,6 +965,10 @@ const NFLGame: React.FC = () => {
           )}
         </AnimatePresence>
       </div>
+      {/* Footer in bottom left */}
+      <div className="absolute bottom-4 left-4 z-10 text-white text-xs font-light select-none">
+        Created by Rayane Hamoudi & Rafay Syed
+      </div>
     </div>
   );
 };
