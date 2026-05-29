@@ -619,7 +619,7 @@ const NFLGame: React.FC = () => {
                     className="player-card incorrect p-4 rounded-xl backdrop-blur-sm"
                     variants={itemVariants}
                   >
-                    <div className="flex items-center gap-4">
+                    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
                       <motion.img
                         src={targetPlayer.imageUrl || '/placeholder.svg'}
                         alt={targetPlayer.Name}
@@ -631,20 +631,20 @@ const NFLGame: React.FC = () => {
                         animate={{ scale: 1 }}
                         transition={{ type: "spring", stiffness: 260, damping: 20 }}
                       />
-                      <div className="flex-1">
-                        <h3 className="text-white text-xl mb-2">{targetPlayer.Name}</h3>
-                        <div className="grid grid-cols-4 gap-4">
+                      <div className="flex-1 w-full">
+                        <h3 className="text-white text-xl mb-3 text-center sm:text-left">{targetPlayer.Name}</h3>
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
                           {Object.entries(targetPlayer).map(([key, value]) => {
                             if (key === 'Name' || key === 'imageUrl' || value === undefined) return null;
                             return (
-                              <div key={key} className="text-center">
-                                <div className="stat-value">{value}</div>
-                                <div className="text-white/60 text-sm flex items-center justify-center gap-1">
-                                  {key}
-                                  <div className="inline-block">
+                              <div key={key} className="text-center p-2 bg-white/5 rounded-lg border border-white/5 flex flex-col items-center justify-center">
+                                <div className="flex items-center justify-center gap-1.5">
+                                  <span className="stat-value">{value}</span>
+                                  <span className="inline-block flex items-center justify-center">
                                     <Check className="w-5 h-5 text-green-500" />
-                                  </div>
+                                  </span>
                                 </div>
+                                <div className="text-white/60 text-xs sm:text-sm mt-1 text-center truncate max-w-[120px]">{key}</div>
                               </div>
                             );
                           })}
@@ -667,7 +667,7 @@ const NFLGame: React.FC = () => {
                       className={cardClass}
                       variants={itemVariants}
                     >
-                      <div className="flex items-center gap-4">
+                      <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
                         <motion.img
                           src={player.imageUrl || '/placeholder.svg'}
                           alt={player.Name}
@@ -679,31 +679,31 @@ const NFLGame: React.FC = () => {
                           animate={{ scale: 1 }}
                           transition={{ type: "spring", stiffness: 260, damping: 20 }}
                         />
-                        <div className="flex-1">
-                          <h3 className="text-white text-xl mb-2">
-                            {player.Name} {isWinningGuess && '(Correct)'}
+                        <div className="flex-1 w-full">
+                          <h3 className="text-white text-xl mb-3 text-center sm:text-left">
+                            {player.Name}
                           </h3>
-                          <div className="grid grid-cols-4 gap-4">
+                          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
                             {Object.entries(player).map(([key, value]) => {
                               if (key === 'Name' || key === 'imageUrl' || value === undefined) return null;
                               const targetValue = targetPlayer?.[key as keyof Player];
                               if (typeof value === 'number' && typeof targetValue === 'number') {
                                 return (
-                                  <div key={key} className="text-center">
-                                    <div className="stat-value">{value}</div>
-                                    <div className="text-white/60 text-sm flex items-center justify-center gap-1">
-                                      {key}
-                                      <div className="inline-block">
+                                  <div key={key} className="text-center p-2 bg-white/5 rounded-lg border border-white/5 flex flex-col items-center justify-center">
+                                    <div className="flex items-center justify-center gap-1.5">
+                                      <span className="stat-value">{value}</span>
+                                      <span className="inline-block flex items-center justify-center">
                                         {compareStats(key as keyof Player, value, targetValue)}
-                                      </div>
+                                      </span>
                                     </div>
+                                    <div className="text-white/60 text-xs sm:text-sm mt-1 text-center truncate max-w-[120px]">{key}</div>
                                   </div>
                                 );
                               }
                               return (
-                                <div key={key} className="text-center">
-                                  <div className="stat-value">{value}</div>
-                                  <div className="text-white/60 text-sm">{key}</div>
+                                <div key={key} className="text-center p-2 bg-white/5 rounded-lg border border-white/5 flex flex-col items-center justify-center">
+                                  <span className="stat-value">{value}</span>
+                                  <div className="text-white/60 text-xs sm:text-sm mt-1 text-center truncate max-w-[120px]">{key}</div>
                                 </div>
                               );
                             })}
