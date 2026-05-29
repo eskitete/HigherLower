@@ -632,7 +632,7 @@ const NFLGame: React.FC = () => {
                         transition={{ type: "spring", stiffness: 260, damping: 20 }}
                       />
                       <div className="flex-1">
-                        <h3 className="text-white text-xl mb-2">{targetPlayer.Name} (Correct Player)</h3>
+                        <h3 className="text-white text-xl mb-2">{targetPlayer.Name}</h3>
                         <div className="grid grid-cols-4 gap-4">
                           {Object.entries(targetPlayer).map(([key, value]) => {
                             if (key === 'Name' || key === 'imageUrl' || value === undefined) return null;
