@@ -516,6 +516,14 @@ function NBADailyGame() {
                     autoComplete="off"
                   />
                   <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
+                  <motion.button 
+                    onClick={handleGuess}
+                    className="submit-btn absolute right-2 top-1/2 -translate-y-1/2 px-3 sm:px-6 py-1.5 sm:py-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors text-sm sm:text-base"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    GUESS
+                  </motion.button>
                 </div>
                 {errorMessage && (
                   <motion.div 
@@ -549,14 +557,6 @@ function NBADailyGame() {
                     ))}
                   </motion.div>
                 )}
-                <motion.button 
-                  onClick={handleGuess}
-                  className="submit-btn absolute right-2 top-1/2 -translate-y-1/2 px-3 sm:px-6 py-1.5 sm:py-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors text-sm sm:text-base"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  GUESS
-                </motion.button>
               </div>
             )}
 
