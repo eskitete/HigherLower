@@ -4,7 +4,7 @@ Welcome to the **NBA Trivia Game**! This interactive game tests your knowledge o
 
 ## How to Play
 
-1. Open the [Game](https://rayanehamoudi.github.io/HigherLower/nba.html)
+1. Open the [Game](https://sportshigherlower.netlify.app/)
 2. Select a difficulty level: Easy, Medium, or Hard.
 3. Use the input field to type and select a player's name.
 4. Click the "Submit Guess" button or press `Enter` to submit your guess.
