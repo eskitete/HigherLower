@@ -382,8 +382,15 @@ function NBAGame() {
     if (typeof target !== 'number') return null;
     if (guessed === target) return <Check className="w-5 h-5 text-green-500" />;
     
-    // Check if within 2 years for Draft-Year
-    const isClose = stat === 'Draft-Year' && Math.abs(guessed - target) <= 2;
+    // Check for close-call: within 3 for All-Star and Draft-Year, within 1 for everything else
+    const diff = Math.abs(guessed - target);
+    let isClose = false;
+    if (stat === 'All-Star' || stat === 'Draft-Year') {
+      isClose = diff <= 3;
+    } else {
+      isClose = diff === 1;
+    }
+    
     const arrowColor = isClose ? 'text-yellow-500' : 'text-red-500';
 
     return guessed > target ? 
