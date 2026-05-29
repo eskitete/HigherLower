@@ -1,6 +1,83 @@
 {
   "players": [
     {
+      "Name": "Cooper Flagg",
+      "All-Star": 0,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 2025
+    },
+    {
+      "Name": "Stephon Castle",
+      "All-Star": 0,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 2024
+    },
+    {
+      "Name": "Zaccharie Risacher",
+      "All-Star": 0,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 2024
+    },
+    {
+      "Name": "Victor Wembanyama",
+      "All-Star": 2,
+      "DPOY": 1,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 2023
+    },
+    {
+      "Name": "Chet Holmgren",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 2022
+    },
+    {
+      "Name": "Jalen Duren",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 2022
+    },
+    {
+      "Name": "Jalen Williams",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 2022
+    },
+    {
       "Name": "Paolo Banchero",
       "All-Star": 1,
       "DPOY": 0,
@@ -10,6 +87,50 @@
       "Six-Man": 0,
       "All-NBA": 0,
       "Draft-Year": 2022
+    },
+    {
+      "Name": "Alperen Sengun",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 2021
+    },
+    {
+      "Name": "Cade Cunningham",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 2,
+      "Draft-Year": 2021
+    },
+    {
+      "Name": "Evan Mobley",
+      "All-Star": 1,
+      "DPOY": 1,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 2021
+    },
+    {
+      "Name": "Jalen Johnson",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 2021
     },
     {
       "Name": "Scottie Barnes",
@@ -30,18 +151,18 @@
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 1,
+      "All-NBA": 2,
       "Draft-Year": 2020
     },
     {
-      "Name": "Tyrese Haliburton",
-      "All-Star": 2,
+      "Name": "Deni Avdija",
+      "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 1,
+      "All-NBA": 0,
       "Draft-Year": 2020
     },
     {
@@ -56,6 +177,28 @@
       "Draft-Year": 2020
     },
     {
+      "Name": "Payton Pritchard",
+      "All-Star": 0,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 1,
+      "All-NBA": 0,
+      "Draft-Year": 2020
+    },
+    {
+      "Name": "Tyrese Haliburton",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 2,
+      "Draft-Year": 2020
+    },
+    {
       "Name": "Tyrese Maxey",
       "All-Star": 2,
       "DPOY": 0,
@@ -63,8 +206,19 @@
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 0,
+      "All-NBA": 1,
       "Draft-Year": 2020
+    },
+    {
+      "Name": "Darius Garland",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 2019
     },
     {
       "Name": "Ja Morant",
@@ -78,24 +232,24 @@
       "Draft-Year": 2019
     },
     {
-      "Name": "Zion Williamson",
-      "All-Star": 2,
+      "Name": "Keldon Johnson",
+      "All-Star": 0,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
-      "Six-Man": 0,
+      "Six-Man": 1,
       "All-NBA": 0,
       "Draft-Year": 2019
     },
     {
-      "Name": "Darius Garland",
-      "All-Star": 2,
+      "Name": "Naz Reid",
+      "All-Star": 0,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
-      "Six-Man": 0,
+      "Six-Man": 1,
       "All-NBA": 0,
       "Draft-Year": 2019
     },
@@ -111,37 +265,15 @@
       "Draft-Year": 2019
     },
     {
-      "Name": "Luka Doncic",
-      "All-Star": 7,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 7,
-      "Draft-Year": 2018
-    },
-    {
-      "Name": "Trae Young",
-      "All-Star": 3,
+      "Name": "Zion Williamson",
+      "All-Star": 2,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 1,
-      "Draft-Year": 2018
-    },
-    {
-      "Name": "Shai Gilgeous-Alexander",
-      "All-Star": 4,
-      "DPOY": 0,
-      "MVP": 2,
-      "ROTY": 0,
-      "FMVP": 1,
-      "Six-Man": 0,
-      "All-NBA": 4,
-      "Draft-Year": 2018
+      "All-NBA": 0,
+      "Draft-Year": 2019
     },
     {
       "Name": "Jalen Brunson",
@@ -151,7 +283,7 @@
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 1,
+      "All-NBA": 3,
       "Draft-Year": 2018
     },
     {
@@ -166,41 +298,41 @@
       "Draft-Year": 2018
     },
     {
-      "Name": "Donovan Mitchell",
-      "All-Star": 7,
+      "Name": "Luka Doncic",
+      "All-Star": 6,
       "DPOY": 0,
       "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 2,
-      "Draft-Year": 2017
-    },
-    {
-      "Name": "Jayson Tatum",
-      "All-Star": 7,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
+      "ROTY": 1,
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 6,
-      "Draft-Year": 2017
+      "Draft-Year": 2018
     },
     {
-      "Name": "Bam Adebayo",
+      "Name": "Shai Gilgeous-Alexander",
+      "All-Star": 4,
+      "DPOY": 0,
+      "MVP": 2,
+      "ROTY": 0,
+      "FMVP": 1,
+      "Six-Man": 0,
+      "All-NBA": 4,
+      "Draft-Year": 2018
+    },
+    {
+      "Name": "Trae Young",
       "All-Star": 3,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 2017
+      "All-NBA": 1,
+      "Draft-Year": 2018
     },
     {
-      "Name": "Jarrett Allen",
-      "All-Star": 1,
+      "Name": "Bam Adebayo",
+      "All-Star": 3,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -221,6 +353,39 @@
       "Draft-Year": 2017
     },
     {
+      "Name": "Donovan Mitchell",
+      "All-Star": 7,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 3,
+      "Draft-Year": 2017
+    },
+    {
+      "Name": "Jarrett Allen",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 2017
+    },
+    {
+      "Name": "Jayson Tatum",
+      "All-Star": 6,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 5,
+      "Draft-Year": 2017
+    },
+    {
       "Name": "Lauri Markkanen",
       "All-Star": 1,
       "DPOY": 0,
@@ -232,28 +397,6 @@
       "Draft-Year": 2017
     },
     {
-      "Name": "Jaylen Brown",
-      "All-Star": 5,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 1,
-      "Six-Man": 0,
-      "All-NBA": 1,
-      "Draft-Year": 2016
-    },
-    {
-      "Name": "Domantas Sabonis",
-      "All-Star": 3,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 2,
-      "Draft-Year": 2016
-    },
-    {
       "Name": "Ben Simmons",
       "All-Star": 3,
       "DPOY": 0,
@@ -262,17 +405,6 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 1,
-      "Draft-Year": 2016
-    },
-    {
-      "Name": "Pascal Siakam",
-      "All-Star": 4,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 2,
       "Draft-Year": 2016
     },
     {
@@ -298,6 +430,17 @@
       "Draft-Year": 2016
     },
     {
+      "Name": "Domantas Sabonis",
+      "All-Star": 3,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 2,
+      "Draft-Year": 2016
+    },
+    {
       "Name": "Fred VanVleet",
       "All-Star": 1,
       "DPOY": 0,
@@ -306,6 +449,28 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 0,
+      "Draft-Year": 2016
+    },
+    {
+      "Name": "Jamal Murray",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 2016
+    },
+    {
+      "Name": "Jaylen Brown",
+      "All-Star": 5,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 1,
+      "Six-Man": 0,
+      "All-NBA": 2,
       "Draft-Year": 2016
     },
     {
@@ -318,6 +483,28 @@
       "Six-Man": 1,
       "All-NBA": 0,
       "Draft-Year": 2016
+    },
+    {
+      "Name": "Pascal Siakam",
+      "All-Star": 4,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 2,
+      "Draft-Year": 2016
+    },
+    {
+      "Name": "D'Angelo Russell",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 2015
     },
     {
       "Name": "Devin Booker",
@@ -338,22 +525,11 @@
       "ROTY": 1,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 2,
+      "All-NBA": 3,
       "Draft-Year": 2015
     },
     {
       "Name": "Kristaps Porzingis",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 2015
-    },
-    {
-      "Name": "D'Angelo Russell",
       "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
@@ -375,48 +551,15 @@
       "Draft-Year": 2015
     },
     {
-      "Name": "Joel Embiid",
-      "All-Star": 7,
-      "DPOY": 0,
-      "MVP": 1,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 5,
-      "Draft-Year": 2014
-    },
-    {
-      "Name": "Nikola Jokic",
-      "All-Star": 8,
-      "DPOY": 0,
-      "MVP": 3,
-      "ROTY": 0,
-      "FMVP": 1,
-      "Six-Man": 0,
-      "All-NBA": 8,
-      "Draft-Year": 2014
-    },
-    {
-      "Name": "Julius Randle",
-      "All-Star": 3,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 2,
-      "Draft-Year": 2014
-    },
-    {
-      "Name": "Zach LaVine",
-      "All-Star": 2,
+      "Name": "Norman Powell",
+      "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 0,
-      "Draft-Year": 2014
+      "Draft-Year": 2015
     },
     {
       "Name": "Andrew Wiggins",
@@ -427,6 +570,17 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 0,
+      "Draft-Year": 2014
+    },
+    {
+      "Name": "Joel Embiid",
+      "All-Star": 7,
+      "DPOY": 0,
+      "MVP": 1,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 5,
       "Draft-Year": 2014
     },
     {
@@ -441,9 +595,42 @@
       "Draft-Year": 2014
     },
     {
+      "Name": "Julius Randle",
+      "All-Star": 3,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 2,
+      "Draft-Year": 2014
+    },
+    {
       "Name": "Marcus Smart",
       "All-Star": 0,
       "DPOY": 1,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 2014
+    },
+    {
+      "Name": "Nikola Jokic",
+      "All-Star": 8,
+      "DPOY": 0,
+      "MVP": 3,
+      "ROTY": 0,
+      "FMVP": 1,
+      "Six-Man": 0,
+      "All-NBA": 8,
+      "Draft-Year": 2014
+    },
+    {
+      "Name": "Zach LaVine",
+      "All-Star": 2,
+      "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
@@ -463,9 +650,20 @@
       "Draft-Year": 2013
     },
     {
+      "Name": "Michael Carter-Williams",
+      "All-Star": 0,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 2013
+    },
+    {
       "Name": "Rudy Gobert",
       "All-Star": 3,
-      "DPOY": 3,
+      "DPOY": 4,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
@@ -485,15 +683,15 @@
       "Draft-Year": 2013
     },
     {
-      "Name": "Michael Carter-Williams",
-      "All-Star": 0,
+      "Name": "Andre Drummond",
+      "All-Star": 2,
       "DPOY": 0,
       "MVP": 0,
-      "ROTY": 1,
+      "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 2013
+      "All-NBA": 1,
+      "Draft-Year": 2012
     },
     {
       "Name": "Anthony Davis",
@@ -504,6 +702,17 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 5,
+      "Draft-Year": 2012
+    },
+    {
+      "Name": "Bradley Beal",
+      "All-Star": 3,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
       "Draft-Year": 2012
     },
     {
@@ -529,17 +738,6 @@
       "Draft-Year": 2012
     },
     {
-      "Name": "Bradley Beal",
-      "All-Star": 3,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 1,
-      "Draft-Year": 2012
-    },
-    {
       "Name": "Khris Middleton",
       "All-Star": 3,
       "DPOY": 0,
@@ -551,7 +749,7 @@
       "Draft-Year": 2012
     },
     {
-      "Name": "Andre Drummond",
+      "Name": "Isaiah Thomas",
       "All-Star": 2,
       "DPOY": 0,
       "MVP": 0,
@@ -559,28 +757,6 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 1,
-      "Draft-Year": 2012
-    },
-    {
-      "Name": "Kyrie Irving",
-      "All-Star": 8,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 3,
-      "Draft-Year": 2011
-    },
-    {
-      "Name": "Kawhi Leonard",
-      "All-Star": 7,
-      "DPOY": 2,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 2,
-      "Six-Man": 0,
-      "All-NBA": 6,
       "Draft-Year": 2011
     },
     {
@@ -595,14 +771,14 @@
       "Draft-Year": 2011
     },
     {
-      "Name": "Klay Thompson",
-      "All-Star": 5,
-      "DPOY": 0,
+      "Name": "Kawhi Leonard",
+      "All-Star": 7,
+      "DPOY": 2,
       "MVP": 0,
       "ROTY": 0,
-      "FMVP": 0,
+      "FMVP": 2,
       "Six-Man": 0,
-      "All-NBA": 2,
+      "All-NBA": 7,
       "Draft-Year": 2011
     },
     {
@@ -617,14 +793,25 @@
       "Draft-Year": 2011
     },
     {
-      "Name": "Isaiah Thomas",
-      "All-Star": 2,
+      "Name": "Klay Thompson",
+      "All-Star": 5,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 1,
+      "All-NBA": 2,
+      "Draft-Year": 2011
+    },
+    {
+      "Name": "Kyrie Irving",
+      "All-Star": 9,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 3,
       "Draft-Year": 2011
     },
     {
@@ -637,28 +824,6 @@
       "Six-Man": 0,
       "All-NBA": 0,
       "Draft-Year": 2011
-    },
-    {
-      "Name": "Paul George",
-      "All-Star": 9,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 6,
-      "Draft-Year": 2010
-    },
-    {
-      "Name": "John Wall",
-      "All-Star": 5,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 1,
-      "Draft-Year": 2010
     },
     {
       "Name": "DeMarcus Cousins",
@@ -683,25 +848,36 @@
       "Draft-Year": 2010
     },
     {
-      "Name": "Stephen Curry",
-      "All-Star": 12,
+      "Name": "John Wall",
+      "All-Star": 5,
       "DPOY": 0,
-      "MVP": 2,
-      "ROTY": 0,
-      "FMVP": 1,
-      "Six-Man": 0,
-      "All-NBA": 10,
-      "Draft-Year": 2009
-    },
-    {
-      "Name": "James Harden",
-      "All-Star": 11,
-      "DPOY": 0,
-      "MVP": 1,
+      "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
-      "Six-Man": 1,
-      "All-NBA": 7,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 2010
+    },
+    {
+      "Name": "Paul George",
+      "All-Star": 9,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 6,
+      "Draft-Year": 2010
+    },
+    {
+      "Name": "Blake Griffin",
+      "All-Star": 6,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 5,
       "Draft-Year": 2009
     },
     {
@@ -716,25 +892,14 @@
       "Draft-Year": 2009
     },
     {
-      "Name": "Blake Griffin",
-      "All-Star": 6,
+      "Name": "James Harden",
+      "All-Star": 11,
       "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 5,
-      "Draft-Year": 2009
-    },
-    {
-      "Name": "Jrue Holiday",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
+      "MVP": 1,
       "ROTY": 0,
       "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
+      "Six-Man": 1,
+      "All-NBA": 8,
       "Draft-Year": 2009
     },
     {
@@ -749,6 +914,28 @@
       "Draft-Year": 2009
     },
     {
+      "Name": "Jrue Holiday",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 2009
+    },
+    {
+      "Name": "Stephen Curry",
+      "All-Star": 12,
+      "DPOY": 0,
+      "MVP": 2,
+      "ROTY": 0,
+      "FMVP": 1,
+      "Six-Man": 0,
+      "All-NBA": 11,
+      "Draft-Year": 2009
+    },
+    {
       "Name": "Tyreke Evans",
       "All-Star": 0,
       "DPOY": 0,
@@ -760,25 +947,25 @@
       "Draft-Year": 2009
     },
     {
-      "Name": "Russell Westbrook",
-      "All-Star": 9,
-      "DPOY": 0,
-      "MVP": 1,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 9,
-      "Draft-Year": 2008
-    },
-    {
-      "Name": "Kevin Love",
-      "All-Star": 5,
+      "Name": "Brook Lopez",
+      "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 2,
+      "All-NBA": 0,
+      "Draft-Year": 2008
+    },
+    {
+      "Name": "DeAndre Jordan",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 3,
       "Draft-Year": 2008
     },
     {
@@ -793,13 +980,13 @@
       "Draft-Year": 2008
     },
     {
-      "Name": "Roy Hibbert",
-      "All-Star": 2,
+      "Name": "Eric Gordon",
+      "All-Star": 0,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
-      "Six-Man": 0,
+      "Six-Man": 1,
       "All-NBA": 0,
       "Draft-Year": 2008
     },
@@ -815,19 +1002,19 @@
       "Draft-Year": 2008
     },
     {
-      "Name": "DeAndre Jordan",
-      "All-Star": 1,
+      "Name": "Kevin Love",
+      "All-Star": 5,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 3,
+      "All-NBA": 2,
       "Draft-Year": 2008
     },
     {
-      "Name": "Brook Lopez",
-      "All-Star": 1,
+      "Name": "Roy Hibbert",
+      "All-Star": 2,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -837,26 +1024,15 @@
       "Draft-Year": 2008
     },
     {
-      "Name": "Eric Gordon",
-      "All-Star": 0,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 1,
-      "All-NBA": 0,
-      "Draft-Year": 2008
-    },
-    {
-      "Name": "Kevin Durant",
-      "All-Star": 16,
+      "Name": "Russell Westbrook",
+      "All-Star": 9,
       "DPOY": 0,
       "MVP": 1,
-      "ROTY": 1,
-      "FMVP": 2,
+      "ROTY": 0,
+      "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 11,
-      "Draft-Year": 2007
+      "All-NBA": 9,
+      "Draft-Year": 2008
     },
     {
       "Name": "Al Horford",
@@ -867,17 +1043,6 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 1,
-      "Draft-Year": 2007
-    },
-    {
-      "Name": "Marc Gasol",
-      "All-Star": 3,
-      "DPOY": 1,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 2,
       "Draft-Year": 2007
     },
     {
@@ -892,6 +1057,28 @@
       "Draft-Year": 2007
     },
     {
+      "Name": "Kevin Durant",
+      "All-Star": 16,
+      "DPOY": 0,
+      "MVP": 1,
+      "ROTY": 1,
+      "FMVP": 2,
+      "Six-Man": 0,
+      "All-NBA": 12,
+      "Draft-Year": 2007
+    },
+    {
+      "Name": "Marc Gasol",
+      "All-Star": 3,
+      "DPOY": 1,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 2,
+      "Draft-Year": 2007
+    },
+    {
       "Name": "Mike Conley",
       "All-Star": 1,
       "DPOY": 0,
@@ -903,14 +1090,14 @@
       "Draft-Year": 2007
     },
     {
-      "Name": "LaMarcus Aldridge",
-      "All-Star": 7,
+      "Name": "Brandon Roy",
+      "All-Star": 3,
       "DPOY": 0,
       "MVP": 0,
-      "ROTY": 0,
+      "ROTY": 1,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 5,
+      "All-NBA": 2,
       "Draft-Year": 2006
     },
     {
@@ -922,6 +1109,17 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 1,
+      "Draft-Year": 2006
+    },
+    {
+      "Name": "LaMarcus Aldridge",
+      "All-Star": 7,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 5,
       "Draft-Year": 2006
     },
     {
@@ -947,15 +1145,15 @@
       "Draft-Year": 2006
     },
     {
-      "Name": "Brandon Roy",
-      "All-Star": 3,
+      "Name": "Andrew Bogut",
+      "All-Star": 0,
       "DPOY": 0,
       "MVP": 0,
-      "ROTY": 1,
+      "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 2,
-      "Draft-Year": 2006
+      "All-NBA": 1,
+      "Draft-Year": 2005
     },
     {
       "Name": "Chris Paul",
@@ -966,28 +1164,6 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 11,
-      "Draft-Year": 2005
-    },
-    {
-      "Name": "Deron Williams",
-      "All-Star": 3,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 2,
-      "Draft-Year": 2005
-    },
-    {
-      "Name": "David Lee",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 1,
       "Draft-Year": 2005
     },
     {
@@ -1002,6 +1178,28 @@
       "Draft-Year": 2005
     },
     {
+      "Name": "David Lee",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 2005
+    },
+    {
+      "Name": "Deron Williams",
+      "All-Star": 3,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 2,
+      "Draft-Year": 2005
+    },
+    {
       "Name": "Lou Williams",
       "All-Star": 0,
       "DPOY": 0,
@@ -1013,7 +1211,7 @@
       "Draft-Year": 2005
     },
     {
-      "Name": "Andrew Bogut",
+      "Name": "Al Jefferson",
       "All-Star": 0,
       "DPOY": 0,
       "MVP": 0,
@@ -1021,28 +1219,6 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 1,
-      "Draft-Year": 2005
-    },
-    {
-      "Name": "Dwight Howard",
-      "All-Star": 8,
-      "DPOY": 3,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 8,
-      "Draft-Year": 2004
-    },
-    {
-      "Name": "Luol Deng",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
       "Draft-Year": 2004
     },
     {
@@ -1068,6 +1244,17 @@
       "Draft-Year": 2004
     },
     {
+      "Name": "Ben Gordon",
+      "All-Star": 0,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 1,
+      "All-NBA": 0,
+      "Draft-Year": 2004
+    },
+    {
       "Name": "Devin Harris",
       "All-Star": 1,
       "DPOY": 0,
@@ -1079,24 +1266,24 @@
       "Draft-Year": 2004
     },
     {
-      "Name": "Jameer Nelson",
-      "All-Star": 1,
-      "DPOY": 0,
+      "Name": "Dwight Howard",
+      "All-Star": 8,
+      "DPOY": 3,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 0,
+      "All-NBA": 8,
       "Draft-Year": 2004
     },
     {
-      "Name": "Ben Gordon",
+      "Name": "Emeka Okafor",
       "All-Star": 0,
       "DPOY": 0,
       "MVP": 0,
-      "ROTY": 0,
+      "ROTY": 1,
       "FMVP": 0,
-      "Six-Man": 1,
+      "Six-Man": 0,
       "All-NBA": 0,
       "Draft-Year": 2004
     },
@@ -1112,47 +1299,36 @@
       "Draft-Year": 2004
     },
     {
-      "Name": "Emeka Okafor",
-      "All-Star": 0,
+      "Name": "Jameer Nelson",
+      "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
-      "ROTY": 1,
+      "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 0,
       "Draft-Year": 2004
     },
     {
-      "Name": "Al Jefferson",
-      "All-Star": 0,
+      "Name": "Luol Deng",
+      "All-Star": 2,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 1,
+      "All-NBA": 0,
       "Draft-Year": 2004
     },
     {
-      "Name": "LeBron James",
-      "All-Star": 22,
-      "DPOY": 0,
-      "MVP": 4,
-      "ROTY": 1,
-      "FMVP": 4,
-      "Six-Man": 0,
-      "All-NBA": 20,
-      "Draft-Year": 2003
-    },
-    {
-      "Name": "Dwyane Wade",
-      "All-Star": 13,
+      "Name": "Carmelo Anthony",
+      "All-Star": 10,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
-      "FMVP": 1,
+      "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 8,
+      "All-NBA": 6,
       "Draft-Year": 2003
     },
     {
@@ -1167,14 +1343,14 @@
       "Draft-Year": 2003
     },
     {
-      "Name": "Carmelo Anthony",
-      "All-Star": 10,
+      "Name": "Chris Kaman",
+      "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 6,
+      "All-NBA": 0,
       "Draft-Year": 2003
     },
     {
@@ -1189,18 +1365,18 @@
       "Draft-Year": 2003
     },
     {
-      "Name": "Josh Howard",
-      "All-Star": 1,
+      "Name": "Dwyane Wade",
+      "All-Star": 13,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
-      "FMVP": 0,
+      "FMVP": 1,
       "Six-Man": 0,
-      "All-NBA": 0,
+      "All-NBA": 8,
       "Draft-Year": 2003
     },
     {
-      "Name": "Chris Kaman",
+      "Name": "Josh Howard",
       "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
@@ -1222,17 +1398,6 @@
       "Draft-Year": 2003
     },
     {
-      "Name": "Mo Williams",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 2003
-    },
-    {
       "Name": "Leandro Barbosa",
       "All-Star": 0,
       "DPOY": 0,
@@ -1244,15 +1409,26 @@
       "Draft-Year": 2003
     },
     {
-      "Name": "Yao Ming",
-      "All-Star": 8,
+      "Name": "LeBron James",
+      "All-Star": 22,
+      "DPOY": 0,
+      "MVP": 4,
+      "ROTY": 1,
+      "FMVP": 4,
+      "Six-Man": 0,
+      "All-NBA": 21,
+      "Draft-Year": 2003
+    },
+    {
+      "Name": "Mo Williams",
+      "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 5,
-      "Draft-Year": 2002
+      "All-NBA": 0,
+      "Draft-Year": 2003
     },
     {
       "Name": "Amar'e Stoudemire",
@@ -1288,36 +1464,25 @@
       "Draft-Year": 2002
     },
     {
-      "Name": "Joe Johnson",
-      "All-Star": 7,
+      "Name": "Yao Ming",
+      "All-Star": 8,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 1,
-      "Draft-Year": 2001
+      "All-NBA": 5,
+      "Draft-Year": 2002
     },
     {
-      "Name": "Tony Parker",
-      "All-Star": 6,
+      "Name": "Gerald Wallace",
+      "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
-      "FMVP": 1,
-      "Six-Man": 0,
-      "All-NBA": 4,
-      "Draft-Year": 2001
-    },
-    {
-      "Name": "Pau Gasol",
-      "All-Star": 6,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 4,
+      "All-NBA": 0,
       "Draft-Year": 2001
     },
     {
@@ -1332,20 +1497,9 @@
       "Draft-Year": 2001
     },
     {
-      "Name": "Zach Randolph",
-      "All-Star": 2,
+      "Name": "Joe Johnson",
+      "All-Star": 7,
       "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 1,
-      "Draft-Year": 2001
-    },
-    {
-      "Name": "Tyson Chandler",
-      "All-Star": 1,
-      "DPOY": 1,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
@@ -1365,14 +1519,47 @@
       "Draft-Year": 2001
     },
     {
-      "Name": "Gerald Wallace",
+      "Name": "Pau Gasol",
+      "All-Star": 6,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 4,
+      "Draft-Year": 2001
+    },
+    {
+      "Name": "Tony Parker",
+      "All-Star": 6,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 1,
+      "Six-Man": 0,
+      "All-NBA": 4,
+      "Draft-Year": 2001
+    },
+    {
+      "Name": "Tyson Chandler",
       "All-Star": 1,
+      "DPOY": 1,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 2001
+    },
+    {
+      "Name": "Zach Randolph",
+      "All-Star": 2,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 0,
+      "All-NBA": 1,
       "Draft-Year": 2001
     },
     {
@@ -1383,6 +1570,17 @@
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 2000
+    },
+    {
+      "Name": "Jamal Crawford",
+      "All-Star": 0,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 3,
       "All-NBA": 0,
       "Draft-Year": 2000
     },
@@ -1409,17 +1607,6 @@
       "Draft-Year": 2000
     },
     {
-      "Name": "Jamal Crawford",
-      "All-Star": 0,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 3,
-      "All-NBA": 0,
-      "Draft-Year": 2000
-    },
-    {
       "Name": "Mike Miller",
       "All-Star": 0,
       "DPOY": 0,
@@ -1429,6 +1616,94 @@
       "Six-Man": 1,
       "All-NBA": 0,
       "Draft-Year": 2000
+    },
+    {
+      "Name": "Andrei Kirilenko",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1999
+    },
+    {
+      "Name": "Baron Davis",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 1999
+    },
+    {
+      "Name": "Elton Brand",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 1999
+    },
+    {
+      "Name": "Jason Terry",
+      "All-Star": 0,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 1,
+      "All-NBA": 0,
+      "Draft-Year": 1999
+    },
+    {
+      "Name": "Lamar Odom",
+      "All-Star": 0,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 1,
+      "All-NBA": 0,
+      "Draft-Year": 1999
+    },
+    {
+      "Name": "Manu Ginobili",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 1,
+      "All-NBA": 2,
+      "Draft-Year": 1999
+    },
+    {
+      "Name": "Richard Hamilton",
+      "All-Star": 3,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1999
+    },
+    {
+      "Name": "Ron Artest",
+      "All-Star": 1,
+      "DPOY": 1,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 1999
     },
     {
       "Name": "Shawn Marion",
@@ -1453,61 +1728,6 @@
       "Draft-Year": 1999
     },
     {
-      "Name": "Richard Hamilton",
-      "All-Star": 3,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1999
-    },
-    {
-      "Name": "Manu Ginobili",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 1,
-      "All-NBA": 2,
-      "Draft-Year": 1999
-    },
-    {
-      "Name": "Elton Brand",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 1,
-      "Draft-Year": 1999
-    },
-    {
-      "Name": "Baron Davis",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 1,
-      "Draft-Year": 1999
-    },
-    {
-      "Name": "Andrei Kirilenko",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1999
-    },
-    {
       "Name": "Wally Szczerbiak",
       "All-Star": 1,
       "DPOY": 0,
@@ -1519,37 +1739,26 @@
       "Draft-Year": 1999
     },
     {
-      "Name": "Ron Artest",
-      "All-Star": 1,
-      "DPOY": 1,
+      "Name": "Antawn Jamison",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 1,
+      "All-NBA": 0,
+      "Draft-Year": 1998
+    },
+    {
+      "Name": "Brad Miller",
+      "All-Star": 2,
+      "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 1,
-      "Draft-Year": 1999
-    },
-    {
-      "Name": "Lamar Odom",
-      "All-Star": 0,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 1,
       "All-NBA": 0,
-      "Draft-Year": 1999
-    },
-    {
-      "Name": "Jason Terry",
-      "All-Star": 0,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 1,
-      "All-NBA": 0,
-      "Draft-Year": 1999
+      "Draft-Year": 1998
     },
     {
       "Name": "Dirk Nowitzki",
@@ -1574,28 +1783,6 @@
       "Draft-Year": 1998
     },
     {
-      "Name": "Vince Carter",
-      "All-Star": 8,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 2,
-      "Draft-Year": 1998
-    },
-    {
-      "Name": "Antawn Jamison",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 1,
-      "All-NBA": 0,
-      "Draft-Year": 1998
-    },
-    {
       "Name": "Rashard Lewis",
       "All-Star": 2,
       "DPOY": 0,
@@ -1607,15 +1794,37 @@
       "Draft-Year": 1998
     },
     {
-      "Name": "Brad Miller",
-      "All-Star": 2,
+      "Name": "Vince Carter",
+      "All-Star": 8,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 2,
+      "Draft-Year": 1998
+    },
+    {
+      "Name": "Bobby Jackson",
+      "All-Star": 0,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
-      "Six-Man": 0,
+      "Six-Man": 1,
       "All-NBA": 0,
-      "Draft-Year": 1998
+      "Draft-Year": 1997
+    },
+    {
+      "Name": "Chauncey Billups",
+      "All-Star": 5,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 1,
+      "Six-Man": 0,
+      "All-NBA": 3,
+      "Draft-Year": 1997
     },
     {
       "Name": "Tim Duncan",
@@ -1640,39 +1849,6 @@
       "Draft-Year": 1997
     },
     {
-      "Name": "Chauncey Billups",
-      "All-Star": 5,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 1,
-      "Six-Man": 0,
-      "All-NBA": 3,
-      "Draft-Year": 1997
-    },
-    {
-      "Name": "Bobby Jackson",
-      "All-Star": 0,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 1,
-      "All-NBA": 0,
-      "Draft-Year": 1997
-    },
-    {
-      "Name": "Kobe Bryant",
-      "All-Star": 18,
-      "DPOY": 0,
-      "MVP": 1,
-      "ROTY": 0,
-      "FMVP": 2,
-      "Six-Man": 0,
-      "All-NBA": 15,
-      "Draft-Year": 1996
-    },
-    {
       "Name": "Allen Iverson",
       "All-Star": 11,
       "DPOY": 0,
@@ -1681,61 +1857,6 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 7,
-      "Draft-Year": 1996
-    },
-    {
-      "Name": "Ray Allen",
-      "All-Star": 10,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 2,
-      "Draft-Year": 1996
-    },
-    {
-      "Name": "Steve Nash",
-      "All-Star": 8,
-      "DPOY": 0,
-      "MVP": 2,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 7,
-      "Draft-Year": 1996
-    },
-    {
-      "Name": "Jermaine O'Neal",
-      "All-Star": 6,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 3,
-      "Draft-Year": 1996
-    },
-    {
-      "Name": "Ben Wallace",
-      "All-Star": 4,
-      "DPOY": 4,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 5,
-      "Draft-Year": 1996
-    },
-    {
-      "Name": "Peja Stojakovic",
-      "All-Star": 3,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 1,
       "Draft-Year": 1996
     },
     {
@@ -1750,9 +1871,42 @@
       "Draft-Year": 1996
     },
     {
-      "Name": "Zydrunas Ilgauskas",
-      "All-Star": 2,
+      "Name": "Ben Wallace",
+      "All-Star": 4,
+      "DPOY": 4,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 5,
+      "Draft-Year": 1996
+    },
+    {
+      "Name": "Jermaine O'Neal",
+      "All-Star": 6,
       "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 3,
+      "Draft-Year": 1996
+    },
+    {
+      "Name": "Kobe Bryant",
+      "All-Star": 18,
+      "DPOY": 0,
+      "MVP": 1,
+      "ROTY": 0,
+      "FMVP": 2,
+      "Six-Man": 0,
+      "All-NBA": 15,
+      "Draft-Year": 1996
+    },
+    {
+      "Name": "Marcus Camby",
+      "All-Star": 0,
+      "DPOY": 1,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
@@ -1761,8 +1915,19 @@
       "Draft-Year": 1996
     },
     {
-      "Name": "Stephon Marbury",
-      "All-Star": 2,
+      "Name": "Peja Stojakovic",
+      "All-Star": 3,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 1996
+    },
+    {
+      "Name": "Ray Allen",
+      "All-Star": 10,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -1783,59 +1948,37 @@
       "Draft-Year": 1996
     },
     {
-      "Name": "Marcus Camby",
-      "All-Star": 0,
-      "DPOY": 1,
+      "Name": "Stephon Marbury",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 2,
+      "Draft-Year": 1996
+    },
+    {
+      "Name": "Steve Nash",
+      "All-Star": 8,
+      "DPOY": 0,
+      "MVP": 2,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 7,
+      "Draft-Year": 1996
+    },
+    {
+      "Name": "Zydrunas Ilgauskas",
+      "All-Star": 2,
+      "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 0,
       "Draft-Year": 1996
-    },
-    {
-      "Name": "Kevin Garnett",
-      "All-Star": 15,
-      "DPOY": 1,
-      "MVP": 1,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 9,
-      "Draft-Year": 1995
-    },
-    {
-      "Name": "Rasheed Wallace",
-      "All-Star": 4,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1995
-    },
-    {
-      "Name": "Michael Finley",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1995
-    },
-    {
-      "Name": "Jerry Stackhouse",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1995
     },
     {
       "Name": "Antonio McDyess",
@@ -1846,17 +1989,6 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 1,
-      "Draft-Year": 1995
-    },
-    {
-      "Name": "Theo Ratliff",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
       "Draft-Year": 1995
     },
     {
@@ -1882,25 +2014,69 @@
       "Draft-Year": 1995
     },
     {
-      "Name": "Jason Kidd",
-      "All-Star": 10,
+      "Name": "Jerry Stackhouse",
+      "All-Star": 2,
       "DPOY": 0,
       "MVP": 0,
-      "ROTY": 1,
+      "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 6,
-      "Draft-Year": 1994
+      "All-NBA": 0,
+      "Draft-Year": 1995
     },
     {
-      "Name": "Grant Hill",
-      "All-Star": 7,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
+      "Name": "Kevin Garnett",
+      "All-Star": 15,
+      "DPOY": 1,
+      "MVP": 1,
+      "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 5,
+      "All-NBA": 9,
+      "Draft-Year": 1995
+    },
+    {
+      "Name": "Michael Finley",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1995
+    },
+    {
+      "Name": "Rasheed Wallace",
+      "All-Star": 4,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1995
+    },
+    {
+      "Name": "Theo Ratliff",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1995
+    },
+    {
+      "Name": "Aaron McKie",
+      "All-Star": 0,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 1,
+      "All-NBA": 0,
       "Draft-Year": 1994
     },
     {
@@ -1926,6 +2102,28 @@
       "Draft-Year": 1994
     },
     {
+      "Name": "Grant Hill",
+      "All-Star": 7,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 5,
+      "Draft-Year": 1994
+    },
+    {
+      "Name": "Jason Kidd",
+      "All-Star": 10,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 6,
+      "Draft-Year": 1994
+    },
+    {
       "Name": "Juwan Howard",
       "All-Star": 1,
       "DPOY": 0,
@@ -1935,50 +2133,6 @@
       "Six-Man": 0,
       "All-NBA": 1,
       "Draft-Year": 1994
-    },
-    {
-      "Name": "Aaron McKie",
-      "All-Star": 0,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 1,
-      "All-NBA": 0,
-      "Draft-Year": 1994
-    },
-    {
-      "Name": "Chris Webber",
-      "All-Star": 5,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 5,
-      "Draft-Year": 1993
-    },
-    {
-      "Name": "Vin Baker",
-      "All-Star": 4,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 2,
-      "Draft-Year": 1993
-    },
-    {
-      "Name": "Penny Hardaway",
-      "All-Star": 4,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 3,
-      "Draft-Year": 1993
     },
     {
       "Name": "Allan Houston",
@@ -1992,14 +2146,14 @@
       "Draft-Year": 1993
     },
     {
-      "Name": "Sam Cassell",
-      "All-Star": 1,
+      "Name": "Chris Webber",
+      "All-Star": 5,
       "DPOY": 0,
       "MVP": 0,
-      "ROTY": 0,
+      "ROTY": 1,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 1,
+      "All-NBA": 5,
       "Draft-Year": 1993
     },
     {
@@ -2025,6 +2179,17 @@
       "Draft-Year": 1993
     },
     {
+      "Name": "Penny Hardaway",
+      "All-Star": 4,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 3,
+      "Draft-Year": 1993
+    },
+    {
       "Name": "Rodney Rogers",
       "All-Star": 0,
       "DPOY": 0,
@@ -2036,15 +2201,26 @@
       "Draft-Year": 1993
     },
     {
-      "Name": "Shaquille O'Neal",
-      "All-Star": 15,
+      "Name": "Sam Cassell",
+      "All-Star": 1,
       "DPOY": 0,
-      "MVP": 1,
-      "ROTY": 1,
-      "FMVP": 3,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 14,
-      "Draft-Year": 1992
+      "All-NBA": 1,
+      "Draft-Year": 1993
+    },
+    {
+      "Name": "Vin Baker",
+      "All-Star": 4,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 2,
+      "Draft-Year": 1993
     },
     {
       "Name": "Alonzo Mourning",
@@ -2055,28 +2231,6 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 2,
-      "Draft-Year": 1992
-    },
-    {
-      "Name": "Latrell Sprewell",
-      "All-Star": 4,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 1,
-      "Draft-Year": 1992
-    },
-    {
-      "Name": "Tom Gugliotta",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
       "Draft-Year": 1992
     },
     {
@@ -2091,40 +2245,40 @@
       "Draft-Year": 1992
     },
     {
-      "Name": "Dikembe Mutombo",
-      "All-Star": 8,
-      "DPOY": 4,
+      "Name": "Latrell Sprewell",
+      "All-Star": 4,
+      "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 3,
-      "Draft-Year": 1991
+      "All-NBA": 1,
+      "Draft-Year": 1992
     },
     {
-      "Name": "Terrell Brandon",
-      "All-Star": 2,
+      "Name": "Shaquille O'Neal",
+      "All-Star": 15,
+      "DPOY": 0,
+      "MVP": 1,
+      "ROTY": 1,
+      "FMVP": 3,
+      "Six-Man": 0,
+      "All-NBA": 14,
+      "Draft-Year": 1992
+    },
+    {
+      "Name": "Tom Gugliotta",
+      "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 0,
-      "Draft-Year": 1991
+      "Draft-Year": 1992
     },
     {
-      "Name": "Larry Johnson",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 1,
-      "Draft-Year": 1991
-    },
-    {
-      "Name": "Kenny Anderson",
+      "Name": "Chris Gatling",
       "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
@@ -2146,7 +2300,29 @@
       "Draft-Year": 1991
     },
     {
-      "Name": "Chris Gatling",
+      "Name": "Darrell Armstrong",
+      "All-Star": 0,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 1,
+      "All-NBA": 0,
+      "Draft-Year": 1991
+    },
+    {
+      "Name": "Dikembe Mutombo",
+      "All-Star": 8,
+      "DPOY": 4,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 3,
+      "Draft-Year": 1991
+    },
+    {
+      "Name": "Kenny Anderson",
       "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
@@ -2154,6 +2330,17 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 0,
+      "Draft-Year": 1991
+    },
+    {
+      "Name": "Larry Johnson",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
       "Draft-Year": 1991
     },
     {
@@ -2168,25 +2355,25 @@
       "Draft-Year": 1991
     },
     {
-      "Name": "Darrell Armstrong",
-      "All-Star": 0,
+      "Name": "Terrell Brandon",
+      "All-Star": 2,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
-      "Six-Man": 1,
+      "Six-Man": 0,
       "All-NBA": 0,
       "Draft-Year": 1991
     },
     {
-      "Name": "Gary Payton",
-      "All-Star": 9,
-      "DPOY": 1,
+      "Name": "Antonio Davis",
+      "All-Star": 1,
+      "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 9,
+      "All-NBA": 0,
       "Draft-Year": 1990
     },
     {
@@ -2212,25 +2399,14 @@
       "Draft-Year": 1990
     },
     {
-      "Name": "Antonio Davis",
-      "All-Star": 1,
-      "DPOY": 0,
+      "Name": "Gary Payton",
+      "All-Star": 9,
+      "DPOY": 1,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1990
-    },
-    {
-      "Name": "Tyrone Hill",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
+      "All-NBA": 9,
       "Draft-Year": 1990
     },
     {
@@ -2256,6 +2432,94 @@
       "Draft-Year": 1990
     },
     {
+      "Name": "Tyrone Hill",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1990
+    },
+    {
+      "Name": "B. J. Armstrong",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1989
+    },
+    {
+      "Name": "Clifford Robinson",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 1,
+      "All-NBA": 0,
+      "Draft-Year": 1989
+    },
+    {
+      "Name": "Dana Barros",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1989
+    },
+    {
+      "Name": "Glen Rice",
+      "All-Star": 3,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 2,
+      "Draft-Year": 1989
+    },
+    {
+      "Name": "Jaren Jackson",
+      "All-Star": 0,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1989
+    },
+    {
+      "Name": "Mookie Blaylock",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1989
+    },
+    {
+      "Name": "Sean Elliott",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1989
+    },
+    {
       "Name": "Shawn Kemp",
       "All-Star": 6,
       "DPOY": 0,
@@ -2278,72 +2542,6 @@
       "Draft-Year": 1989
     },
     {
-      "Name": "Glen Rice",
-      "All-Star": 3,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 2,
-      "Draft-Year": 1989
-    },
-    {
-      "Name": "Sean Elliott",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1989
-    },
-    {
-      "Name": "Clifford Robinson",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 1,
-      "All-NBA": 0,
-      "Draft-Year": 1989
-    },
-    {
-      "Name": "B. J. Armstrong",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1989
-    },
-    {
-      "Name": "Dana Barros",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1989
-    },
-    {
-      "Name": "Mookie Blaylock",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1989
-    },
-    {
       "Name": "Vlade Divac",
       "All-Star": 1,
       "DPOY": 0,
@@ -2355,25 +2553,14 @@
       "Draft-Year": 1989
     },
     {
-      "Name": "Jaren Jackson",
-      "All-Star": 0,
-      "DPOY": 1,
+      "Name": "Anthony Mason",
+      "All-Star": 1,
+      "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1989
-    },
-    {
-      "Name": "Mitch Richmond",
-      "All-Star": 6,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 5,
+      "Six-Man": 1,
+      "All-NBA": 1,
       "Draft-Year": 1988
     },
     {
@@ -2399,14 +2586,14 @@
       "Draft-Year": 1988
     },
     {
-      "Name": "Anthony Mason",
+      "Name": "Hersey Hawkins",
       "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
-      "Six-Man": 1,
-      "All-NBA": 1,
+      "Six-Man": 0,
+      "All-NBA": 0,
       "Draft-Year": 1988
     },
     {
@@ -2421,14 +2608,14 @@
       "Draft-Year": 1988
     },
     {
-      "Name": "Hersey Hawkins",
-      "All-Star": 1,
+      "Name": "Mitch Richmond",
+      "All-Star": 6,
       "DPOY": 0,
       "MVP": 0,
-      "ROTY": 0,
+      "ROTY": 1,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 0,
+      "All-NBA": 5,
       "Draft-Year": 1988
     },
     {
@@ -2465,25 +2652,14 @@
       "Draft-Year": 1987
     },
     {
-      "Name": "Scottie Pippen",
-      "All-Star": 7,
+      "Name": "Horace Grant",
+      "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 7,
-      "Draft-Year": 1987
-    },
-    {
-      "Name": "Reggie Miller",
-      "All-Star": 5,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 3,
+      "All-NBA": 0,
       "Draft-Year": 1987
     },
     {
@@ -2495,17 +2671,6 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 5,
-      "Draft-Year": 1987
-    },
-    {
-      "Name": "Horace Grant",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
       "Draft-Year": 1987
     },
     {
@@ -2531,6 +2696,28 @@
       "Draft-Year": 1987
     },
     {
+      "Name": "Reggie Miller",
+      "All-Star": 5,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 3,
+      "Draft-Year": 1987
+    },
+    {
+      "Name": "Scottie Pippen",
+      "All-Star": 7,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 7,
+      "Draft-Year": 1987
+    },
+    {
       "Name": "Brad Daugherty",
       "All-Star": 5,
       "DPOY": 0,
@@ -2542,44 +2729,11 @@
       "Draft-Year": 1986
     },
     {
-      "Name": "Mark Price",
-      "All-Star": 4,
+      "Name": "Chuck Person",
+      "All-Star": 0,
       "DPOY": 0,
       "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 4,
-      "Draft-Year": 1986
-    },
-    {
-      "Name": "Kevin Duckworth",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1986
-    },
-    {
-      "Name": "Dennis Rodman",
-      "All-Star": 2,
-      "DPOY": 2,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 2,
-      "Draft-Year": 1986
-    },
-    {
-      "Name": "Jeff Hornacek",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
+      "ROTY": 1,
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 0,
@@ -2597,25 +2751,14 @@
       "Draft-Year": 1986
     },
     {
-      "Name": "Roy Tarpley",
-      "All-Star": 0,
-      "DPOY": 0,
+      "Name": "Dennis Rodman",
+      "All-Star": 2,
+      "DPOY": 2,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
-      "Six-Man": 1,
-      "All-NBA": 0,
-      "Draft-Year": 1986
-    },
-    {
-      "Name": "Chuck Person",
-      "All-Star": 0,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 0,
+      "All-NBA": 2,
       "Draft-Year": 1986
     },
     {
@@ -2630,36 +2773,69 @@
       "Draft-Year": 1986
     },
     {
-      "Name": "Karl Malone",
-      "All-Star": 14,
-      "DPOY": 0,
-      "MVP": 2,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 14,
-      "Draft-Year": 1985
-    },
-    {
-      "Name": "Patrick Ewing",
-      "All-Star": 11,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 7,
-      "Draft-Year": 1985
-    },
-    {
-      "Name": "Joe Dumars",
-      "All-Star": 6,
+      "Name": "Jeff Hornacek",
+      "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
-      "FMVP": 1,
+      "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 3,
+      "All-NBA": 0,
+      "Draft-Year": 1986
+    },
+    {
+      "Name": "Kevin Duckworth",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1986
+    },
+    {
+      "Name": "Mark Price",
+      "All-Star": 4,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 4,
+      "Draft-Year": 1986
+    },
+    {
+      "Name": "Roy Tarpley",
+      "All-Star": 0,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 1,
+      "All-NBA": 0,
+      "Draft-Year": 1986
+    },
+    {
+      "Name": "A.C. Green",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1985
+    },
+    {
+      "Name": "Charles Oakley",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
       "Draft-Year": 1985
     },
     {
@@ -2685,14 +2861,25 @@
       "Draft-Year": 1985
     },
     {
-      "Name": "Terry Porter",
-      "All-Star": 2,
+      "Name": "Joe Dumars",
+      "All-Star": 6,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
+      "FMVP": 1,
+      "Six-Man": 0,
+      "All-NBA": 3,
+      "Draft-Year": 1985
+    },
+    {
+      "Name": "Karl Malone",
+      "All-Star": 14,
+      "DPOY": 0,
+      "MVP": 2,
+      "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 0,
+      "All-NBA": 14,
       "Draft-Year": 1985
     },
     {
@@ -2707,8 +2894,19 @@
       "Draft-Year": 1985
     },
     {
-      "Name": "A.C. Green",
-      "All-Star": 1,
+      "Name": "Patrick Ewing",
+      "All-Star": 11,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 7,
+      "Draft-Year": 1985
+    },
+    {
+      "Name": "Terry Porter",
+      "All-Star": 2,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -2729,23 +2927,23 @@
       "Draft-Year": 1985
     },
     {
-      "Name": "Charles Oakley",
-      "All-Star": 1,
-      "DPOY": 0,
+      "Name": "Alvin Robertson",
+      "All-Star": 4,
+      "DPOY": 1,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1985
+      "All-NBA": 1,
+      "Draft-Year": 1984
     },
     {
-      "Name": "Michael Jordan",
-      "All-Star": 14,
-      "DPOY": 1,
-      "MVP": 5,
-      "ROTY": 1,
-      "FMVP": 6,
+      "Name": "Charles Barkley",
+      "All-Star": 11,
+      "DPOY": 0,
+      "MVP": 1,
+      "ROTY": 0,
+      "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 11,
       "Draft-Year": 1984
@@ -2762,17 +2960,6 @@
       "Draft-Year": 1984
     },
     {
-      "Name": "Charles Barkley",
-      "All-Star": 11,
-      "DPOY": 0,
-      "MVP": 1,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 11,
-      "Draft-Year": 1984
-    },
-    {
       "Name": "John Stockton",
       "All-Star": 10,
       "DPOY": 0,
@@ -2781,28 +2968,6 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 11,
-      "Draft-Year": 1984
-    },
-    {
-      "Name": "Alvin Robertson",
-      "All-Star": 4,
-      "DPOY": 1,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 1,
-      "Draft-Year": 1984
-    },
-    {
-      "Name": "Otis Thorpe",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
       "Draft-Year": 1984
     },
     {
@@ -2817,6 +2982,28 @@
       "Draft-Year": 1984
     },
     {
+      "Name": "Michael Jordan",
+      "All-Star": 14,
+      "DPOY": 1,
+      "MVP": 5,
+      "ROTY": 1,
+      "FMVP": 6,
+      "Six-Man": 0,
+      "All-NBA": 11,
+      "Draft-Year": 1984
+    },
+    {
+      "Name": "Otis Thorpe",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1984
+    },
+    {
       "Name": "Clyde Drexler",
       "All-Star": 10,
       "DPOY": 0,
@@ -2825,28 +3012,6 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 5,
-      "Draft-Year": 1983
-    },
-    {
-      "Name": "Ralph Sampson",
-      "All-Star": 4,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 1,
-      "Draft-Year": 1983
-    },
-    {
-      "Name": "Jeff Malone",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
       "Draft-Year": 1983
     },
     {
@@ -2872,6 +3037,28 @@
       "Draft-Year": 1983
     },
     {
+      "Name": "Jeff Malone",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1983
+    },
+    {
+      "Name": "Ralph Sampson",
+      "All-Star": 4,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 1983
+    },
+    {
       "Name": "Dominique Wilkins",
       "All-Star": 9,
       "DPOY": 0,
@@ -2880,28 +3067,6 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 7,
-      "Draft-Year": 1982
-    },
-    {
-      "Name": "James Worthy",
-      "All-Star": 7,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 1,
-      "Six-Man": 0,
-      "All-NBA": 2,
-      "Draft-Year": 1982
-    },
-    {
-      "Name": "Terry Cummings",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 2,
       "Draft-Year": 1982
     },
     {
@@ -2916,14 +3081,14 @@
       "Draft-Year": 1982
     },
     {
-      "Name": "Ricky Pierce",
-      "All-Star": 1,
+      "Name": "James Worthy",
+      "All-Star": 7,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 2,
-      "All-NBA": 0,
+      "FMVP": 1,
+      "Six-Man": 0,
+      "All-NBA": 2,
       "Draft-Year": 1982
     },
     {
@@ -2934,6 +3099,17 @@
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1982
+    },
+    {
+      "Name": "Ricky Pierce",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 2,
       "All-NBA": 0,
       "Draft-Year": 1982
     },
@@ -2949,6 +3125,50 @@
       "Draft-Year": 1982
     },
     {
+      "Name": "Terry Cummings",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 2,
+      "Draft-Year": 1982
+    },
+    {
+      "Name": "Buck Williams",
+      "All-Star": 3,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 1981
+    },
+    {
+      "Name": "Danny Ainge",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1981
+    },
+    {
+      "Name": "Eddie Johnson",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 1,
+      "All-NBA": 0,
+      "Draft-Year": 1981
+    },
+    {
       "Name": "Isiah Thomas",
       "All-Star": 12,
       "DPOY": 0,
@@ -2960,30 +3180,8 @@
       "Draft-Year": 1981
     },
     {
-      "Name": "Rolando Blackman",
-      "All-Star": 4,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1981
-    },
-    {
-      "Name": "Tom Chambers",
-      "All-Star": 4,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 2,
-      "Draft-Year": 1981
-    },
-    {
-      "Name": "Mark Aguirre",
-      "All-Star": 3,
+      "Name": "Kelly Tripucka",
+      "All-Star": 2,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -3004,32 +3202,10 @@
       "Draft-Year": 1981
     },
     {
-      "Name": "Buck Williams",
+      "Name": "Mark Aguirre",
       "All-Star": 3,
       "DPOY": 0,
       "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 1,
-      "Draft-Year": 1981
-    },
-    {
-      "Name": "Eddie Johnson",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 1,
-      "All-NBA": 0,
-      "Draft-Year": 1981
-    },
-    {
-      "Name": "Kelly Tripucka",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
@@ -3037,8 +3213,8 @@
       "Draft-Year": 1981
     },
     {
-      "Name": "Danny Ainge",
-      "All-Star": 1,
+      "Name": "Rolando Blackman",
+      "All-Star": 4,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -3059,26 +3235,15 @@
       "Draft-Year": 1981
     },
     {
-      "Name": "Kevin McHale",
-      "All-Star": 7,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 2,
-      "All-NBA": 1,
-      "Draft-Year": 1980
-    },
-    {
-      "Name": "Jeff Ruland",
-      "All-Star": 2,
+      "Name": "Tom Chambers",
+      "All-Star": 4,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1980
+      "All-NBA": 2,
+      "Draft-Year": 1981
     },
     {
       "Name": "Andrew Toney",
@@ -3092,7 +3257,18 @@
       "Draft-Year": 1980
     },
     {
-      "Name": "Kiki Vandeweghe",
+      "Name": "Darrell Griffith",
+      "All-Star": 0,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1980
+    },
+    {
+      "Name": "Jeff Ruland",
       "All-Star": 2,
       "DPOY": 0,
       "MVP": 0,
@@ -3114,36 +3290,36 @@
       "Draft-Year": 1980
     },
     {
-      "Name": "Darrell Griffith",
-      "All-Star": 0,
+      "Name": "Kevin McHale",
+      "All-Star": 7,
       "DPOY": 0,
       "MVP": 0,
-      "ROTY": 1,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 2,
+      "All-NBA": 1,
+      "Draft-Year": 1980
+    },
+    {
+      "Name": "Kiki Vandeweghe",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 0,
       "Draft-Year": 1980
     },
     {
-      "Name": "Magic Johnson",
-      "All-Star": 12,
+      "Name": "Bill Cartwright",
+      "All-Star": 1,
       "DPOY": 0,
-      "MVP": 3,
-      "ROTY": 0,
-      "FMVP": 3,
-      "Six-Man": 0,
-      "All-NBA": 10,
-      "Draft-Year": 1979
-    },
-    {
-      "Name": "Sidney Moncrief",
-      "All-Star": 5,
-      "DPOY": 2,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 5,
+      "All-NBA": 0,
       "Draft-Year": 1979
     },
     {
@@ -3158,18 +3334,7 @@
       "Draft-Year": 1979
     },
     {
-      "Name": "Jim Paxson",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 1,
-      "Draft-Year": 1979
-    },
-    {
-      "Name": "Bill Cartwright",
+      "Name": "Calvin Natt",
       "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
@@ -3191,14 +3356,36 @@
       "Draft-Year": 1979
     },
     {
-      "Name": "Calvin Natt",
-      "All-Star": 1,
+      "Name": "Jim Paxson",
+      "All-Star": 2,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 0,
+      "All-NBA": 1,
+      "Draft-Year": 1979
+    },
+    {
+      "Name": "Magic Johnson",
+      "All-Star": 12,
+      "DPOY": 0,
+      "MVP": 3,
+      "ROTY": 0,
+      "FMVP": 3,
+      "Six-Man": 0,
+      "All-NBA": 10,
+      "Draft-Year": 1979
+    },
+    {
+      "Name": "Sidney Moncrief",
+      "All-Star": 5,
+      "DPOY": 2,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 5,
       "Draft-Year": 1979
     },
     {
@@ -3224,9 +3411,9 @@
       "Draft-Year": 1978
     },
     {
-      "Name": "Micheal Ray Richardson",
-      "All-Star": 4,
-      "DPOY": 0,
+      "Name": "Michael Cooper",
+      "All-Star": 0,
+      "DPOY": 1,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
@@ -3235,8 +3422,8 @@
       "Draft-Year": 1978
     },
     {
-      "Name": "Reggie Theus",
-      "All-Star": 2,
+      "Name": "Micheal Ray Richardson",
+      "All-Star": 4,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -3257,17 +3444,6 @@
       "Draft-Year": 1978
     },
     {
-      "Name": "Michael Cooper",
-      "All-Star": 0,
-      "DPOY": 1,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1978
-    },
-    {
       "Name": "Phil Ford",
       "All-Star": 0,
       "DPOY": 0,
@@ -3279,8 +3455,85 @@
       "Draft-Year": 1978
     },
     {
+      "Name": "Reggie Theus",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1978
+    },
+    {
+      "Name": "Bernard King",
+      "All-Star": 4,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 4,
+      "Draft-Year": 1977
+    },
+    {
+      "Name": "Cedric Maxwell",
+      "All-Star": 0,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 1,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1977
+    },
+    {
       "Name": "Jack Sikma",
       "All-Star": 7,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1977
+    },
+    {
+      "Name": "Marques Johnson",
+      "All-Star": 5,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 3,
+      "Draft-Year": 1977
+    },
+    {
+      "Name": "Norm Nixon",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1977
+    },
+    {
+      "Name": "Otis Birdsong",
+      "All-Star": 4,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 1977
+    },
+    {
+      "Name": "Rickey Green",
+      "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -3301,77 +3554,11 @@
       "Draft-Year": 1977
     },
     {
-      "Name": "Marques Johnson",
-      "All-Star": 5,
+      "Name": "Adrian Dantley",
+      "All-Star": 6,
       "DPOY": 0,
       "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 3,
-      "Draft-Year": 1977
-    },
-    {
-      "Name": "Otis Birdsong",
-      "All-Star": 4,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 1,
-      "Draft-Year": 1977
-    },
-    {
-      "Name": "Bernard King",
-      "All-Star": 4,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 4,
-      "Draft-Year": 1977
-    },
-    {
-      "Name": "Norm Nixon",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1977
-    },
-    {
-      "Name": "Rickey Green",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1977
-    },
-    {
-      "Name": "Cedric Maxwell",
-      "All-Star": 0,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 1,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1977
-    },
-    {
-      "Name": "Robert Parish",
-      "All-Star": 9,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
+      "ROTY": 1,
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 2,
@@ -3386,17 +3573,6 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 3,
-      "Draft-Year": 1976
-    },
-    {
-      "Name": "Adrian Dantley",
-      "All-Star": 6,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 2,
       "Draft-Year": 1976
     },
     {
@@ -3422,14 +3598,25 @@
       "Draft-Year": 1976
     },
     {
-      "Name": "David Thompson",
-      "All-Star": 4,
+      "Name": "Robert Parish",
+      "All-Star": 9,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 2,
+      "Draft-Year": 1976
+    },
+    {
+      "Name": "Alvan Adams",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
       "Draft-Year": 1975
     },
     {
@@ -3444,8 +3631,8 @@
       "Draft-Year": 1975
     },
     {
-      "Name": "Gus Williams",
-      "All-Star": 2,
+      "Name": "David Thompson",
+      "All-Star": 4,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -3455,25 +3642,14 @@
       "Draft-Year": 1975
     },
     {
-      "Name": "Alvan Adams",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1975
-    },
-    {
-      "Name": "World B. Free",
-      "All-Star": 1,
+      "Name": "Gus Williams",
+      "All-Star": 2,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 0,
+      "All-NBA": 2,
       "Draft-Year": 1975
     },
     {
@@ -3499,14 +3675,69 @@
       "Draft-Year": 1975
     },
     {
-      "Name": "Moses Malone",
-      "All-Star": 12,
+      "Name": "World B. Free",
+      "All-Star": 1,
       "DPOY": 0,
-      "MVP": 3,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1975
+    },
+    {
+      "Name": "Bill Walton",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 1,
       "ROTY": 0,
       "FMVP": 1,
+      "Six-Man": 1,
+      "All-NBA": 2,
+      "Draft-Year": 1974
+    },
+    {
+      "Name": "Billy Knight",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 8,
+      "All-NBA": 0,
+      "Draft-Year": 1974
+    },
+    {
+      "Name": "Bobby Jones",
+      "All-Star": 4,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 1,
+      "All-NBA": 0,
+      "Draft-Year": 1974
+    },
+    {
+      "Name": "Brian Winters",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1974
+    },
+    {
+      "Name": "Campy Russell",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
       "Draft-Year": 1974
     },
     {
@@ -3521,13 +3752,24 @@
       "Draft-Year": 1974
     },
     {
-      "Name": "Bobby Jones",
-      "All-Star": 4,
+      "Name": "Jamaal Wilkes",
+      "All-Star": 3,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1974
+    },
+    {
+      "Name": "John Drew",
+      "All-Star": 2,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
-      "Six-Man": 1,
+      "Six-Man": 0,
       "All-NBA": 0,
       "Draft-Year": 1974
     },
@@ -3543,47 +3785,14 @@
       "Draft-Year": 1974
     },
     {
-      "Name": "Jamaal Wilkes",
-      "All-Star": 3,
+      "Name": "Moses Malone",
+      "All-Star": 12,
       "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1974
-    },
-    {
-      "Name": "Bill Walton",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 1,
+      "MVP": 3,
       "ROTY": 0,
       "FMVP": 1,
-      "Six-Man": 1,
-      "All-NBA": 2,
-      "Draft-Year": 1974
-    },
-    {
-      "Name": "John Drew",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1974
-    },
-    {
-      "Name": "Truck Robinson",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 1,
+      "All-NBA": 8,
       "Draft-Year": 1974
     },
     {
@@ -3609,74 +3818,19 @@
       "Draft-Year": 1974
     },
     {
-      "Name": "Brian Winters",
+      "Name": "Truck Robinson",
       "All-Star": 2,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1974
-    },
-    {
-      "Name": "Billy Knight",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1974
-    },
-    {
-      "Name": "Campy Russell",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
+      "All-NBA": 1,
       "Draft-Year": 1974
     },
     {
       "Name": "Doug Collins",
       "All-Star": 4,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1973
-    },
-    {
-      "Name": "George McGinnis",
-      "All-Star": 3,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 2,
-      "Draft-Year": 1973
-    },
-    {
-      "Name": "Larry Kenon",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1973
-    },
-    {
-      "Name": "Kermit Washington",
-      "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -3697,15 +3851,37 @@
       "Draft-Year": 1973
     },
     {
-      "Name": "Julius Erving",
-      "All-Star": 11,
+      "Name": "George McGinnis",
+      "All-Star": 3,
       "DPOY": 0,
-      "MVP": 1,
+      "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 7,
-      "Draft-Year": 1972
+      "All-NBA": 2,
+      "Draft-Year": 1973
+    },
+    {
+      "Name": "Kermit Washington",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1973
+    },
+    {
+      "Name": "Larry Kenon",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1973
     },
     {
       "Name": "Bob McAdoo",
@@ -3716,17 +3892,6 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 2,
-      "Draft-Year": 1972
-    },
-    {
-      "Name": "Paul Westphal",
-      "All-Star": 5,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 4,
       "Draft-Year": 1972
     },
     {
@@ -3752,63 +3917,30 @@
       "Draft-Year": 1972
     },
     {
-      "Name": "Artis Gilmore",
-      "All-Star": 6,
+      "Name": "Julius Erving",
+      "All-Star": 11,
       "DPOY": 0,
-      "MVP": 0,
+      "MVP": 1,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1971
+      "All-NBA": 7,
+      "Draft-Year": 1972
     },
     {
-      "Name": "Spencer Haywood",
-      "All-Star": 4,
+      "Name": "Paul Westphal",
+      "All-Star": 5,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 4,
-      "Draft-Year": 1971
+      "Draft-Year": 1972
     },
     {
-      "Name": "Sidney Wicks",
-      "All-Star": 4,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1971
-    },
-    {
-      "Name": "Phil Chenier",
-      "All-Star": 3,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 1,
-      "Draft-Year": 1971
-    },
-    {
-      "Name": "Randy Smith",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 1,
-      "Draft-Year": 1971
-    },
-    {
-      "Name": "Fred Brown",
-      "All-Star": 1,
+      "Name": "Artis Gilmore",
+      "All-Star": 6,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -3840,6 +3972,105 @@
       "Draft-Year": 1971
     },
     {
+      "Name": "Fred Brown",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1971
+    },
+    {
+      "Name": "Phil Chenier",
+      "All-Star": 3,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 1971
+    },
+    {
+      "Name": "Randy Smith",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 1971
+    },
+    {
+      "Name": "Sidney Wicks",
+      "All-Star": 4,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1971
+    },
+    {
+      "Name": "Spencer Haywood",
+      "All-Star": 4,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 4,
+      "Draft-Year": 1971
+    },
+    {
+      "Name": "Bob Lanier",
+      "All-Star": 8,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1970
+    },
+    {
+      "Name": "Calvin Murphy",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1970
+    },
+    {
+      "Name": "Charlie Scott",
+      "All-Star": 3,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1970
+    },
+    {
+      "Name": "Dan Issel",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1970
+    },
+    {
       "Name": "Dave Cowens",
       "All-Star": 8,
       "DPOY": 0,
@@ -3851,8 +4082,19 @@
       "Draft-Year": 1970
     },
     {
-      "Name": "Bob Lanier",
-      "All-Star": 8,
+      "Name": "Geoff Petrie",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1970
+    },
+    {
+      "Name": "John Johnson",
+      "All-Star": 2,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -3895,50 +4137,6 @@
       "Draft-Year": 1970
     },
     {
-      "Name": "Charlie Scott",
-      "All-Star": 3,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1970
-    },
-    {
-      "Name": "John Johnson",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1970
-    },
-    {
-      "Name": "Geoff Petrie",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1970
-    },
-    {
-      "Name": "Dan Issel",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1970
-    },
-    {
       "Name": "Sam Lacey",
       "All-Star": 1,
       "DPOY": 0,
@@ -3950,52 +4148,8 @@
       "Draft-Year": 1970
     },
     {
-      "Name": "Calvin Murphy",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1970
-    },
-    {
-      "Name": "Kareem Abdul-Jabbar",
-      "All-Star": 19,
-      "DPOY": 0,
-      "MVP": 6,
-      "ROTY": 1,
-      "FMVP": 2,
-      "Six-Man": 0,
-      "All-NBA": 15,
-      "Draft-Year": 1969
-    },
-    {
-      "Name": "Jo Jo White",
-      "All-Star": 7,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 1,
-      "Six-Man": 0,
-      "All-NBA": 2,
-      "Draft-Year": 1969
-    },
-    {
       "Name": "Bob Dandridge",
       "All-Star": 4,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 1,
-      "Draft-Year": 1969
-    },
-    {
-      "Name": "Norm Van Lier",
-      "All-Star": 3,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -4016,6 +4170,39 @@
       "Draft-Year": 1969
     },
     {
+      "Name": "Jo Jo White",
+      "All-Star": 7,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 1,
+      "Six-Man": 0,
+      "All-NBA": 2,
+      "Draft-Year": 1969
+    },
+    {
+      "Name": "Kareem Abdul-Jabbar",
+      "All-Star": 19,
+      "DPOY": 0,
+      "MVP": 6,
+      "ROTY": 1,
+      "FMVP": 2,
+      "Six-Man": 0,
+      "All-NBA": 15,
+      "Draft-Year": 1969
+    },
+    {
+      "Name": "Norm Van Lier",
+      "All-Star": 3,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 1969
+    },
+    {
       "Name": "Steve Mix",
       "All-Star": 1,
       "DPOY": 0,
@@ -4025,6 +4212,17 @@
       "Six-Man": 0,
       "All-NBA": 0,
       "Draft-Year": 1969
+    },
+    {
+      "Name": "Bob Kauffman",
+      "All-Star": 3,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1968
     },
     {
       "Name": "Elvin Hayes",
@@ -4049,25 +4247,14 @@
       "Draft-Year": 1968
     },
     {
-      "Name": "Bob Kauffman",
-      "All-Star": 3,
+      "Name": "Bob Rule",
+      "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 0,
-      "Draft-Year": 1968
-    },
-    {
-      "Name": "Walt Frazier",
-      "All-Star": 7,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 6,
       "Draft-Year": 1967
     },
     {
@@ -4093,37 +4280,15 @@
       "Draft-Year": 1967
     },
     {
-      "Name": "Bob Rule",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1967
-    },
-    {
-      "Name": "Dave Bing",
+      "Name": "Walt Frazier",
       "All-Star": 7,
       "DPOY": 0,
       "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 3,
-      "Draft-Year": 1966
-    },
-    {
-      "Name": "Lou Hudson",
-      "All-Star": 6,
-      "DPOY": 0,
-      "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 1,
-      "Draft-Year": 1966
+      "All-NBA": 6,
+      "Draft-Year": 1967
     },
     {
       "Name": "Archie Clark",
@@ -4134,6 +4299,39 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 1,
+      "Draft-Year": 1966
+    },
+    {
+      "Name": "Cazzie Russell",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1966
+    },
+    {
+      "Name": "Clyde Lee",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1966
+    },
+    {
+      "Name": "Dave Bing",
+      "All-Star": 7,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 3,
       "Draft-Year": 1966
     },
     {
@@ -4159,47 +4357,25 @@
       "Draft-Year": 1966
     },
     {
-      "Name": "Clyde Lee",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1966
-    },
-    {
-      "Name": "Cazzie Russell",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1966
-    },
-    {
-      "Name": "Rick Barry",
-      "All-Star": 8,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 1,
-      "Six-Man": 0,
-      "All-NBA": 6,
-      "Draft-Year": 1965
-    },
-    {
-      "Name": "Gail Goodrich",
-      "All-Star": 5,
+      "Name": "Lou Hudson",
+      "All-Star": 6,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 1,
+      "Draft-Year": 1966
+    },
+    {
+      "Name": "Bill Bradley",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
       "Draft-Year": 1965
     },
     {
@@ -4236,30 +4412,30 @@
       "Draft-Year": 1965
     },
     {
-      "Name": "Tom Van Arsdale",
-      "All-Star": 3,
+      "Name": "Flynn Robinson",
+      "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 0,
+      "Draft-Year": 1965
+    },
+    {
+      "Name": "Gail Goodrich",
+      "All-Star": 5,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
       "Draft-Year": 1965
     },
     {
       "Name": "Jerry Sloan",
       "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1965
-    },
-    {
-      "Name": "Bill Bradley",
-      "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -4280,8 +4456,19 @@
       "Draft-Year": 1965
     },
     {
-      "Name": "Flynn Robinson",
-      "All-Star": 1,
+      "Name": "Rick Barry",
+      "All-Star": 8,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 1,
+      "Six-Man": 0,
+      "All-NBA": 6,
+      "Draft-Year": 1965
+    },
+    {
+      "Name": "Tom Van Arsdale",
+      "All-Star": 3,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -4289,17 +4476,6 @@
       "Six-Man": 0,
       "All-NBA": 0,
       "Draft-Year": 1965
-    },
-    {
-      "Name": "Willis Reed",
-      "All-Star": 7,
-      "DPOY": 0,
-      "MVP": 1,
-      "ROTY": 1,
-      "FMVP": 2,
-      "Six-Man": 0,
-      "All-NBA": 5,
-      "Draft-Year": 1964
     },
     {
       "Name": "Connie Hawkins",
@@ -4335,6 +4511,17 @@
       "Draft-Year": 1964
     },
     {
+      "Name": "Lucious Jackson",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1964
+    },
+    {
       "Name": "Paul Silas",
       "All-Star": 2,
       "DPOY": 0,
@@ -4357,19 +4544,19 @@
       "Draft-Year": 1964
     },
     {
-      "Name": "Lucious Jackson",
-      "All-Star": 1,
+      "Name": "Willis Reed",
+      "All-Star": 7,
       "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
+      "MVP": 1,
+      "ROTY": 1,
+      "FMVP": 2,
       "Six-Man": 0,
-      "All-NBA": 0,
+      "All-NBA": 5,
       "Draft-Year": 1964
     },
     {
-      "Name": "Nate Thurmond",
-      "All-Star": 7,
+      "Name": "Eddie Miles",
+      "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -4401,8 +4588,8 @@
       "Draft-Year": 1963
     },
     {
-      "Name": "Eddie Miles",
-      "All-Star": 1,
+      "Name": "Nate Thurmond",
+      "All-Star": 7,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -4412,14 +4599,14 @@
       "Draft-Year": 1963
     },
     {
-      "Name": "John Havlicek",
-      "All-Star": 13,
+      "Name": "Chet Walker",
+      "All-Star": 7,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
-      "FMVP": 1,
+      "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 11,
+      "All-NBA": 0,
       "Draft-Year": 1962
     },
     {
@@ -4445,8 +4632,19 @@
       "Draft-Year": 1962
     },
     {
-      "Name": "Chet Walker",
-      "All-Star": 7,
+      "Name": "John Havlicek",
+      "All-Star": 13,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 1,
+      "Six-Man": 0,
+      "All-NBA": 11,
+      "Draft-Year": 1962
+    },
+    {
+      "Name": "Len Chappell",
+      "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -4478,22 +4676,11 @@
       "Draft-Year": 1962
     },
     {
-      "Name": "Len Chappell",
+      "Name": "Adrian Smith",
       "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1962
-    },
-    {
-      "Name": "Walt Bellamy",
-      "All-Star": 4,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 0,
@@ -4533,48 +4720,15 @@
       "Draft-Year": 1961
     },
     {
-      "Name": "Adrian Smith",
-      "All-Star": 1,
+      "Name": "Walt Bellamy",
+      "All-Star": 4,
       "DPOY": 0,
       "MVP": 0,
-      "ROTY": 0,
+      "ROTY": 1,
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 0,
       "Draft-Year": 1961
-    },
-    {
-      "Name": "Jerry West",
-      "All-Star": 14,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 1,
-      "Six-Man": 0,
-      "All-NBA": 12,
-      "Draft-Year": 1960
-    },
-    {
-      "Name": "Oscar Robertson",
-      "All-Star": 12,
-      "DPOY": 0,
-      "MVP": 1,
-      "ROTY": 1,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 11,
-      "Draft-Year": 1960
-    },
-    {
-      "Name": "Lenny Wilkens",
-      "All-Star": 9,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1960
     },
     {
       "Name": "Darrall Imhoff",
@@ -4585,6 +4739,17 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 0,
+      "Draft-Year": 1960
+    },
+    {
+      "Name": "Jerry West",
+      "All-Star": 14,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 1,
+      "Six-Man": 0,
+      "All-NBA": 12,
       "Draft-Year": 1960
     },
     {
@@ -4599,15 +4764,26 @@
       "Draft-Year": 1960
     },
     {
-      "Name": "Wilt Chamberlain",
-      "All-Star": 13,
+      "Name": "Lenny Wilkens",
+      "All-Star": 9,
       "DPOY": 0,
-      "MVP": 4,
-      "ROTY": 1,
-      "FMVP": 1,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 10,
-      "Draft-Year": 1959
+      "All-NBA": 0,
+      "Draft-Year": 1960
+    },
+    {
+      "Name": "Oscar Robertson",
+      "All-Star": 12,
+      "DPOY": 0,
+      "MVP": 1,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 11,
+      "Draft-Year": 1960
     },
     {
       "Name": "Bailey Howell",
@@ -4621,19 +4797,8 @@
       "Draft-Year": 1959
     },
     {
-      "Name": "Rudy LaRusso",
-      "All-Star": 5,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1959
-    },
-    {
-      "Name": "Johnny Green",
-      "All-Star": 4,
+      "Name": "Bob Boozer",
+      "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -4654,8 +4819,8 @@
       "Draft-Year": 1959
     },
     {
-      "Name": "Bob Boozer",
-      "All-Star": 1,
+      "Name": "Johnny Green",
+      "All-Star": 4,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -4663,6 +4828,39 @@
       "Six-Man": 0,
       "All-NBA": 0,
       "Draft-Year": 1959
+    },
+    {
+      "Name": "Rudy LaRusso",
+      "All-Star": 5,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1959
+    },
+    {
+      "Name": "Wilt Chamberlain",
+      "All-Star": 13,
+      "DPOY": 0,
+      "MVP": 4,
+      "ROTY": 1,
+      "FMVP": 1,
+      "Six-Man": 0,
+      "All-NBA": 10,
+      "Draft-Year": 1959
+    },
+    {
+      "Name": "Don Ohl",
+      "All-Star": 5,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1958
     },
     {
       "Name": "Elgin Baylor",
@@ -4673,6 +4871,17 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 10,
+      "Draft-Year": 1958
+    },
+    {
+      "Name": "Guy Rodgers",
+      "All-Star": 4,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
       "Draft-Year": 1958
     },
     {
@@ -4698,26 +4907,15 @@
       "Draft-Year": 1958
     },
     {
-      "Name": "Don Ohl",
-      "All-Star": 5,
+      "Name": "Rod Hundley",
+      "All-Star": 2,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 0,
-      "Draft-Year": 1958
-    },
-    {
-      "Name": "Guy Rodgers",
-      "All-Star": 4,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1958
+      "Draft-Year": 1957
     },
     {
       "Name": "Sam Jones",
@@ -4728,17 +4926,6 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 3,
-      "Draft-Year": 1957
-    },
-    {
-      "Name": "Rod Hundley",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
       "Draft-Year": 1957
     },
     {
@@ -4786,28 +4973,6 @@
       "Draft-Year": 1956
     },
     {
-      "Name": "Jack Twyman",
-      "All-Star": 6,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 2,
-      "Draft-Year": 1955
-    },
-    {
-      "Name": "Tom Gola",
-      "All-Star": 5,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 1,
-      "Draft-Year": 1955
-    },
-    {
       "Name": "Dick Garmaker",
       "All-Star": 4,
       "DPOY": 0,
@@ -4819,14 +4984,14 @@
       "Draft-Year": 1955
     },
     {
-      "Name": "Maurice Stokes",
-      "All-Star": 3,
+      "Name": "Jack Twyman",
+      "All-Star": 6,
       "DPOY": 0,
       "MVP": 0,
-      "ROTY": 1,
+      "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 3,
+      "All-NBA": 2,
       "Draft-Year": 1955
     },
     {
@@ -4841,6 +5006,28 @@
       "Draft-Year": 1955
     },
     {
+      "Name": "Maurice Stokes",
+      "All-Star": 3,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 1,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 3,
+      "Draft-Year": 1955
+    },
+    {
+      "Name": "Tom Gola",
+      "All-Star": 5,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 1955
+    },
+    {
       "Name": "Bob Pettit",
       "All-Star": 11,
       "DPOY": 0,
@@ -4852,25 +5039,25 @@
       "Draft-Year": 1954
     },
     {
-      "Name": "Larry Costello",
-      "All-Star": 6,
+      "Name": "Chuck Noble",
+      "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 1,
+      "All-NBA": 0,
       "Draft-Year": 1954
     },
     {
-      "Name": "Richie Guerin",
-      "All-Star": 6,
+      "Name": "Frank Selvy",
+      "All-Star": 2,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 3,
+      "All-NBA": 0,
       "Draft-Year": 1954
     },
     {
@@ -4896,30 +5083,30 @@
       "Draft-Year": 1954
     },
     {
+      "Name": "Larry Costello",
+      "All-Star": 6,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 1,
+      "Draft-Year": 1954
+    },
+    {
+      "Name": "Richie Guerin",
+      "All-Star": 6,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 3,
+      "Draft-Year": 1954
+    },
+    {
       "Name": "Walter Dukes",
       "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1954
-    },
-    {
-      "Name": "Frank Selvy",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1954
-    },
-    {
-      "Name": "Chuck Noble",
-      "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -4940,6 +5127,17 @@
       "Draft-Year": 1953
     },
     {
+      "Name": "Don Sunderlage",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1953
+    },
+    {
       "Name": "Jack George",
       "All-Star": 2,
       "DPOY": 0,
@@ -4948,17 +5146,6 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 1,
-      "Draft-Year": 1953
-    },
-    {
-      "Name": "Ray Felix",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
       "Draft-Year": 1953
     },
     {
@@ -4973,18 +5160,18 @@
       "Draft-Year": 1953
     },
     {
-      "Name": "Richie Regan",
+      "Name": "Ray Felix",
       "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
-      "ROTY": 0,
+      "ROTY": 1,
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 0,
       "Draft-Year": 1953
     },
     {
-      "Name": "Don Sunderlage",
+      "Name": "Richie Regan",
       "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
@@ -5017,17 +5204,6 @@
       "Draft-Year": 1952
     },
     {
-      "Name": "Neil Johnston",
-      "All-Star": 6,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 2,
-      "Draft-Year": 1951
-    },
-    {
       "Name": "Mel Hutchins",
       "All-Star": 4,
       "DPOY": 0,
@@ -5039,37 +5215,15 @@
       "Draft-Year": 1951
     },
     {
-      "Name": "Bob Cousy",
-      "All-Star": 13,
-      "DPOY": 0,
-      "MVP": 1,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 12,
-      "Draft-Year": 1950
-    },
-    {
-      "Name": "Paul Arizin",
-      "All-Star": 10,
+      "Name": "Neil Johnston",
+      "All-Star": 6,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 3,
-      "Draft-Year": 1950
-    },
-    {
-      "Name": "Larry Foust",
-      "All-Star": 8,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1950
+      "All-NBA": 2,
+      "Draft-Year": 1951
     },
     {
       "Name": "Bill Sharman",
@@ -5080,6 +5234,17 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 5,
+      "Draft-Year": 1950
+    },
+    {
+      "Name": "Bob Cousy",
+      "All-Star": 13,
+      "DPOY": 0,
+      "MVP": 1,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 12,
       "Draft-Year": 1950
     },
     {
@@ -5094,6 +5259,17 @@
       "Draft-Year": 1950
     },
     {
+      "Name": "Larry Foust",
+      "All-Star": 8,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1950
+    },
+    {
       "Name": "Nathaniel Clifton",
       "All-Star": 1,
       "DPOY": 0,
@@ -5105,92 +5281,15 @@
       "Draft-Year": 1950
     },
     {
-      "Name": "Ed Macauley",
-      "All-Star": 7,
+      "Name": "Paul Arizin",
+      "All-Star": 10,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1949
-    },
-    {
-      "Name": "Slater Martin",
-      "All-Star": 7,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 4,
-      "Draft-Year": 1949
-    },
-    {
-      "Name": "Dick McGuire",
-      "All-Star": 7,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1949
-    },
-    {
-      "Name": "Vern Mikkelsen",
-      "All-Star": 6,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1949
-    },
-    {
-      "Name": "Leo Barnhorst",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1949
-    },
-    {
-      "Name": "Dwight Eddleman",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1949
-    },
-    {
-      "Name": "Ralph Beard",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1949
-    },
-    {
-      "Name": "Jack Coleman",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1949
+      "All-NBA": 3,
+      "Draft-Year": 1950
     },
     {
       "Name": "Alex Groza",
@@ -5215,8 +5314,63 @@
       "Draft-Year": 1949
     },
     {
+      "Name": "Dick McGuire",
+      "All-Star": 7,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1949
+    },
+    {
+      "Name": "Dwight Eddleman",
+      "All-Star": 2,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1949
+    },
+    {
+      "Name": "Ed Macauley",
+      "All-Star": 7,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1949
+    },
+    {
       "Name": "Fred Schaus",
       "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1949
+    },
+    {
+      "Name": "Jack Coleman",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1949
+    },
+    {
+      "Name": "Leo Barnhorst",
+      "All-Star": 2,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -5237,37 +5391,37 @@
       "Draft-Year": 1949
     },
     {
-      "Name": "Dolph Schayes",
-      "All-Star": 12,
+      "Name": "Ralph Beard",
+      "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 6,
-      "Draft-Year": 1948
+      "All-NBA": 0,
+      "Draft-Year": 1949
     },
     {
-      "Name": "Harry Gallatin",
+      "Name": "Slater Martin",
       "All-Star": 7,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1948
+      "All-NBA": 4,
+      "Draft-Year": 1949
     },
     {
-      "Name": "Bobby Wanzer",
-      "All-Star": 5,
+      "Name": "Vern Mikkelsen",
+      "All-Star": 6,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 0,
-      "Draft-Year": 1948
+      "Draft-Year": 1949
     },
     {
       "Name": "Arnie Risen",
@@ -5292,7 +5446,7 @@
       "Draft-Year": 1948
     },
     {
-      "Name": "Carl Braun",
+      "Name": "Bobby Wanzer",
       "All-Star": 5,
       "DPOY": 0,
       "MVP": 0,
@@ -5300,7 +5454,29 @@
       "FMVP": 0,
       "Six-Man": 0,
       "All-NBA": 0,
-      "Draft-Year": 1947
+      "Draft-Year": 1948
+    },
+    {
+      "Name": "Dolph Schayes",
+      "All-Star": 12,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 6,
+      "Draft-Year": 1948
+    },
+    {
+      "Name": "Harry Gallatin",
+      "All-Star": 7,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1948
     },
     {
       "Name": "Andy Phillip",
@@ -5316,6 +5492,39 @@
     {
       "Name": "Bob Davies",
       "All-Star": 4,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1947
+    },
+    {
+      "Name": "Carl Braun",
+      "All-Star": 5,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1947
+    },
+    {
+      "Name": "Don Barksdale",
+      "All-Star": 1,
+      "DPOY": 0,
+      "MVP": 0,
+      "ROTY": 0,
+      "FMVP": 0,
+      "Six-Man": 0,
+      "All-NBA": 0,
+      "Draft-Year": 1947
+    },
+    {
+      "Name": "Frank Brian",
+      "All-Star": 2,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -5358,30 +5567,8 @@
       "Draft-Year": 1947
     },
     {
-      "Name": "Frank Brian",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1947
-    },
-    {
       "Name": "Red Rocha",
       "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 1947
-    },
-    {
-      "Name": "Don Barksdale",
-      "All-Star": 1,
       "DPOY": 0,
       "MVP": 0,
       "ROTY": 0,
@@ -5402,7 +5589,7 @@
       "Draft-Year": 1947
     },
     {
-      "Name": "Joe Fulks",
+      "Name": "Fred Scolari",
       "All-Star": 2,
       "DPOY": 0,
       "MVP": 0,
@@ -5413,7 +5600,7 @@
       "Draft-Year": 1946
     },
     {
-      "Name": "Fred Scolari",
+      "Name": "Joe Fulks",
       "All-Star": 2,
       "DPOY": 0,
       "MVP": 0,
@@ -5433,171 +5620,6 @@
       "Six-Man": 0,
       "All-NBA": 0,
       "Draft-Year": 1946
-    },
-    {
-      "Name": "Victor Wembanyama",
-      "All-Star": 2,
-      "DPOY": 1,
-      "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 1,
-      "Draft-Year": 2023
-    },
-    {
-      "Name": "Evan Mobley",
-      "All-Star": 1,
-      "DPOY": 1,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 2021
-    },
-    {
-      "Name": "Payton Pritchard",
-      "All-Star": 0,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 1,
-      "All-NBA": 0,
-      "Draft-Year": 2020
-    },
-    {
-      "Name": "Keldon Johnson",
-      "All-Star": 0,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 1,
-      "All-NBA": 0,
-      "Draft-Year": 2019
-    },
-    {
-      "Name": "Zaccharie Risacher",
-      "All-Star": 0,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 2024
-    },
-    {
-      "Name": "Cooper Flagg",
-      "All-Star": 0,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 1,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 2025
-    },
-    {
-      "Name": "Cade Cunningham",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 2,
-      "Draft-Year": 2021
-    },
-    {
-      "Name": "Jalen Duren",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 2022
-    },
-    {
-      "Name": "Chet Holmgren",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 2022
-    },
-    {
-      "Name": "Jalen Johnson",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 2021
-    },
-    {
-      "Name": "Norman Powell",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 2015
-    },
-    {
-      "Name": "Deni Avdija",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 2020
-    },
-    {
-      "Name": "Jamal Murray",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 2016
-    },
-    {
-      "Name": "Alperen Sengun",
-      "All-Star": 2,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 2021
-    },
-    {
-      "Name": "Jalen Williams",
-      "All-Star": 1,
-      "DPOY": 0,
-      "MVP": 0,
-      "ROTY": 0,
-      "FMVP": 0,
-      "Six-Man": 0,
-      "All-NBA": 0,
-      "Draft-Year": 2022
     }
   ]
 }
