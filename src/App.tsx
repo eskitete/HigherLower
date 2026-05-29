@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './Home';
 import NBAGame from './games/NBAGame';
+import NBADailyGame from './games/NBADailyGame';
 import NFLGame from './games/NFLGame';
 import ComingSoon from './components/ComingSoon';
 
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/nba" element={<NBAGame />} />
+        <Route path="/nba-daily" element={<NBADailyGame />} />
         <Route path="/nfl" element={<NFLGame />} />
         <Route path="/soccer" element={<ComingSoon sport="Soccer" />} />
         <Route path="/ufc" element={<ComingSoon sport="UFC" />} />

@@ -115,21 +115,52 @@ function Home() {
           animate="visible"
         >
           {sports.map((sport) => (
-            <motion.button
+            <motion.div
               key={sport.id}
-              onClick={() => navigate(`/${sport.id}`)}
               variants={itemVariants}
-              className="group relative overflow-hidden rounded-2xl bg-white/5 p-8 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-white/5 backdrop-blur-md border border-white/10"
+              className="group relative overflow-hidden rounded-2xl bg-white/5 p-8 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-white/5 backdrop-blur-md border border-white/10 flex flex-col justify-between"
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${sport.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-300`} />
-              <div className="relative flex flex-col items-center gap-6">
-                <div className={`${sport.color} transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12`}>
+              <div className="relative flex flex-col items-center gap-6 w-full">
+                <div className={`${sport.color} transition-transform duration-300 group-hover:scale-110`}>
                   {sport.icon}
                 </div>
                 <h2 className="text-2xl font-bold text-white tracking-wide">{sport.name}</h2>
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white/20 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
               </div>
-            </motion.button>
+              
+              <div className="relative mt-6 z-10 w-full">
+                {sport.id === 'nba' ? (
+                  <div className="flex gap-3 w-full">
+                    <button
+                      onClick={() => navigate('/nba')}
+                      className="flex-1 py-2 px-3 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors text-sm font-semibold border border-white/10"
+                    >
+                      Classic
+                    </button>
+                    <button
+                      onClick={() => navigate('/nba-daily')}
+                      className="flex-1 py-2 px-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white transition-all text-sm font-semibold border border-orange-400/20 shadow-lg shadow-orange-500/20"
+                    >
+                      Daily
+                    </button>
+                  </div>
+                ) : sport.id === 'nfl' ? (
+                  <button
+                    onClick={() => navigate('/nfl')}
+                    className="w-full py-2 px-4 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors text-sm font-semibold border border-white/10"
+                  >
+                    Play
+                  </button>
+                ) : (
+                  <button
+                    disabled
+                    className="w-full py-2 px-4 rounded-xl bg-white/5 text-white/40 cursor-not-allowed text-sm font-semibold border border-white/5"
+                  >
+                    Coming Soon
+                  </button>
+                )}
+              </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>

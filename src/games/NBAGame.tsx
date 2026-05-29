@@ -461,7 +461,13 @@ function NBAGame() {
           >
             NBA HIGHER/LOWER
           </motion.h1>
-          <div className="flex gap-4">
+          <div className="flex gap-3 items-center">
+            <button
+              onClick={() => navigate('/nba-daily')}
+              className="hidden sm:inline-block px-3 py-1 rounded-full bg-orange-500/20 hover:bg-orange-500/30 text-orange-400 border border-orange-500/30 text-xs font-semibold tracking-wider transition-colors"
+            >
+              DAILY
+            </button>
             <motion.button
               onClick={() => setShowModal(true)}
               className="p-2 rounded-full hover:bg-white/10 transition-colors"
@@ -480,6 +486,16 @@ function NBAGame() {
             </motion.button>
           </div>
         </motion.header>
+
+        {/* Small screen Daily Mode switcher */}
+        <div className="sm:hidden flex justify-center mb-4">
+          <button
+            onClick={() => navigate('/nba-daily')}
+            className="px-4 py-1.5 rounded-full bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 border border-orange-500/20 text-xs font-semibold tracking-wider transition-colors"
+          >
+            Switch to Daily Mode
+          </button>
+        </div>
 
         {/* Main Game Area */}
         <motion.div 
