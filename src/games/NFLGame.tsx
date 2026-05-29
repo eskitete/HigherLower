@@ -532,7 +532,7 @@ const NFLGame: React.FC = () => {
                         setErrorMessage(null);
                       }}
                       onKeyPress={handleKeyPress}
-                      className={`player-input w-full py-3 px-4 pl-12 rounded-xl text-lg bg-white text-black border ${errorMessage ? 'border-red-500' : 'border-white/20'} focus:border-white/40 focus:outline-none transition-colors placeholder:text-gray-500`}
+                      className={`player-input w-full py-3 px-4 pl-12 pr-24 sm:pr-32 rounded-xl text-lg bg-white text-black border ${errorMessage ? 'border-red-500' : 'border-white/20'} focus:border-white/40 focus:outline-none transition-colors placeholder:text-gray-500`}
                       placeholder="Search for a player..."
                       autoComplete="off"
                     />
@@ -572,7 +572,7 @@ const NFLGame: React.FC = () => {
                   )}
                   <motion.button 
                     onClick={handleGuess}
-                    className="submit-btn absolute right-2 top-2 px-6 py-1 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+                    className="submit-btn absolute right-2 top-1/2 -translate-y-1/2 px-3 sm:px-6 py-1.5 sm:py-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors text-sm sm:text-base"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
