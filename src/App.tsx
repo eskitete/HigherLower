@@ -14,6 +14,7 @@ function App() {
         <Route path="/nba" element={<NBAGame />} />
         <Route path="/nba-daily" element={<NBADailyGame />} />
         <Route path="/nfl" element={<NFLGame />} />
+        <Route path="/nfl-wip" element={<ComingSoon sport="NFL" />} />
         <Route path="/soccer" element={<ComingSoon sport="Soccer" />} />
         <Route path="/ufc" element={<ComingSoon sport="UFC" />} />
         <Route path="/f1" element={<ComingSoon sport="F1" />} />

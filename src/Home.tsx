@@ -146,10 +146,10 @@ function Home() {
                   </div>
                 ) : sport.id === 'nfl' ? (
                   <button
-                    onClick={() => navigate('/nfl')}
+                    onClick={() => navigate('/nfl-wip')}
                     className="w-full py-2 px-4 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors text-sm font-semibold border border-white/10"
                   >
-                    Play
+                    Work in Progress
                   </button>
                 ) : (
                   <button
