@@ -13,4 +13,13 @@ export default defineConfig({
       input: './index.html',
     },
   },
+  server: {
+    proxy: {
+      '/.netlify/functions': {
+        target: 'http://localhost:9999',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
 });

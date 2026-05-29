@@ -39,10 +39,92 @@ const getPlayerImageUrl = (name: string): string => {
 };
 
 interface Score {
-  easy: { wins: number; losses: number };
-  medium: { wins: number; losses: number };
-  hard: { wins: number; losses: number };
+  easy: { wins: number; losses: number; currentStreak: number; maxStreak: number };
+  medium: { wins: number; losses: number; currentStreak: number; maxStreak: number };
+  hard: { wins: number; losses: number; currentStreak: number; maxStreak: number };
 }
+
+const getMockLeaderboard = (gameMode: 'nba' | 'nfl', diff: 'easy' | 'medium' | 'hard') => {
+  const users = {
+    nba: {
+      easy: [
+        { username: "KingJames23", score: 48, date: "2026-05-12T04:00:00.000Z" },
+        { username: "CurryCooking30", score: 42, date: "2026-05-15T04:00:00.000Z" },
+        { username: "JokerTripleDouble", score: 35, date: "2026-05-18T04:00:00.000Z" },
+        { username: "GreekFreak34", score: 29, date: "2026-05-20T04:00:00.000Z" },
+        { username: "KD_EasyMoney", score: 26, date: "2026-05-22T04:00:00.000Z" },
+        { username: "LukaMagic77", score: 24, date: "2026-05-23T04:00:00.000Z" },
+        { username: "TatumChamps0", score: 19, date: "2026-05-24T04:00:00.000Z" },
+        { username: "SGA_MVP", score: 18, date: "2026-05-25T04:00:00.000Z" },
+        { username: "AntMan5", score: 15, date: "2026-05-26T04:00:00.000Z" },
+        { username: "HaliburtonPass", score: 12, date: "2026-05-28T04:00:00.000Z" }
+      ],
+      medium: [
+        { username: "BookerPoint", score: 22, date: "2026-05-10T04:00:00.000Z" },
+        { username: "DameTime", score: 19, date: "2026-05-12T04:00:00.000Z" },
+        { username: "AD_Brow", score: 18, date: "2026-05-14T04:00:00.000Z" },
+        { username: "KawhiKlaw", score: 14, date: "2026-05-16T04:00:00.000Z" },
+        { username: "KAT_3pt", score: 12, date: "2026-05-18T04:00:00.000Z" },
+        { username: "JaylenFMVP", score: 11, date: "2026-05-20T04:00:00.000Z" },
+        { username: "MitchellSpyda", score: 9, date: "2026-05-21T04:00:00.000Z" },
+        { username: "EmbiidProcess", score: 8, date: "2026-05-23T04:00:00.000Z" },
+        { username: "GeorgeP13", score: 7, date: "2026-05-25T04:00:00.000Z" },
+        { username: "BamBlock", score: 5, date: "2026-05-27T04:00:00.000Z" }
+      ],
+      hard: [
+        { username: "WembyHeight", score: 15, date: "2026-05-09T04:00:00.000Z" },
+        { username: "BrunsonBurner", score: 13, date: "2026-05-11T04:00:00.000Z" },
+        { username: "EdwardsFlight", score: 11, date: "2026-05-13T04:00:00.000Z" },
+        { username: "CunninghamCade", score: 9, date: "2026-05-15T04:00:00.000Z" },
+        { username: "MaxeySpeed", score: 8, date: "2026-05-17T04:00:00.000Z" },
+        { username: "BarnesScottie", score: 7, date: "2026-05-19T04:00:00.000Z" },
+        { username: "FoxClutch", score: 6, date: "2026-05-21T04:00:00.000Z" },
+        { username: "SengunPost", score: 5, date: "2026-05-23T04:00:00.000Z" },
+        { username: "HolmgrenBlock", score: 4, date: "2026-05-25T04:00:00.000Z" },
+        { username: "JalenWilliams8", score: 3, date: "2026-05-27T04:00:00.000Z" }
+      ]
+    },
+    nfl: {
+      easy: [
+        { username: "MahomesMagic", score: 38, date: "2026-05-10T04:00:00.000Z" },
+        { username: "LamarSpeed", score: 31, date: "2026-05-12T04:00:00.000Z" },
+        { username: "AllenBuffalo", score: 27, date: "2026-05-14T04:00:00.000Z" },
+        { username: "RodgersGreen", score: 22, date: "2026-05-16T04:00:00.000Z" },
+        { username: "Stafford9", score: 19, date: "2026-05-18T04:00:00.000Z" },
+        { username: "HurtsEagle", score: 16, date: "2026-05-20T04:00:00.000Z" },
+        { username: "BurrowJoe", score: 14, date: "2026-05-22T04:00:00.000Z" },
+        { username: "GoffLion", score: 11, date: "2026-05-24T04:00:00.000Z" },
+        { username: "PurdyNiner", score: 9, date: "2026-05-26T04:00:00.000Z" },
+        { username: "LoveJordan", score: 7, date: "2026-05-28T04:00:00.000Z" }
+      ],
+      medium: [
+        { username: "McCaffreyRun", score: 21, date: "2026-05-09T04:00:00.000Z" },
+        { username: "GarrettSack", score: 18, date: "2026-05-11T04:00:00.000Z" },
+        { username: "BarkleySaquon", score: 15, date: "2026-05-13T04:00:00.000Z" },
+        { username: "JeffersonJets", score: 13, date: "2026-05-15T04:00:00.000Z" },
+        { username: "HillCheetah", score: 12, date: "2026-05-17T04:00:00.000Z" },
+        { username: "CrosbyMaxx", score: 9, date: "2026-05-19T04:00:00.000Z" },
+        { username: "WattT.J.", score: 8, date: "2026-05-21T04:00:00.000Z" },
+        { username: "WalkerKenneth", score: 7, date: "2026-05-23T04:00:00.000Z" },
+        { username: "DiggsStefon", score: 5, date: "2026-05-25T04:00:00.000Z" },
+        { username: "KittleGeorge", score: 4, date: "2026-05-27T04:00:00.000Z" }
+      ],
+      hard: [
+        { username: "DanielsJayden", score: 14, date: "2026-05-10T04:00:00.000Z" },
+        { username: "JSN_Seahawks", score: 11, date: "2026-05-12T04:00:00.000Z" },
+        { username: "SurtainPS2", score: 9, date: "2026-05-14T04:00:00.000Z" },
+        { username: "VerseJared", score: 8, date: "2026-05-16T04:00:00.000Z" },
+        { username: "McMillanTet", score: 7, date: "2026-05-18T04:00:00.000Z" },
+        { username: "SchwesingerC", score: 5, date: "2026-05-20T04:00:00.000Z" },
+        { username: "HarrisonMarv", score: 4, date: "2026-05-22T04:00:00.000Z" },
+        { username: "NabersMalik", score: 3, date: "2026-05-24T04:00:00.000Z" },
+        { username: "BowersBrock", score: 2, date: "2026-05-26T04:00:00.000Z" },
+        { username: "WilliamsCaleb", score: 1, date: "2026-05-28T04:00:00.000Z" }
+      ]
+    }
+  };
+  return users[gameMode][diff];
+};
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -80,20 +162,43 @@ function NBAGame() {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [searchResults, setSearchResults] = useState<Player[]>([]);
   const [score, setScore] = useState<Score>({
-    easy: { wins: 0, losses: 0 },
-    medium: { wins: 0, losses: 0 },
-    hard: { wins: 0, losses: 0 }
+    easy: { wins: 0, losses: 0, currentStreak: 0, maxStreak: 0 },
+    medium: { wins: 0, losses: 0, currentStreak: 0, maxStreak: 0 },
+    hard: { wins: 0, losses: 0, currentStreak: 0, maxStreak: 0 }
   });
   const [allPlayers, setAllPlayers] = useState<Player[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  const [leaderboardTab, setLeaderboardTab] = useState<'local' | 'global'>('local');
+  const [leaderboardDiff, setLeaderboardDiff] = useState<'easy' | 'medium' | 'hard'>('easy');
+  const [leaderboardRankings, setLeaderboardRankings] = useState<{ username: string; score: number; date: string }[]>([]);
+  const [leaderboardLoading, setLeaderboardLoading] = useState(false);
+  const [leaderboardUsername, setLeaderboardUsername] = useState('');
+
+  // Load saved scores and migrate if needed
   useEffect(() => {
-    // Load saved scores from localStorage
     const savedScore = localStorage.getItem('nbaTrivia_score');
     if (savedScore) {
-      setScore(JSON.parse(savedScore));
+      try {
+        const parsed = JSON.parse(savedScore);
+        const migrated = { ...parsed };
+        (['easy', 'medium', 'hard'] as const).forEach(diff => {
+          if (!migrated[diff]) {
+            migrated[diff] = { wins: 0, losses: 0, currentStreak: 0, maxStreak: 0 };
+          } else {
+            if (migrated[diff].currentStreak === undefined) migrated[diff].currentStreak = 0;
+            if (migrated[diff].maxStreak === undefined) migrated[diff].maxStreak = 0;
+          }
+        });
+        setScore(migrated);
+        localStorage.setItem('nbaTrivia_score', JSON.stringify(migrated));
+      } catch (e) {
+        console.error("Failed to parse/migrate scores:", e);
+      }
     }
+  }, []);
 
+  useEffect(() => {
     // Load all players for search
     setAllPlayers(playersData.players as unknown as Player[]);
     
@@ -111,6 +216,87 @@ function NBAGame() {
       setTargetPlayer(currentPlayers[Math.floor(Math.random() * currentPlayers.length)]);
     }
   }, [difficulty]);
+
+  // Load leaderboard when difficulty or tab changes
+  useEffect(() => {
+    if (showScoreModal && leaderboardTab === 'global') {
+      fetchLeaderboard(leaderboardDiff);
+    }
+  }, [showScoreModal, leaderboardTab, leaderboardDiff]);
+
+  const fetchLeaderboard = async (diff: 'easy' | 'medium' | 'hard') => {
+    setLeaderboardLoading(true);
+    try {
+      const res = await fetch(`/.netlify/functions/leaderboard?gameMode=nba&difficulty=${diff}`);
+      if (!res.ok) throw new Error("HTTP error " + res.status);
+      const data = await res.json();
+      setLeaderboardRankings(data);
+    } catch (err) {
+      console.warn("Using simulated leaderboard fallback:", err);
+      const mockData = getMockLeaderboard("nba", diff);
+      const localSimulated = localStorage.getItem(`nbaTrivia_simulated_leaderboard_${diff}`);
+      if (localSimulated) {
+        setLeaderboardRankings(JSON.parse(localSimulated));
+      } else {
+        setLeaderboardRankings(mockData);
+        localStorage.setItem(`nbaTrivia_simulated_leaderboard_${diff}`, JSON.stringify(mockData));
+      }
+    } finally {
+      setLeaderboardLoading(false);
+    }
+  };
+
+  const handleScoreSubmit = async () => {
+    if (!leaderboardUsername.trim()) return;
+    const username = leaderboardUsername.trim().substring(0, 20);
+    const streakToSubmit = score[leaderboardDiff].maxStreak;
+
+    setLeaderboardLoading(true);
+    try {
+      const res = await fetch(`/.netlify/functions/leaderboard?gameMode=nba&difficulty=${leaderboardDiff}`, {
+         method: "POST",
+         headers: { "Content-Type": "application/json" },
+         body: JSON.stringify({ username, score: streakToSubmit })
+      });
+      if (!res.ok) throw new Error("HTTP error " + res.status);
+      const data = await res.json();
+      setLeaderboardRankings(data.scores);
+      localStorage.setItem(`nbaTrivia_submitted_max_streak_${leaderboardDiff}`, streakToSubmit.toString());
+      localStorage.setItem(`nbaTrivia_submitted_name_${leaderboardDiff}`, username);
+    } catch (err) {
+      console.warn("Using simulated score submission fallback:", err);
+      let list = [];
+      const localSimulated = localStorage.getItem(`nbaTrivia_simulated_leaderboard_${leaderboardDiff}`);
+      if (localSimulated) {
+        list = JSON.parse(localSimulated);
+      } else {
+        list = getMockLeaderboard("nba", leaderboardDiff);
+      }
+
+      const existingIndex = list.findIndex((e: any) => e.username.toLowerCase() === username.toLowerCase());
+      if (existingIndex !== -1) {
+        if (streakToSubmit > list[existingIndex].score) {
+          list[existingIndex].score = streakToSubmit;
+          list[existingIndex].date = new Date().toISOString();
+        }
+      } else {
+        list.push({ username, score: streakToSubmit, date: new Date().toISOString() });
+      }
+
+      list.sort((a: any, b: any) => {
+        if (b.score !== a.score) return b.score - a.score;
+        return new Date(a.date).getTime() - new Date(b.date).getTime();
+      });
+      const updatedList = list.slice(0, 100);
+
+      localStorage.setItem(`nbaTrivia_simulated_leaderboard_${leaderboardDiff}`, JSON.stringify(updatedList));
+      setLeaderboardRankings(updatedList);
+      localStorage.setItem(`nbaTrivia_submitted_max_streak_${leaderboardDiff}`, streakToSubmit.toString());
+      localStorage.setItem(`nbaTrivia_submitted_name_${leaderboardDiff}`, username);
+    } finally {
+      setLeaderboardLoading(false);
+    }
+  };
 
   const handleDifficultySelect = (level: string) => {
     setDifficulty(level as 'easy' | 'medium' | 'hard');
@@ -164,11 +350,20 @@ function NBAGame() {
 
     if (guessedPlayer.Name === targetPlayer.Name || attempts >= 5) {
       const isWin = guessedPlayer.Name === targetPlayer.Name;
+      const currentDiff = difficulty as keyof Score;
+      const prevDiffScore = score[currentDiff];
+      const newWins = isWin ? prevDiffScore.wins + 1 : prevDiffScore.wins;
+      const newLosses = isWin ? prevDiffScore.losses : prevDiffScore.losses + 1;
+      const newCurrentStreak = isWin ? prevDiffScore.currentStreak + 1 : 0;
+      const newMaxStreak = Math.max(prevDiffScore.maxStreak, newCurrentStreak);
+
       const newScore = {
         ...score,
-        [difficulty]: {
-          ...score[difficulty as keyof Score],
-          [isWin ? 'wins' : 'losses']: score[difficulty as keyof Score][isWin ? 'wins' : 'losses'] + 1
+        [currentDiff]: {
+          wins: newWins,
+          losses: newLosses,
+          currentStreak: newCurrentStreak,
+          maxStreak: newMaxStreak
         }
       };
       setScore(newScore);
@@ -591,36 +786,198 @@ function NBAGame() {
         <AnimatePresence>
           {showScoreModal && (
             <motion.div 
-              className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 backdrop-blur-sm"
+              className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 backdrop-blur-sm z-50"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
               <motion.div 
-                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 max-w-lg w-full border border-white/10"
+                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 max-w-2xl w-full border border-white/10 shadow-2xl flex flex-col max-h-[85vh]"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.8, opacity: 0 }}
               >
-                <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-2xl font-bold text-white">All-Time Score</h2>
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+                    <Trophy className="w-7 h-7 text-[var(--gold)]" />
+                    Scoreboard & Rankings
+                  </h2>
                   <motion.button 
-                    onClick={() => setShowScoreModal(false)}
+                    onClick={() => {
+                      setShowScoreModal(false);
+                      setLeaderboardUsername('');
+                    }}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
+                    className="p-1 rounded-full hover:bg-white/10 text-white/70 hover:text-white transition-colors"
                   >
-                    <X className="w-6 h-6 text-white" />
+                    <X className="w-6 h-6" />
                   </motion.button>
                 </div>
-                <div className="space-y-4">
-                  {Object.entries(score).map(([difficulty, stats]) => (
-                    <div key={difficulty} className="flex justify-between items-center text-white/80">
-                      <span className="text-lg capitalize">{difficulty}</span>
-                      <span className="text-lg">
-                        Wins: {stats.wins} | Losses: {stats.losses}
-                      </span>
+
+                {/* Tabs */}
+                <div className="flex border-b border-white/10 mb-6">
+                  <button
+                    onClick={() => setLeaderboardTab('local')}
+                    className={`flex-1 py-3 text-lg font-semibold border-b-2 transition-all ${
+                      leaderboardTab === 'local' 
+                        ? 'border-orange-500 text-white' 
+                        : 'border-transparent text-white/50 hover:text-white/80'
+                    }`}
+                  >
+                    My Stats
+                  </button>
+                  <button
+                    onClick={() => setLeaderboardTab('global')}
+                    className={`flex-1 py-3 text-lg font-semibold border-b-2 transition-all ${
+                      leaderboardTab === 'global' 
+                        ? 'border-orange-500 text-white' 
+                        : 'border-transparent text-white/50 hover:text-white/80'
+                    }`}
+                  >
+                    Global Leaderboards
+                  </button>
+                </div>
+
+                {/* Tab Content */}
+                <div className="flex-1 overflow-y-auto pr-1">
+                  {leaderboardTab === 'local' ? (
+                    <div className="space-y-4">
+                      {Object.entries(score).map(([diff, stats]) => (
+                        <div key={diff} className="p-4 rounded-xl bg-white/5 border border-white/5 space-y-2">
+                          <div className="flex justify-between items-center">
+                            <span className="text-xl font-bold capitalize text-white">{diff}</span>
+                            <span className="text-sm px-3 py-1 rounded-full bg-white/10 text-white/70">
+                              Wins: {stats.wins} | Losses: {stats.losses}
+                            </span>
+                          </div>
+                          <div className="grid grid-cols-2 gap-4 pt-2">
+                            <div className="text-center p-2 bg-white/5 rounded-lg">
+                              <div className="text-2xl font-bold text-orange-400">{stats.currentStreak}</div>
+                              <div className="text-xs text-white/50 uppercase tracking-wider">Current Streak</div>
+                            </div>
+                            <div className="text-center p-2 bg-white/5 rounded-lg">
+                              <div className="text-2xl font-bold text-[var(--gold)]">{stats.maxStreak}</div>
+                              <div className="text-xs text-white/50 uppercase tracking-wider">Max Streak</div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  ) : (
+                    <div className="space-y-4">
+                      {/* Difficulty Selector within Leaderboard */}
+                      <div className="flex gap-2">
+                        {(['easy', 'medium', 'hard'] as const).map((diff) => (
+                          <button
+                            key={diff}
+                            onClick={() => setLeaderboardDiff(diff)}
+                            className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium capitalize transition-all ${
+                              leaderboardDiff === diff
+                                ? 'bg-orange-500 text-white shadow-lg'
+                                : 'bg-white/5 text-white/70 hover:bg-white/10'
+                            }`}
+                          >
+                            {diff}
+                          </button>
+                        ))}
+                      </div>
+
+                      {/* Leaderboard Table */}
+                      <div className="min-h-[200px]">
+                        {leaderboardLoading ? (
+                          <div className="flex flex-col items-center justify-center py-12 space-y-3">
+                            <div className="w-10 h-10 border-4 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
+                            <span className="text-white/60 text-sm">Loading rankings...</span>
+                          </div>
+                        ) : leaderboardRankings.length === 0 ? (
+                          <div className="text-center py-12 text-white/40">
+                            No rankings submitted yet for this difficulty.
+                          </div>
+                        ) : (
+                          <div className="overflow-hidden rounded-xl border border-white/10">
+                            <table className="w-full text-left border-collapse">
+                              <thead>
+                                <tr className="bg-white/5 text-white/60 text-xs uppercase tracking-wider border-b border-white/10">
+                                  <th className="py-3 px-4 font-semibold w-16 text-center">Rank</th>
+                                  <th className="py-3 px-4 font-semibold">Player</th>
+                                  <th className="py-3 px-4 font-semibold text-center w-28">Max Streak</th>
+                                  <th className="py-3 px-4 font-semibold text-right">Date</th>
+                                </tr>
+                              </thead>
+                              <tbody className="divide-y divide-white/5 text-white/95">
+                                {leaderboardRankings.map((entry, idx) => {
+                                  const isUser = entry.username.toLowerCase() === leaderboardUsername.toLowerCase() || 
+                                    (localStorage.getItem(`nbaTrivia_submitted_name_${leaderboardDiff}`) === entry.username);
+                                  let medal = null;
+                                  if (idx === 0) medal = "🥇";
+                                  else if (idx === 1) medal = "🥈";
+                                  else if (idx === 2) medal = "🥉";
+
+                                  return (
+                                    <tr 
+                                      key={idx} 
+                                      className={`hover:bg-white/5 transition-colors ${isUser ? 'bg-orange-500/10 font-bold border-l-2 border-l-orange-500' : ''}`}
+                                    >
+                                      <td className="py-3 px-4 text-center">
+                                        {medal ? <span className="text-lg">{medal}</span> : idx + 1}
+                                      </td>
+                                      <td className="py-3 px-4 truncate max-w-[150px]">
+                                        {entry.username}
+                                      </td>
+                                      <td className="py-3 px-4 text-center font-semibold text-orange-400">
+                                        {entry.score}
+                                      </td>
+                                      <td className="py-3 px-4 text-right text-xs text-white/40">
+                                        {new Date(entry.date).toLocaleDateString()}
+                                      </td>
+                                    </tr>
+                                  );
+                                })}
+                              </tbody>
+                            </table>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Score Submission Form */}
+                      {score[leaderboardDiff].maxStreak > 0 && (
+                        <div className="pt-4 border-t border-white/10 space-y-3">
+                          <div className="flex justify-between items-center text-sm">
+                            <span className="text-white/70">Your Local Max Streak:</span>
+                            <span className="text-orange-400 font-bold text-base">{score[leaderboardDiff].maxStreak}</span>
+                          </div>
+                          
+                          {Number(localStorage.getItem(`nbaTrivia_submitted_max_streak_${leaderboardDiff}`) || 0) < score[leaderboardDiff].maxStreak ? (
+                            <div className="space-y-2">
+                              <p className="text-xs text-green-400 font-medium">New high score! Submit your streak to the global leaderboard:</p>
+                              <div className="flex gap-2">
+                                <input
+                                  type="text"
+                                  placeholder="Enter username..."
+                                  maxLength={20}
+                                  value={leaderboardUsername}
+                                  onChange={(e) => setLeaderboardUsername(e.target.value.replace(/[^a-zA-Z0-9_\-\s]/g, ''))}
+                                  className="flex-1 py-2 px-3 rounded-lg text-sm bg-white text-black focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                />
+                                <button
+                                  onClick={handleScoreSubmit}
+                                  disabled={!leaderboardUsername.trim() || leaderboardLoading}
+                                  className="px-4 py-2 bg-orange-500 hover:bg-orange-600 disabled:bg-orange-500/50 disabled:cursor-not-allowed text-white text-sm font-semibold rounded-lg shadow transition-colors"
+                                >
+                                  Submit
+                                </button>
+                              </div>
+                            </div>
+                          ) : (
+                            <p className="text-xs text-white/40 text-center py-1">
+                              Your high score of {score[leaderboardDiff].maxStreak} has been successfully submitted!
+                            </p>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               </motion.div>
             </motion.div>
