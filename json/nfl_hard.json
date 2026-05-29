@@ -260,7 +260,7 @@
       "Defensive Player": 0,
       "Offensive Rookie": 0,
       "Defensive Rookie": 0,
-      "Comeback Player": 0,
+      "Comeback Player": 1,
       "Super Bowl MVP": 0,
       "Super Bowl Wins": 0
     },
@@ -1060,7 +1060,7 @@
       "Name": "Myles Garrett",
       "MVP": 0,
       "Offensive Player": 0,
-      "Defensive Player": 1,
+      "Defensive Player": 2,
       "Offensive Rookie": 0,
       "Defensive Rookie": 0,
       "Comeback Player": 0,
@@ -1432,6 +1432,39 @@
     },
     {
       "Name": "Willie Buchanon",
+      "MVP": 0,
+      "Offensive Player": 0,
+      "Defensive Player": 0,
+      "Offensive Rookie": 0,
+      "Defensive Rookie": 1,
+      "Comeback Player": 0,
+      "Super Bowl MVP": 0,
+      "Super Bowl Wins": 0
+    },
+    {
+      "Name": "Jaxon Smith-Njigba",
+      "MVP": 0,
+      "Offensive Player": 1,
+      "Defensive Player": 0,
+      "Offensive Rookie": 0,
+      "Defensive Rookie": 0,
+      "Comeback Player": 0,
+      "Super Bowl MVP": 0,
+      "Super Bowl Wins": 0
+    },
+    {
+      "Name": "Tetairoa McMillan",
+      "MVP": 0,
+      "Offensive Player": 0,
+      "Defensive Player": 0,
+      "Offensive Rookie": 1,
+      "Defensive Rookie": 0,
+      "Comeback Player": 0,
+      "Super Bowl MVP": 0,
+      "Super Bowl Wins": 0
+    },
+    {
+      "Name": "Carson Schwesinger",
       "MVP": 0,
       "Offensive Player": 0,
       "Defensive Player": 0,

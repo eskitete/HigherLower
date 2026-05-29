@@ -7,18 +7,7 @@ import easyPlayers from '../../json/nba_easy.json';
 import mediumPlayers from '../../json/nba_medium.json';
 import hardPlayers from '../../json/nba_hard.json';
 
-// Interface for the main nba.json file
-interface MainPlayer {
-  Name: string;
-  MVP: number;
-  "All Star": number;
-  "All NBA": number;
-  "All Defense": number;
-  Championships: number;
-  imageUrl?: string;
-}
-
-// Interface for the difficulty-specific files
+// Interface for the player data
 interface Player {
   Name: string;
   "All-Star": number;
@@ -31,6 +20,23 @@ interface Player {
   "Draft-Year": number;
   imageUrl?: string;
 }
+
+// Helper function to get player headshot image URL from basketball-reference
+const getPlayerImageUrl = (name: string): string => {
+  try {
+    const cleanName = name.trim();
+    const parts = cleanName.split(/\s+/);
+    if (parts.length < 2) return '/placeholder.svg';
+    
+    // Extract first 5 chars of last name, first 2 chars of first name
+    const last = parts[1].replace(/[^a-zA-Z]/g, '').substring(0, 5).toLowerCase();
+    const first = parts[0].replace(/[^a-zA-Z]/g, '').substring(0, 2).toLowerCase();
+    
+    return `https://www.basketball-reference.com/req/202106291/images/headshots/${last}${first}01.jpg`;
+  } catch (error) {
+    return '/placeholder.svg';
+  }
+};
 
 interface Score {
   easy: { wins: number; losses: number };
@@ -79,6 +85,7 @@ function NBAGame() {
     hard: { wins: 0, losses: 0 }
   });
   const [allPlayers, setAllPlayers] = useState<Player[]>([]);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     // Load saved scores from localStorage
@@ -135,32 +142,21 @@ function NBAGame() {
     
     // If not found, try to find in the main players list
     if (!guessedPlayer) {
-      const mainPlayer = (playersData.players as MainPlayer[]).find(p => 
+      const mainPlayer = (playersData.players as unknown as Player[]).find(p => 
         p.Name.toLowerCase() === searchQuery.toLowerCase()
       );
       
       if (mainPlayer) {
-        // Convert to Player format
-        guessedPlayer = {
-          Name: mainPlayer.Name,
-          "All-Star": mainPlayer["All Star"],
-          DPOY: 0,
-          MVP: mainPlayer.MVP,
-          ROTY: 0,
-          FMVP: 0,
-          "Six-Man": 0,
-          "All-NBA": mainPlayer["All NBA"],
-          "Draft-Year": 0,
-          imageUrl: mainPlayer.imageUrl
-        };
+        guessedPlayer = mainPlayer;
       }
     }
 
     if (!guessedPlayer) {
-      alert('Please select a valid player from the list');
+      setErrorMessage('Please select a valid player from the list');
       return;
     }
 
+    setErrorMessage(null);
     setAttempts(prev => prev + 1);
     setGuessedPlayers(prev => [guessedPlayer, ...prev]);
     setSearchQuery('');
@@ -202,26 +198,12 @@ function NBAGame() {
       return;
     }
     
-    // Search in all players (main nba.json format)
-    const mainResults = (playersData.players as MainPlayer[]).filter(player => 
+    // Search in all players
+    const results = allPlayers.filter(player => 
       player.Name.toLowerCase().includes(query.toLowerCase())
     );
     
-    // Convert to Player format for display
-    const convertedResults = mainResults.map(player => ({
-      Name: player.Name,
-      "All-Star": player["All Star"],
-      DPOY: 0, // Default values for missing fields
-      MVP: player.MVP,
-      ROTY: 0,
-      FMVP: 0,
-      "Six-Man": 0,
-      "All-NBA": player["All NBA"],
-      "Draft-Year": 0,
-      imageUrl: player.imageUrl
-    }));
-    
-    setSearchResults(convertedResults.slice(0, 5));
+    setSearchResults(results.slice(0, 5));
   };
 
   const resetGame = () => {
@@ -232,6 +214,7 @@ function NBAGame() {
     setGuessedPlayers([]);
     setSearchQuery('');
     setShowSuggestions(false);
+    setErrorMessage(null);
   };
 
   return (
@@ -370,14 +353,25 @@ function NBAGame() {
                         setSearchQuery(e.target.value);
                         handleSearch(e.target.value);
                         setShowSuggestions(true);
+                        setErrorMessage(null);
                       }}
                       onKeyPress={handleKeyPress}
-                      className="player-input w-full py-3 px-4 pl-12 rounded-xl text-lg bg-white text-black border border-white/20 focus:border-white/40 focus:outline-none transition-colors placeholder:text-gray-500"
+                      className={`player-input w-full py-3 px-4 pl-12 rounded-xl text-lg bg-white text-black border ${errorMessage ? 'border-red-500' : 'border-white/20'} focus:border-white/40 focus:outline-none transition-colors placeholder:text-gray-500`}
                       placeholder="Search for a player..."
                       autoComplete="off"
                     />
                     <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
                   </div>
+                  {errorMessage && (
+                    <motion.div 
+                      className="text-red-500 mt-2 text-sm"
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -5 }}
+                    >
+                      {errorMessage}
+                    </motion.div>
+                  )}
                   {showSuggestions && searchResults.length > 0 && (
                     <motion.div 
                       className="absolute z-10 w-full mt-1 bg-white rounded-xl shadow-lg max-h-60 overflow-y-auto border border-gray-200"
@@ -410,6 +404,32 @@ function NBAGame() {
                   </motion.button>
                 </div>
               )}
+              {/* Game Over / Play Again block at the top */}
+              {gameState === 'ended' && (
+                <motion.div 
+                  className="text-center mb-8 p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <h3 className="text-3xl font-bold text-white mb-4">
+                    {guessedPlayers[0]?.Name === targetPlayer?.Name ? 'Congratulations!' : 'Game Over!'}
+                  </h3>
+                  <p className="text-xl text-white/80 mb-6">
+                    {guessedPlayers[0]?.Name === targetPlayer?.Name 
+                      ? `You guessed the correct player: ${targetPlayer?.Name}` 
+                      : `The player was: ${targetPlayer?.Name}`}
+                  </p>
+                  <motion.button
+                    onClick={resetGame}
+                    className="bg-white text-black font-semibold px-8 py-3 rounded-xl text-xl hover:bg-white/90 transition-colors shadow-lg"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Play Again
+                  </motion.button>
+                </motion.div>
+              )}
 
               <motion.div 
                 className="grid gap-4"
@@ -417,17 +437,17 @@ function NBAGame() {
                 initial="hidden"
                 animate="visible"
               >
-                {guessedPlayers.map((player, index) => (
+                {/* Correct Player Card (if lost) */}
+                {gameState === 'ended' && targetPlayer && guessedPlayers[0]?.Name !== targetPlayer.Name && (
                   <motion.div 
-                    key={index} 
-                    className="player-card p-4 rounded-xl backdrop-blur-sm border border-white/10"
+                    className="player-card incorrect p-4 rounded-xl backdrop-blur-sm"
                     variants={itemVariants}
                   >
                     <div className="flex items-center gap-4">
                       <motion.img
-                        src={player.imageUrl}
-                        alt={player.Name}
-                        className="w-16 h-16 rounded-full object-cover border-2 border-white/20"
+                        src={getPlayerImageUrl(targetPlayer.Name)}
+                        alt={targetPlayer.Name}
+                        className="w-16 h-16 rounded-full object-cover border-2 border-red-500/20"
                         onError={(e) => {
                           (e.target as HTMLImageElement).src = '/placeholder.svg';
                         }}
@@ -436,28 +456,19 @@ function NBAGame() {
                         transition={{ type: "spring", stiffness: 260, damping: 20 }}
                       />
                       <div className="flex-1">
-                        <h3 className="text-white text-xl mb-2">{player.Name}</h3>
+                        <h3 className="text-white text-xl mb-2">{targetPlayer.Name} (Correct Player)</h3>
                         <div className="grid grid-cols-4 gap-4">
-                          {Object.entries(player).map(([key, value]) => {
+                          {Object.entries(targetPlayer).map(([key, value]) => {
                             if (key === 'Name' || key === 'imageUrl' || value === undefined) return null;
-                            const targetValue = targetPlayer?.[key as keyof Player];
-                            if (typeof value === 'number' && typeof targetValue === 'number') {
-                              return (
-                                <div key={key} className="text-center">
-                                  <div className="stat-value">{value}</div>
-                                  <div className="text-white/60 text-sm flex items-center justify-center gap-1">
-                                    {key}
-                                    <div className="inline-block">
-                                      {compareStats(key as keyof Player, value, targetValue)}
-                                    </div>
-                                  </div>
-                                </div>
-                              );
-                            }
                             return (
                               <div key={key} className="text-center">
                                 <div className="stat-value">{value}</div>
-                                <div className="text-white/60 text-sm">{key}</div>
+                                <div className="text-white/60 text-sm flex items-center justify-center gap-1">
+                                  {key}
+                                  <div className="inline-block">
+                                    <Check className="w-5 h-5 text-green-500" />
+                                  </div>
+                                </div>
                               </div>
                             );
                           })}
@@ -465,30 +476,68 @@ function NBAGame() {
                       </div>
                     </div>
                   </motion.div>
-                ))}
-              </motion.div>
+                )}
 
-              {gameState === 'ended' && (
-                <motion.div 
-                  className="text-center mt-8"
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <h3 className="text-2xl text-white mb-4">
-                    {guessedPlayers[0]?.Name === targetPlayer?.Name ? 'Congratulations!' : 'Game Over!'}
-                  </h3>
-                  <p className="text-white mb-4">The player was: {targetPlayer?.Name}</p>
-                  <motion.button
-                    onClick={resetGame}
-                    className="bg-white/10 text-white px-8 py-3 rounded-xl text-xl hover:bg-white/20 transition-colors backdrop-blur-sm border border-white/10"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Play Again
-                  </motion.button>
-                </motion.div>
-              )}
+                {/* Guesses list */}
+                {guessedPlayers.map((player, index) => {
+                  const isWinningGuess = gameState === 'ended' && player.Name === targetPlayer?.Name;
+                  const cardClass = isWinningGuess 
+                    ? 'player-card correct p-4 rounded-xl backdrop-blur-sm' 
+                    : 'player-card p-4 rounded-xl backdrop-blur-sm';
+                    
+                  return (
+                    <motion.div 
+                      key={index} 
+                      className={cardClass}
+                      variants={itemVariants}
+                    >
+                      <div className="flex items-center gap-4">
+                        <motion.img
+                          src={getPlayerImageUrl(player.Name)}
+                          alt={player.Name}
+                          className={`w-16 h-16 rounded-full object-cover border-2 ${isWinningGuess ? 'border-green-500/20' : 'border-white/20'}`}
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src = '/placeholder.svg';
+                          }}
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                        />
+                        <div className="flex-1">
+                          <h3 className="text-white text-xl mb-2">
+                            {player.Name} {isWinningGuess && '(Correct)'}
+                          </h3>
+                          <div className="grid grid-cols-4 gap-4">
+                            {Object.entries(player).map(([key, value]) => {
+                              if (key === 'Name' || key === 'imageUrl' || value === undefined) return null;
+                              const targetValue = targetPlayer?.[key as keyof Player];
+                              if (typeof value === 'number' && typeof targetValue === 'number') {
+                                return (
+                                  <div key={key} className="text-center">
+                                    <div className="stat-value">{value}</div>
+                                    <div className="text-white/60 text-sm flex items-center justify-center gap-1">
+                                      {key}
+                                      <div className="inline-block">
+                                        {compareStats(key as keyof Player, value, targetValue)}
+                                      </div>
+                                    </div>
+                                  </div>
+                                );
+                              }
+                              return (
+                                <div key={key} className="text-center">
+                                  <div className="stat-value">{value}</div>
+                                  <div className="text-white/60 text-sm">{key}</div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
             </div>
           )}
         </motion.div>

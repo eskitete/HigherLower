@@ -739,7 +739,7 @@
     },
     {
       "Name": "Matthew Stafford",
-      "MVP": 0,
+      "MVP": 1,
       "Offensive Player": 0,
       "Defensive Player": 0,
       "Offensive Rookie": 0,
@@ -1132,6 +1132,17 @@
       "Comeback Player": 0,
       "Super Bowl MVP": 0,
       "Super Bowl Wins": 0
+    },
+    {
+      "Name": "Kenneth Walker III",
+      "MVP": 0,
+      "Offensive Player": 0,
+      "Defensive Player": 0,
+      "Offensive Rookie": 0,
+      "Defensive Rookie": 0,
+      "Comeback Player": 0,
+      "Super Bowl MVP": 1,
+      "Super Bowl Wins": 1
     }
   ]
 }

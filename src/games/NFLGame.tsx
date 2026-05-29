@@ -67,6 +67,7 @@ const NFLGame: React.FC = () => {
     hard: { wins: 0, losses: 0 }
   });
   const [allPlayers, setAllPlayers] = useState<Player[]>([]);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     // Load saved scores from localStorage
@@ -134,10 +135,11 @@ const NFLGame: React.FC = () => {
     }
 
     if (!guessedPlayer) {
-      alert('Please select a valid player from the list');
+      setErrorMessage('Please select a valid player from the list');
       return;
     }
 
+    setErrorMessage(null);
     setAttempts(prev => prev + 1);
     setGuessedPlayers(prev => [guessedPlayer, ...prev]);
     setSearchQuery('');
@@ -193,6 +195,7 @@ const NFLGame: React.FC = () => {
     setGuessedPlayers([]);
     setSearchQuery('');
     setShowSuggestions(false);
+    setErrorMessage(null);
   };
 
   return (
@@ -331,14 +334,25 @@ const NFLGame: React.FC = () => {
                         setSearchQuery(e.target.value);
                         handleSearch(e.target.value);
                         setShowSuggestions(true);
+                        setErrorMessage(null);
                       }}
                       onKeyPress={handleKeyPress}
-                      className="player-input w-full py-3 px-4 pl-12 rounded-xl text-lg bg-white text-black border border-white/20 focus:border-white/40 focus:outline-none transition-colors placeholder:text-gray-500"
+                      className={`player-input w-full py-3 px-4 pl-12 rounded-xl text-lg bg-white text-black border ${errorMessage ? 'border-red-500' : 'border-white/20'} focus:border-white/40 focus:outline-none transition-colors placeholder:text-gray-500`}
                       placeholder="Search for a player..."
                       autoComplete="off"
                     />
                     <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
                   </div>
+                  {errorMessage && (
+                    <motion.div 
+                      className="text-red-500 mt-2 text-sm"
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -5 }}
+                    >
+                      {errorMessage}
+                    </motion.div>
+                  )}
                   {showSuggestions && searchResults.length > 0 && (
                     <motion.div 
                       className="absolute z-10 w-full mt-1 bg-white rounded-xl shadow-lg max-h-60 overflow-y-auto border border-gray-200"
@@ -371,6 +385,32 @@ const NFLGame: React.FC = () => {
                   </motion.button>
                 </div>
               )}
+              {/* Game Over / Play Again block at the top */}
+              {gameState === 'ended' && (
+                <motion.div 
+                  className="text-center mb-8 p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <h3 className="text-3xl font-bold text-white mb-4">
+                    {guessedPlayers[0]?.Name === targetPlayer?.Name ? 'Congratulations!' : 'Game Over!'}
+                  </h3>
+                  <p className="text-xl text-white/80 mb-6">
+                    {guessedPlayers[0]?.Name === targetPlayer?.Name 
+                      ? `You guessed the correct player: ${targetPlayer?.Name}` 
+                      : `The player was: ${targetPlayer?.Name}`}
+                  </p>
+                  <motion.button
+                    onClick={resetGame}
+                    className="bg-white text-black font-semibold px-8 py-3 rounded-xl text-xl hover:bg-white/90 transition-colors shadow-lg"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Play Again
+                  </motion.button>
+                </motion.div>
+              )}
 
               <motion.div 
                 className="grid gap-4"
@@ -378,17 +418,17 @@ const NFLGame: React.FC = () => {
                 initial="hidden"
                 animate="visible"
               >
-                {guessedPlayers.map((player, index) => (
+                {/* Correct Player Card (if lost) */}
+                {gameState === 'ended' && targetPlayer && guessedPlayers[0]?.Name !== targetPlayer.Name && (
                   <motion.div 
-                    key={index} 
-                    className="player-card p-4 rounded-xl backdrop-blur-sm border border-white/10"
+                    className="player-card incorrect p-4 rounded-xl backdrop-blur-sm"
                     variants={itemVariants}
                   >
                     <div className="flex items-center gap-4">
                       <motion.img
-                        src={player.imageUrl}
-                        alt={player.Name}
-                        className="w-16 h-16 rounded-full object-cover border-2 border-white/20"
+                        src={targetPlayer.imageUrl || '/placeholder.svg'}
+                        alt={targetPlayer.Name}
+                        className="w-16 h-16 rounded-full object-cover border-2 border-red-500/20"
                         onError={(e) => {
                           (e.target as HTMLImageElement).src = '/placeholder.svg';
                         }}
@@ -397,28 +437,19 @@ const NFLGame: React.FC = () => {
                         transition={{ type: "spring", stiffness: 260, damping: 20 }}
                       />
                       <div className="flex-1">
-                        <h3 className="text-white text-xl mb-2">{player.Name}</h3>
+                        <h3 className="text-white text-xl mb-2">{targetPlayer.Name} (Correct Player)</h3>
                         <div className="grid grid-cols-4 gap-4">
-                          {Object.entries(player).map(([key, value]) => {
+                          {Object.entries(targetPlayer).map(([key, value]) => {
                             if (key === 'Name' || key === 'imageUrl' || value === undefined) return null;
-                            const targetValue = targetPlayer?.[key as keyof Player];
-                            if (typeof value === 'number' && typeof targetValue === 'number') {
-                              return (
-                                <div key={key} className="text-center">
-                                  <div className="stat-value">{value}</div>
-                                  <div className="text-white/60 text-sm flex items-center justify-center gap-1">
-                                    {key}
-                                    <div className="inline-block">
-                                      {compareStats(key as keyof Player, value, targetValue)}
-                                    </div>
-                                  </div>
-                                </div>
-                              );
-                            }
                             return (
                               <div key={key} className="text-center">
                                 <div className="stat-value">{value}</div>
-                                <div className="text-white/60 text-sm">{key}</div>
+                                <div className="text-white/60 text-sm flex items-center justify-center gap-1">
+                                  {key}
+                                  <div className="inline-block">
+                                    <Check className="w-5 h-5 text-green-500" />
+                                  </div>
+                                </div>
                               </div>
                             );
                           })}
@@ -426,30 +457,68 @@ const NFLGame: React.FC = () => {
                       </div>
                     </div>
                   </motion.div>
-                ))}
-              </motion.div>
+                )}
 
-              {gameState === 'ended' && (
-                <motion.div 
-                  className="text-center mt-8"
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <h3 className="text-2xl text-white mb-4">
-                    {guessedPlayers[0]?.Name === targetPlayer?.Name ? 'Congratulations!' : 'Game Over!'}
-                  </h3>
-                  <p className="text-white mb-4">The player was: {targetPlayer?.Name}</p>
-                  <motion.button
-                    onClick={resetGame}
-                    className="bg-white/10 text-white px-8 py-3 rounded-xl text-xl hover:bg-white/20 transition-colors backdrop-blur-sm border border-white/10"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Play Again
-                  </motion.button>
-                </motion.div>
-              )}
+                {/* Guesses list */}
+                {guessedPlayers.map((player, index) => {
+                  const isWinningGuess = gameState === 'ended' && player.Name === targetPlayer?.Name;
+                  const cardClass = isWinningGuess 
+                    ? 'player-card correct p-4 rounded-xl backdrop-blur-sm' 
+                    : 'player-card p-4 rounded-xl backdrop-blur-sm';
+                    
+                  return (
+                    <motion.div 
+                      key={index} 
+                      className={cardClass}
+                      variants={itemVariants}
+                    >
+                      <div className="flex items-center gap-4">
+                        <motion.img
+                          src={player.imageUrl || '/placeholder.svg'}
+                          alt={player.Name}
+                          className={`w-16 h-16 rounded-full object-cover border-2 ${isWinningGuess ? 'border-green-500/20' : 'border-white/20'}`}
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src = '/placeholder.svg';
+                          }}
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                        />
+                        <div className="flex-1">
+                          <h3 className="text-white text-xl mb-2">
+                            {player.Name} {isWinningGuess && '(Correct)'}
+                          </h3>
+                          <div className="grid grid-cols-4 gap-4">
+                            {Object.entries(player).map(([key, value]) => {
+                              if (key === 'Name' || key === 'imageUrl' || value === undefined) return null;
+                              const targetValue = targetPlayer?.[key as keyof Player];
+                              if (typeof value === 'number' && typeof targetValue === 'number') {
+                                return (
+                                  <div key={key} className="text-center">
+                                    <div className="stat-value">{value}</div>
+                                    <div className="text-white/60 text-sm flex items-center justify-center gap-1">
+                                      {key}
+                                      <div className="inline-block">
+                                        {compareStats(key as keyof Player, value, targetValue)}
+                                      </div>
+                                    </div>
+                                  </div>
+                                );
+                              }
+                              return (
+                                <div key={key} className="text-center">
+                                  <div className="stat-value">{value}</div>
+                                  <div className="text-white/60 text-sm">{key}</div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
             </div>
           )}
         </motion.div>
