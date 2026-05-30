@@ -1,51 +1,45 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Circle, CircleDot } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Dribbble, Trophy, Shield, Flame, Activity } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface SportCard {
   id: string;
   name: string;
+  subtitle: string;
   icon: React.ReactNode;
-  color: string;
-  gradient: string;
 }
 
 const sports: SportCard[] = [
   {
     id: 'nba',
     name: 'NBA',
-    icon: <Circle className="w-12 h-12" />,
-    color: 'text-orange-500',
-    gradient: 'from-orange-500 to-red-500'
+    subtitle: 'Classic & Daily player guessing',
+    icon: <Dribbble className="w-6 h-6 text-[#fdb927]" />
   },
   {
     id: 'nfl',
     name: 'NFL',
-    icon: <Circle className="w-12 h-12" />,
-    color: 'text-green-500',
-    gradient: 'from-green-500 to-emerald-500'
+    subtitle: 'Streak mode player guessing',
+    icon: <Trophy className="w-6 h-6 text-green-500" />
   },
   {
     id: 'soccer',
     name: 'Soccer',
-    icon: <Circle className="w-12 h-12" />,
-    color: 'text-blue-500',
-    gradient: 'from-blue-500 to-cyan-500'
+    subtitle: 'Global football guesser',
+    icon: <Shield className="w-6 h-6 text-blue-500" />
   },
   {
     id: 'ufc',
     name: 'UFC',
-    icon: <CircleDot className="w-12 h-12" />,
-    color: 'text-red-500',
-    gradient: 'from-red-500 to-pink-500'
+    subtitle: 'Championship record guesser',
+    icon: <Flame className="w-6 h-6 text-red-500" />
   },
   {
     id: 'f1',
     name: 'F1',
-    icon: <CircleDot className="w-12 h-12" />,
-    color: 'text-purple-500',
-    gradient: 'from-purple-500 to-indigo-500'
+    subtitle: 'Grand Prix driver stats',
+    icon: <Activity className="w-6 h-6 text-purple-500" />
   }
 ];
 
@@ -54,18 +48,18 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1
+      staggerChildren: 0.08
     }
   }
 };
 
 const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
+  hidden: { y: 15, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.4,
       ease: "easeOut"
     }
   }
@@ -75,41 +69,27 @@ function Home() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen py-8 px-4 bg-[#0a0a0a] relative overflow-hidden">
-      {/* Animated Background */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
-        style={{
-          backgroundImage: 'url("https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=2070")'
-        }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a]/95 to-[#0a0a0a]" />
-      
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -left-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob" />
-        <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-orange-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000" />
-      </div>
-      
-      {/* Content */}
-      <div className="max-w-4xl mx-auto relative">
+    <div className="min-h-screen py-12 px-4 bg-[var(--bg-primary)] flex flex-col justify-between">
+      {/* Main Section */}
+      <div className="max-w-2xl w-full mx-auto">
         {/* Header */}
         <motion.header 
-          className="text-center mb-16"
-          initial={{ y: -20, opacity: 0 }}
+          className="text-center border-b border-[var(--border-color)] pb-6 mb-10"
+          initial={{ y: -10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4 }}
         >
-          <h1 className="game-title text-7xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">
-            SPORTS HIGHER/LOWER
+          <h1 className="game-title text-4xl sm:text-5xl font-extrabold tracking-wider text-white">
+            SPORTS GUESSER
           </h1>
-          <p className="text-white/60 text-xl font-light">Select a sport to start playing!</p>
+          <p className="text-[var(--text-secondary)] text-xs sm:text-sm font-semibold tracking-widest uppercase mt-2">
+            Higher/Lower Stat Trivia
+          </p>
         </motion.header>
 
-        {/* Sport Selection Grid */}
+        {/* Sport Selection List */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="space-y-4"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -118,58 +98,63 @@ function Home() {
             <motion.div
               key={sport.id}
               variants={itemVariants}
-              className="group relative overflow-hidden rounded-2xl bg-white/5 p-8 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-white/5 backdrop-blur-md border border-white/10 flex flex-col justify-between"
+              className="flex flex-col sm:flex-row sm:items-center justify-between p-5 bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl hover:border-[var(--text-secondary)] transition-colors duration-200"
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${sport.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-300`} />
-              <div className="relative flex flex-col items-center gap-6 w-full">
-                <div className={`${sport.color} transition-transform duration-300 group-hover:scale-110`}>
+              <div className="flex items-center gap-4 mb-4 sm:mb-0">
+                <div className="bg-[var(--bg-primary)] p-3 rounded-lg border border-[var(--border-color)]">
                   {sport.icon}
                 </div>
-                <h2 className="text-2xl font-bold text-white tracking-wide">{sport.name}</h2>
+                <div>
+                  <h2 className="text-lg font-bold text-white tracking-wide">{sport.name}</h2>
+                  <p className="text-xs text-[var(--text-secondary)] font-medium">{sport.subtitle}</p>
+                </div>
               </div>
               
-              <div className="relative mt-6 z-10 w-full">
+              <div className="flex gap-2.5 sm:self-center">
                 {sport.id === 'nba' ? (
-                  <div className="flex gap-3 w-full">
+                  <>
                     <button
                       onClick={() => navigate('/nba')}
-                      className="flex-1 py-2 px-3 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors text-sm font-semibold border border-white/10"
+                      className="flex-1 sm:flex-initial py-2 px-4 rounded-lg bg-[var(--nba-blue)] hover:bg-[#15346e] text-white transition-all text-xs font-bold uppercase tracking-wider border border-[var(--nba-blue)] shadow-lg shadow-[#1d428a]/10"
                     >
                       Classic
                     </button>
                     <button
                       onClick={() => navigate('/nba-daily')}
-                      className="flex-1 py-2 px-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white transition-all text-sm font-semibold border border-orange-400/20 shadow-lg shadow-orange-500/20"
+                      className="flex-1 sm:flex-initial py-2 px-4 rounded-lg bg-[var(--nba-red)] hover:bg-[#a60d24] text-white transition-all text-xs font-bold uppercase tracking-wider border border-[var(--nba-red)] shadow-lg shadow-[#c8102e]/10"
                     >
                       Daily
                     </button>
-                  </div>
+                  </>
                 ) : sport.id === 'nfl' ? (
                   <button
-                    onClick={() => navigate('/nfl-wip')}
-                    className="w-full py-2 px-4 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors text-sm font-semibold border border-white/10"
+                    onClick={() => navigate('/nfl')}
+                    className="w-full sm:w-auto py-2 px-5 rounded-lg bg-[var(--nba-blue)] hover:bg-[#15346e] text-white transition-all text-xs font-bold uppercase tracking-wider border border-[var(--nba-blue)] shadow-lg shadow-[#1d428a]/10"
                   >
-                    Work in Progress
+                    Play
                   </button>
                 ) : (
-                  <button
-                    disabled
-                    className="w-full py-2 px-4 rounded-xl bg-white/5 text-white/40 cursor-not-allowed text-sm font-semibold border border-white/5"
-                  >
+                  <span className="w-full text-center sm:w-auto py-2 px-4 rounded-lg bg-[var(--bg-primary)] text-[var(--text-secondary)]/40 text-xs font-bold uppercase tracking-wider border border-[var(--border-color)]/40 select-none cursor-not-allowed">
                     Coming Soon
-                  </button>
+                  </span>
                 )}
               </div>
             </motion.div>
           ))}
         </motion.div>
       </div>
-      {/* Footer in bottom left */}
-      <div className="absolute bottom-4 left-4 z-10 text-white text-xs font-light select-none">
+
+      {/* Footer */}
+      <motion.footer 
+        className="text-center text-[var(--text-secondary)] text-xs font-medium py-8 border-t border-[var(--border-color)]/40 mt-12 max-w-2xl w-full mx-auto"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.4 }}
+      >
         Created by Rayane Hamoudi & Rafay Syed
-      </div>
+      </motion.footer>
     </div>
   );
 }
 
-export default Home; 
+export default Home;

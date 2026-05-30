@@ -1,136 +1,199 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
+  --bg-primary: #0a0d14; /* Midnight navy */
+  --bg-secondary: #121620; /* Dark slate blue */
+  --bg-tertiary: #1b202e; /* Muted navy */
+  --border-color: #232a3b; /* Dark navy border */
+  --text-primary: #ffffff;
+  --text-secondary: #8fa3c7; /* Muted slate blue text */
+  --color-correct: #1d428a; /* NBA Blue */
+  --color-close: #ffffff; /* White */
+  --color-incorrect: #c8102e; /* NBA Red */
   --nba-blue: #1d428a;
   --nba-red: #c8102e;
-  --electric-blue: #00a0dc;
   --gold: #fdb927;
-  --silver: #b4b4b4;
 }
 
 body {
   font-family: 'Inter', sans-serif;
-  background: radial-gradient(circle at center, var(--nba-blue) 0%, #000 100%);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   min-height: 100vh;
   margin: 0;
   position: relative;
+  overflow-x: hidden;
 }
 
-/* Court texture overlay */
+/* Remove court texture overlay */
 body::before {
-  content: '';
+  display: none !important;
+}
+
+.nba-court-bg {
+  position: relative;
+}
+
+.nba-court-bg::before {
+  content: "";
   position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
   bottom: 0;
-  background-image: url('https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&q=80&w=2000');
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 672px; /* Matches max-w-2xl game borders */
+  background-image: url('/nba_court.png');
   background-size: cover;
-  opacity: 0.1;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.15;
+  z-index: 0;
   pointer-events: none;
+  -webkit-mask-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 1) 8%, rgba(0, 0, 0, 1) 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 1) 8%, rgba(0, 0, 0, 1) 92%, transparent);
+}
+
+.nba-court-bg > * {
+  position: relative;
+  z-index: 1;
 }
 
 .game-title {
-  font-family: 'Bebas Neue', sans-serif;
-  color: white;
-  text-shadow: 0 0 20px rgba(0, 160, 220, 0.5);
-  letter-spacing: 2px;
+  font-family: 'Outfit', sans-serif;
+  color: var(--text-primary);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: none;
 }
 
 .scoreboard {
-  background: rgba(0, 0, 0, 0.85);
-  border: 2px solid var(--electric-blue);
-  box-shadow: 0 0 20px rgba(0, 160, 220, 0.3);
-  backdrop-filter: blur(10px);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  backdrop-filter: none;
 }
 
 .player-card {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
 }
 
 .player-card.correct {
-  border: 2px solid #22c55e;
-  background: rgba(34, 197, 94, 0.1);
-  box-shadow: 0 0 15px rgba(34, 197, 94, 0.2);
+  border: 1px solid var(--color-correct);
+  background: rgba(29, 66, 138, 0.05);
+  box-shadow: none;
 }
 
 .player-card.incorrect {
-  border: 2px solid #ef4444;
-  background: rgba(239, 68, 68, 0.1);
-  box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+  border: 1px solid var(--color-incorrect);
+  background: rgba(200, 16, 46, 0.05);
+  box-shadow: none;
 }
 
-
 .player-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 160, 220, 0.2);
+  transform: none;
+  box-shadow: none;
+  border-color: var(--text-secondary);
+}
+
+/* Wordle Tile Layout System */
+.stat-tile {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  transition: transform 0.6s ease;
+  transform-style: preserve-3d;
+}
+
+.stat-tile.correct {
+  background-color: var(--color-correct) !important;
+  border-color: var(--color-correct) !important;
+  color: white !important;
+}
+
+.stat-tile.close {
+  background-color: var(--color-close) !important;
+  border-color: var(--color-close) !important;
+  color: #0a0d14 !important; /* Dark text for contrast on white background */
+}
+
+.stat-tile.incorrect {
+  background-color: var(--color-incorrect) !important;
+  border-color: var(--color-incorrect) !important;
+  color: white !important;
 }
 
 .stat-value {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.5rem;
-  color: var(--gold);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: inherit;
 }
 
 @media (min-width: 640px) {
   .stat-value {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 }
 
 .difficulty-btn {
-  font-family: 'Bebas Neue', sans-serif;
-  transition: all 0.3s ease;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+  text-shadow: none;
 }
 
 .difficulty-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(0, 160, 220, 0.4);
+  transform: translateY(-1px);
+  border-color: var(--text-secondary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .submit-btn {
-  background: var(--nba-red);
-  font-family: 'Bebas Neue', sans-serif;
-  letter-spacing: 1px;
-  transition: all 0.3s ease;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  transition: all 0.2s ease;
 }
 
 .submit-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(200, 16, 46, 0.4);
+  transform: translateY(-1px);
+  background: #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .player-input {
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid var(--electric-blue);
-  color: white;
-  transition: all 0.3s ease;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
 }
 
 .player-input:focus {
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 15px rgba(0, 160, 220, 0.3);
+  background: var(--bg-primary);
+  border-color: var(--text-secondary);
+  box-shadow: none;
 }
 
 /* Animations */
-@keyframes scoreboardFlip {
-  0% { transform: rotateX(90deg); }
-  100% { transform: rotateX(0deg); }
-}
-
-@keyframes correctAnswer {
-  0% { box-shadow: 0 0 0 rgba(0, 255, 0, 0); }
-  50% { box-shadow: 0 0 30px rgba(0, 255, 0, 0.5); }
-  100% { box-shadow: 0 0 0 rgba(0, 255, 0, 0); }
-}
-
 @keyframes wrongAnswer {
   0% { transform: translateX(0); }
   25% { transform: translateX(-5px); }
@@ -138,14 +201,25 @@ body::before {
   100% { transform: translateX(0); }
 }
 
-.correct-answer {
-  animation: correctAnswer 1s ease;
-}
-
 .wrong-answer {
   animation: wrongAnswer 0.5s ease;
 }
 
-.scoreboard-flip {
-  animation: scoreboardFlip 0.5s ease-out;
+/* Custom Scrollbar for HTML */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
 }

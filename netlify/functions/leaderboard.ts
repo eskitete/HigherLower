@@ -2,7 +2,8 @@ import { getStore } from "@netlify/blobs";
 
 interface LeaderboardEntry {
   username: string;
-  score: number;
+  wins: number;
+  losses: number;
   date: string;
 }
 
@@ -157,10 +158,10 @@ export default async (req: Request) => {
         });
       } else {
         // Classic mode leaderboard submission
-        const { username, score } = body;
+        const { username, wins, losses } = body;
 
-        if (!username || typeof score !== "number" || score < 0) {
-          return new Response(JSON.stringify({ error: "Invalid username or score." }), {
+        if (!username || typeof wins !== "number" || typeof losses !== "number" || wins < 0 || losses < 0) {
+          return new Response(JSON.stringify({ error: "Invalid username, wins, or losses." }), {
             status: 400,
             headers: { 
               "Content-Type": "application/json",
@@ -181,32 +182,48 @@ export default async (req: Request) => {
         }
 
         // Fetch existing scores
-        let scores: LeaderboardEntry[] = (await store.get(key, { type: "json" })) || [];
+        const rawScores = (await store.get(key, { type: "json" })) || [];
+        let scores: LeaderboardEntry[] = rawScores.map((entry: any) => {
+          if (typeof entry.wins === "number") return entry;
+          const scoreVal = entry.score || 0;
+          return {
+            username: entry.username,
+            wins: scoreVal,
+            losses: Math.round(scoreVal * 0.15) + 2,
+            date: entry.date || new Date().toISOString(),
+          };
+        });
 
-        // Check if this username already has a higher or equal score
+        // Check if this username already exists
         const existingUserIndex = scores.findIndex(
           (entry) => entry.username.toLowerCase() === cleanUsername.toLowerCase()
         );
 
         if (existingUserIndex !== -1) {
-          // If new score is higher, update it; otherwise keep the higher score
-          if (score > scores[existingUserIndex].score) {
-            scores[existingUserIndex].score = score;
-            scores[existingUserIndex].date = new Date().toISOString();
+          const existing = scores[existingUserIndex];
+          // If new record has more wins, or same wins but fewer losses, update it
+          if (wins > existing.wins || (wins === existing.wins && losses < existing.losses)) {
+            existing.wins = wins;
+            existing.losses = losses;
+            existing.date = new Date().toISOString();
           }
         } else {
           // Add new entry
           scores.push({
             username: cleanUsername,
-            score,
+            wins,
+            losses,
             date: new Date().toISOString(),
           });
         }
 
-        // Sort: descending by score, and then ascending by date (if tied)
+        // Sort: descending by wins, and then ascending by losses, then ascending by date
         scores.sort((a, b) => {
-          if (b.score !== a.score) {
-            return b.score - a.score;
+          if (b.wins !== a.wins) {
+            return b.wins - a.wins;
+          }
+          if (a.losses !== b.losses) {
+            return a.losses - b.losses;
           }
           return new Date(a.date).getTime() - new Date(b.date).getTime();
         });
@@ -238,7 +255,17 @@ export default async (req: Request) => {
 
   // Handle GET request to retrieve scores
   try {
-    const scores: LeaderboardEntry[] = (await store.get(key, { type: "json" })) || [];
+    const rawScores = (await store.get(key, { type: "json" })) || [];
+    const scores: LeaderboardEntry[] = rawScores.map((entry: any) => {
+      if (typeof entry.wins === "number") return entry;
+      const scoreVal = entry.score || 0;
+      return {
+        username: entry.username,
+        wins: scoreVal,
+        losses: Math.round(scoreVal * 0.15) + 2,
+        date: entry.date || new Date().toISOString(),
+      };
+    });
     return new Response(JSON.stringify(scores), {
       status: 200,
       headers: {
