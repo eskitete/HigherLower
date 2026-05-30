@@ -20,25 +20,25 @@ const sports: SportCard[] = [
   {
     id: 'nfl',
     name: 'NFL',
-    subtitle: 'Streak mode player guessing',
+    subtitle: '',
     icon: <Trophy className="w-6 h-6 text-green-500" />
   },
   {
     id: 'soccer',
     name: 'Soccer',
-    subtitle: 'Global football guesser',
+    subtitle: '',
     icon: <Shield className="w-6 h-6 text-blue-500" />
   },
   {
     id: 'ufc',
     name: 'UFC',
-    subtitle: 'Championship record guesser',
+    subtitle: '',
     icon: <Flame className="w-6 h-6 text-red-500" />
   },
   {
     id: 'f1',
     name: 'F1',
-    subtitle: 'Grand Prix driver stats',
+    subtitle: '',
     icon: <Activity className="w-6 h-6 text-purple-500" />
   }
 ];
@@ -73,7 +73,7 @@ function Home() {
       {/* Main Section */}
       <div className="max-w-2xl w-full mx-auto">
         {/* Header */}
-        <motion.header 
+        <motion.header
           className="text-center border-b border-[var(--border-color)] pb-6 mb-10"
           initial={{ y: -10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -88,7 +88,7 @@ function Home() {
         </motion.header>
 
         {/* Sport Selection List */}
-        <motion.div 
+        <motion.div
           className="space-y-4"
           variants={containerVariants}
           initial="hidden"
@@ -109,7 +109,7 @@ function Home() {
                   <p className="text-xs text-[var(--text-secondary)] font-medium">{sport.subtitle}</p>
                 </div>
               </div>
-              
+
               <div className="flex gap-2.5 sm:self-center">
                 {sport.id === 'nba' ? (
                   <>
@@ -145,7 +145,7 @@ function Home() {
       </div>
 
       {/* Footer */}
-      <motion.footer 
+      <motion.footer
         className="text-center text-[var(--text-secondary)] text-xs font-medium py-8 border-t border-[var(--border-color)]/40 mt-12 max-w-2xl w-full mx-auto"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

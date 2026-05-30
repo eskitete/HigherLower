@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="nba.css">
+    <title>NBA Higher/Lower</title>
+</head>
+<body>
+    <div class="container">
+        <div id="game-container">
+            <h1>NBA Higher/Lower</h1>
+            <!-- Score Button -->
+            <button id="score-button" style="position: absolute; top: 5px; right: 5px; z-index: 1000; background: none; border: none; cursor: pointer;">
+                <img src="data/stats.png" alt="Score" style="width: 24px; height: 24px;">
+            </button>
+
+            <!-- Info Button -->
+            <button id="info-button" style="position: absolute; top: 6px; right: 35px; z-index: 1000; background: none; border: none; cursor: pointer;">
+                <img src="data/info.png" alt="Info" style="width: 24px; height: 24px;">
+            </button>
+
+            <!-- All-Time Score Modal -->
+            <div id="score-modal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border: 1px solid #ccc; border-radius: 8px; padding: 20px; z-index: 1001; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                <button id="close-modal" style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 16px;  color: black; cursor: pointer;">X</button>
+                <h3>All-Time Score</h3>
+                <p id="modal-score"></p>
+            </div>
+            
+            <!-- Info Modal -->
+            <div id="info-modal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border: 1px solid #ccc; border-radius: 8px; padding: 20px; z-index: 1001; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); overflow-y: auto; max-height: 80vh; width: 90%; max-width: 600px;">
+                <button id="close-info-modal" style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 16px; color: black; cursor: pointer;">X</button>
+                <h1>NBA Higher/Lower Trivia Game</h1>
+            
+                <p>Welcome to the <strong>NBA Higher/Lower Trivia Game</strong>! This interactive game tests your knowledge of NBA players by challenging you to guess the mystery player. Have fun!</p>
+            
+                <h2>How to Play</h2>
+            
+                <ol>
+                    <li>Open the <a href="https://rayanehamoudi.github.io/HigherLower/nba.html">Game</a></li>
+                    <li>Select a difficulty level: Easy, Medium, or Hard.</li>
+                    <li>Use the input field to type and select a player's name.</li>
+                    <li>Click the "Submit Guess" button or press <code>Enter</code> to submit your guess.</li>
+                    <li>The game will:
+                        <ul>
+                            <li>Compare the guessed player's stats with the mystery player's stats.</li>
+                            <li>See if your guess is correct.</li>
+                        </ul>
+                    </li>
+                    <li>Continue guessing until you identify the mystery player or run out of attempts (6 maximum).</li>
+                    <li>If you run out of attempts, the correct player will be revealed.</li>
+                </ol>
+            
+                <h2>Credits</h2>
+            
+                <p>Images: <a href="https://www.basketball-reference.com">Basketball Reference</a>.</p>
+                <p>Created by Rayane Hamoudi & Rafay Syed</p>
+                
+            
+                <h2>License</h2>
+            
+                <p>This project is open-source and available under the MIT License.</p>
+            </div>
+            
+
+            <!-- Modal Overlay -->
+            <div id="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000;"></div>
+
+
+            <!-- Input for player's guess with drop-down suggestions -->
+            <label for="player-guess">Make a Guess:</label>
+            <input list="player-names" id="player-guess" placeholder="Enter player name">
+            
+            <!-- Player picture display -->
+            <div id="player-picture" style="margin: 20px 0; text-align: center;"></div> <!-- For displaying player pictures -->
+            
+            <!-- Datalist for player name suggestions -->
+            <datalist id="player-names"></datalist>
+            
+            <!-- Autocomplete suggestions -->
+            <ul id="autocomplete-suggestions" style="list-style: none; padding: 0; margin: 10px 0;"></ul> <!-- Autocomplete functionality -->
+            
+            <!-- Attempts and result display -->
+            <p id="attempts">Attempts: 0/6</p>
+            <p id="result" style="font-weight: bold;"></p>
+            
+            <!-- Submit button -->
+            <button id="submit-button" disabled>Submit Guess</button>
+            <div id="correct-player" style="margin-top: 20px; font-weight: bold; color: red;"></div> <!-- Display correct player when game ends -->
+
+            <!-- mode selection -->
+            <button id="easy-button" >EASY</button>
+            <button id="medium-button" >MEDIUM</button>
+            <button id="hard-button" >HARD</button>
+
+
+
+            <!-- Player info display -->
+            <div id="player-info" style="margin-top: 20px;"></div> <!-- Display guessed player's accolades -->
+
+            <!-- Correct player reveal -->
+        </div>
+    </div>
+    <script src="nba.js"></script>
+</body>
+</html>
+

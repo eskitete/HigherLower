@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, Trophy, Info, Check, ArrowDown, ArrowUp } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -24,6 +24,13 @@ interface Score {
   easy: { wins: number; losses: number; currentStreak: number; maxStreak: number };
   medium: { wins: number; losses: number; currentStreak: number; maxStreak: number };
   hard: { wins: number; losses: number; currentStreak: number; maxStreak: number };
+}
+
+interface LeaderboardEntry {
+  username: string;
+  wins: number;
+  losses: number;
+  date: string;
 }
 
 const getMockLeaderboard = (gameMode: 'nba' | 'nfl', diff: 'easy' | 'medium' | 'hard') => {
@@ -182,6 +189,12 @@ const NFLGame: React.FC = () => {
   const [leaderboardRankings, setLeaderboardRankings] = useState<{ username: string; wins: number; losses: number; date: string }[]>([]);
   const [leaderboardLoading, setLeaderboardLoading] = useState(false);
   const [leaderboardUsername, setLeaderboardUsername] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [activeSuggestionIndex, setActiveSuggestionIndex] = useState<number>(0);
+
+  useEffect(() => {
+    setActiveSuggestionIndex(0);
+  }, [searchResults]);
 
   // Load saved scores and migrate if needed
   useEffect(() => {
@@ -271,7 +284,7 @@ const NFLGame: React.FC = () => {
       localStorage.setItem(`nflTrivia_submitted_name_${leaderboardDiff}`, username);
     } catch (err) {
       console.warn("Using simulated score submission fallback:", err);
-      let list = [];
+      let list: LeaderboardEntry[] = [];
       const localSimulated = localStorage.getItem(`nflTrivia_simulated_leaderboard_${leaderboardDiff}`);
       if (localSimulated) {
         list = JSON.parse(localSimulated);
@@ -279,7 +292,7 @@ const NFLGame: React.FC = () => {
         list = getMockLeaderboard("nfl", leaderboardDiff);
       }
 
-      const existingIndex = list.findIndex((e: any) => e.username.toLowerCase() === username.toLowerCase());
+      const existingIndex = list.findIndex((e) => e.username.toLowerCase() === username.toLowerCase());
       if (existingIndex !== -1) {
         const existing = list[existingIndex];
         if (winsToSubmit > existing.wins || (winsToSubmit === existing.wins && lossesToSubmit < existing.losses)) {
@@ -291,7 +304,7 @@ const NFLGame: React.FC = () => {
         list.push({ username, wins: winsToSubmit, losses: lossesToSubmit, date: new Date().toISOString() });
       }
 
-      list.sort((a: any, b: any) => {
+      list.sort((a, b) => {
         if (b.wins !== a.wins) return b.wins - a.wins;
         if (a.losses !== b.losses) return a.losses - b.losses;
         return new Date(a.date).getTime() - new Date(b.date).getTime();
@@ -328,18 +341,26 @@ const NFLGame: React.FC = () => {
     }
   };
 
-  const handleGuess = () => {
-    if (!searchQuery || !targetPlayer) return;
+  const handleGuess = (playerToGuess?: Player) => {
+    const query = playerToGuess ? playerToGuess.Name : searchQuery;
+    if (!query || !targetPlayer) return;
 
-    let guessedPlayer = players.find(p => p.Name.toLowerCase() === searchQuery.toLowerCase());
+    let guessedPlayer = playerToGuess || players.find(p => p.Name.toLowerCase() === query.toLowerCase());
 
     if (!guessedPlayer) {
       const mainPlayer = allPlayers.find(p =>
-        p.Name.toLowerCase() === searchQuery.toLowerCase()
+        p.Name.toLowerCase() === query.toLowerCase()
       );
       if (mainPlayer) {
         guessedPlayer = mainPlayer;
       }
+    }
+
+    // Auto-select/fill top name if no exact match but suggestions exist
+    if (!guessedPlayer && searchResults.length > 0) {
+      const topMatch = searchResults[0];
+      guessedPlayer = players.find(p => p.Name.toLowerCase() === topMatch.Name.toLowerCase()) ||
+                      allPlayers.find(p => p.Name.toLowerCase() === topMatch.Name.toLowerCase());
     }
 
     if (!guessedPlayer) {
@@ -352,7 +373,14 @@ const NFLGame: React.FC = () => {
     setAttempts(newAttempts);
     setGuessedPlayers(prev => [guessedPlayer!, ...prev]);
     setSearchQuery('');
+    setSearchResults([]);
     setShowSuggestions(false);
+    setActiveSuggestionIndex(0);
+
+    // Focus the text box for the next guess
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 0);
 
     if (guessedPlayer.Name === targetPlayer.Name || newAttempts >= 6) {
       const isWin = guessedPlayer.Name === targetPlayer.Name;
@@ -378,8 +406,22 @@ const NFLGame: React.FC = () => {
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (showSuggestions && searchResults.length > 0) {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setActiveSuggestionIndex(prev => (prev < searchResults.length - 1 ? prev + 1 : prev));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setActiveSuggestionIndex(prev => (prev > 0 ? prev - 1 : prev));
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        const selectedPlayer = searchResults[activeSuggestionIndex];
+        if (selectedPlayer) {
+          handleGuess(selectedPlayer);
+        }
+      }
+    } else if (e.key === 'Enter') {
       handleGuess();
     }
   };
@@ -432,16 +474,18 @@ const NFLGame: React.FC = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.4 }}
         >
-          <motion.button
-            onClick={() => navigate('/')}
-            className="p-2 rounded-lg hover:bg-[var(--bg-tertiary)] border border-[var(--border-color)] text-white transition-colors"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <ArrowLeftIcon className="w-5 h-5" />
-          </motion.button>
+          <div className="flex-1 flex justify-start">
+            <motion.button
+              onClick={() => navigate('/')}
+              className="p-2 rounded-lg hover:bg-[var(--bg-tertiary)] border border-[var(--border-color)] text-white transition-colors"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <ArrowLeftIcon className="w-5 h-5" />
+            </motion.button>
+          </div>
 
-          <div className="text-center">
+          <div className="text-center px-4">
             <h1 className="game-title text-2xl sm:text-3xl font-extrabold tracking-wider">
               NFL CLASSIC
             </h1>
@@ -450,7 +494,7 @@ const NFLGame: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex-1 flex justify-end gap-2">
             <motion.button
               onClick={() => setShowModal(true)}
               className="p-2 rounded-lg hover:bg-[var(--bg-tertiary)] border border-[var(--border-color)] transition-colors"
@@ -533,12 +577,13 @@ const NFLGame: React.FC = () => {
             {/* Input Guesser Block */}
             {gameState === 'playing' && (
               <motion.div
-                className="relative z-30"
+                className="relative z-40"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
               >
                 <div className="relative">
                   <input
+                    ref={inputRef}
                     type="text"
                     value={searchQuery}
                     onChange={(e) => {
@@ -547,14 +592,14 @@ const NFLGame: React.FC = () => {
                       setShowSuggestions(true);
                       setErrorMessage(null);
                     }}
-                    onKeyPress={handleKeyPress}
+                    onKeyDown={handleKeyDown}
                     className="player-input w-full py-3 px-4 pl-12 pr-24 rounded-xl text-base bg-[var(--bg-secondary)] text-white border border-[var(--border-color)] focus:border-[var(--text-secondary)] focus:outline-none transition-all placeholder:text-[var(--text-secondary)]"
                     placeholder="Search for a player..."
                     autoComplete="off"
                   />
                   <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[var(--text-secondary)] w-5 h-5" />
                   <button
-                    onClick={handleGuess}
+                    onClick={() => handleGuess()}
                     className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-1.5 rounded-lg bg-[var(--nba-blue)] hover:bg-[#15346e] text-white text-sm font-bold uppercase tracking-wider transition-colors border border-[var(--nba-blue)]"
                   >
                     GUESS
@@ -568,15 +613,16 @@ const NFLGame: React.FC = () => {
                 )}
 
                 {showSuggestions && searchResults.length > 0 && (
-                  <div className="absolute z-50 w-full mt-1 bg-[var(--bg-secondary)] rounded-xl shadow-2xl border border-[var(--border-color)] max-h-60 overflow-y-auto">
-                    {searchResults.map((player) => (
+                  <div className="absolute z-50 w-full mt-1 bg-[var(--bg-secondary)]/85 backdrop-blur-md rounded-xl shadow-2xl border border-[var(--border-color)] max-h-60 overflow-y-auto">
+                    {searchResults.map((player, index) => (
                       <button
                         key={player.Name}
-                        className="w-full text-left px-4 py-3 hover:bg-[var(--bg-tertiary)] transition-colors text-white font-medium text-sm border-b border-[var(--border-color)]/40 last:border-b-0"
-                        onClick={() => {
-                          setSearchQuery(player.Name);
-                          setShowSuggestions(false);
-                        }}
+                        className={`w-full text-left px-4 py-3 transition-colors text-white font-medium text-sm ${
+                          index === activeSuggestionIndex
+                            ? 'bg-[var(--bg-tertiary)] font-bold'
+                            : 'hover:bg-[var(--bg-tertiary)]/50'
+                        }`}
+                        onClick={() => handleGuess(player)}
                       >
                         {player.Name}
                       </button>
@@ -653,7 +699,7 @@ const NFLGame: React.FC = () => {
                 initial="hidden"
                 animate="visible"
               >
-                {guessedPlayers.map((player, idx) => {
+                {guessedPlayers.map((player) => {
                   const isWin = player.Name === targetPlayer?.Name;
                   return (
                     <motion.div

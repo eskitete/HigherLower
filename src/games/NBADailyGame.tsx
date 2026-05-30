@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Trophy, Info, X, ArrowUp, ArrowDown, Check, Search, Calendar, Timer } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Trophy, Info, X, ArrowUp, ArrowDown, Check, Search, Timer, Moon, Sun } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import playersData from '../../json/nba.json';
@@ -41,12 +41,12 @@ const getPlayerImageUrl = (name: string): string => {
     const cleanName = name.trim();
     const parts = cleanName.split(/\s+/);
     if (parts.length < 2) return '/placeholder.svg';
-    
+
     const last = parts[1].replace(/[^a-zA-Z]/g, '').substring(0, 5).toLowerCase();
     const first = parts[0].replace(/[^a-zA-Z]/g, '').substring(0, 2).toLowerCase();
-    
+
     return `https://www.basketball-reference.com/req/202106291/images/headshots/${last}${first}01.jpg`;
-  } catch (error) {
+  } catch {
     return '/placeholder.svg';
   }
 };
@@ -134,6 +134,19 @@ function NBADailyGame() {
   const [leaderboardRankings, setLeaderboardRankings] = useState<DailyLeaderboardEntry[]>([]);
   const [leaderboardLoading, setLeaderboardLoading] = useState(false);
   const [leaderboardUsername, setLeaderboardUsername] = useState('');
+  const [isDark, setIsDark] = useState<boolean>(() => localStorage.getItem('nba_theme') === 'dark');
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [activeSuggestionIndex, setActiveSuggestionIndex] = useState<number>(0);
+
+  useEffect(() => {
+    setActiveSuggestionIndex(0);
+  }, [searchResults]);
+
+  const toggleTheme = () => setIsDark(prev => {
+    const next = !prev;
+    localStorage.setItem('nba_theme', next ? 'dark' : 'light');
+    return next;
+  });
 
   // 1. Calculate running time until local midnight
   useEffect(() => {
@@ -255,7 +268,7 @@ function NBADailyGame() {
       if (!res.ok) throw new Error("HTTP error " + res.status);
       const data = await res.json();
       setLeaderboardRankings(data.scores);
-      
+
       const newSubmissions = { ...submittedDates, [dateString]: true };
       setSubmittedDates(newSubmissions);
       localStorage.setItem('nbaDaily_submittedDates', JSON.stringify(newSubmissions));
@@ -324,10 +337,18 @@ function NBADailyGame() {
     }
   };
 
-  const handleGuess = () => {
-    if (!searchQuery || !targetPlayer || gameState === 'ended') return;
+  const handleGuess = (playerToGuess?: Player) => {
+    if (gameState === 'ended') return;
+    const query = playerToGuess ? playerToGuess.Name : searchQuery;
+    if (!query || !targetPlayer) return;
 
-    let guessedPlayer = allPlayers.find(p => p.Name.toLowerCase() === searchQuery.toLowerCase());
+    let guessedPlayer = playerToGuess || allPlayers.find(p => p.Name.toLowerCase() === query.toLowerCase());
+
+    // Auto-select/fill top name if no exact match but suggestions exist
+    if (!guessedPlayer && searchResults.length > 0) {
+      const topMatch = searchResults[0];
+      guessedPlayer = allPlayers.find(p => p.Name.toLowerCase() === topMatch.Name.toLowerCase());
+    }
 
     if (!guessedPlayer) {
       setErrorMessage('Please select a valid player from the list');
@@ -337,14 +358,21 @@ function NBADailyGame() {
     setErrorMessage(null);
     const newAttempts = attempts + 1;
     const newGuesses = [guessedPlayer, ...guessedPlayers];
-    
+
     setAttempts(newAttempts);
     setGuessedPlayers(newGuesses);
     setSearchQuery('');
+    setSearchResults([]);
     setShowSuggestions(false);
+    setActiveSuggestionIndex(0);
 
     localStorage.setItem('nbaDaily_attempts', String(newAttempts));
     localStorage.setItem('nbaDaily_guessedPlayers', JSON.stringify(newGuesses));
+
+    // Focus the text box for the next guess
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 0);
 
     if (guessedPlayer.Name === targetPlayer.Name || newAttempts >= 6) {
       setGameState('ended');
@@ -365,8 +393,22 @@ function NBADailyGame() {
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (showSuggestions && searchResults.length > 0) {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setActiveSuggestionIndex(prev => (prev < searchResults.length - 1 ? prev + 1 : prev));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setActiveSuggestionIndex(prev => (prev > 0 ? prev - 1 : prev));
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        const selectedPlayer = searchResults[activeSuggestionIndex];
+        if (selectedPlayer) {
+          handleGuess(selectedPlayer);
+        }
+      }
+    } else if (e.key === 'Enter') {
       handleGuess();
     }
   };
@@ -383,8 +425,8 @@ function NBADailyGame() {
 
   const renderArrow = (stat: keyof Player, guessed: number, target: number) => {
     if (guessed === target) return <Check className="w-4 h-4 text-current" />;
-    return guessed > target ? 
-      <ArrowDown className="w-4 h-4 text-current" /> : 
+    return guessed > target ?
+      <ArrowDown className="w-4 h-4 text-current" /> :
       <ArrowUp className="w-4 h-4 text-current" />;
   };
 
@@ -394,11 +436,11 @@ function NBADailyGame() {
       setSearchResults([]);
       return;
     }
-    
-    const results = allPlayers.filter(player => 
+
+    const results = allPlayers.filter(player =>
       player.Name.toLowerCase().includes(query.toLowerCase())
     );
-    
+
     setSearchResults(results.slice(0, 5));
   };
 
@@ -410,25 +452,27 @@ function NBADailyGame() {
   };
 
   return (
-    <div className="min-h-screen py-8 px-4 bg-[var(--bg-primary)] text-white flex flex-col items-center">
+    <div className={`nba-page${isDark ? ' dark' : ''} min-h-screen py-8 px-4 flex flex-col items-center`}>
       <div className="max-w-2xl w-full nba-court-bg">
         {/* Header */}
-        <motion.header 
+        <motion.header
           className="flex justify-between items-center border-b border-[var(--border-color)] pb-4 mb-8"
           initial={{ y: -10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.4 }}
         >
-          <motion.button
-            onClick={() => navigate('/')}
-            className="p-2 rounded-lg hover:bg-[var(--bg-tertiary)] border border-[var(--border-color)] text-white transition-colors"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <ArrowLeftIcon className="w-5 h-5" />
-          </motion.button>
-          
-          <div className="text-center">
+          <div className="flex-1 flex justify-start">
+            <motion.button
+              onClick={() => navigate('/')}
+              className="p-2 rounded-lg hover:bg-[var(--bg-tertiary)] border border-[var(--border-color)] text-white transition-colors"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <ArrowLeftIcon className="w-5 h-5" />
+            </motion.button>
+          </div>
+
+          <div className="text-center px-4">
             <h1 className="game-title text-2xl sm:text-3xl font-extrabold tracking-wider">
               NBA DAILY
             </h1>
@@ -436,15 +480,26 @@ function NBADailyGame() {
               Today: {dateString}
             </p>
           </div>
-          
-          <div className="flex gap-2">
+
+          <div className="flex-1 flex justify-end gap-2">
+            <motion.button
+              onClick={toggleTheme}
+              className="theme-toggle-btn p-2 rounded-lg hover:bg-[var(--bg-tertiary)] border border-[var(--border-color)] transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.9, rotate: 20 }}
+              title={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+            >
+              {isDark
+                ? <Sun className="w-5 h-5 text-[var(--gold)]" />
+                : <Moon className="w-5 h-5 text-[var(--text-secondary)]" />}
+            </motion.button>
             <motion.button
               onClick={() => setShowModal(true)}
               className="p-2 rounded-lg hover:bg-[var(--bg-tertiary)] border border-[var(--border-color)] transition-colors"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Info className="w-5 h-5 text-[var(--text-secondary)] hover:text-white" />
+              <Info className="w-5 h-5 text-[var(--text-secondary)]" />
             </motion.button>
             <motion.button
               onClick={() => {
@@ -462,27 +517,17 @@ function NBADailyGame() {
         </motion.header>
 
         {/* Desktop switcher and Attempts info */}
-        <div className="flex justify-between items-center mb-6 text-sm">
-          <button
-            onClick={() => navigate('/nba')}
-            className="text-xs text-[var(--text-secondary)] hover:text-white font-bold tracking-wider uppercase border border-[var(--border-color)] px-3 py-1.5 rounded-lg bg-[var(--bg-secondary)]"
-          >
-            Classic Mode
-          </button>
-          <span className="text-[var(--text-secondary)] font-bold uppercase tracking-wider">
-            Guesses: {attempts} / 6
-          </span>
-        </div>
 
         {/* Guesser Input Block */}
         {gameState === 'playing' && (
-          <motion.div 
-            className="mb-8 relative z-30"
+          <motion.div
+            className="mb-8 relative z-40"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
           >
             <div className="relative">
               <input
+                ref={inputRef}
                 type="text"
                 value={searchQuery}
                 onChange={(e) => {
@@ -491,20 +536,20 @@ function NBADailyGame() {
                   setShowSuggestions(true);
                   setErrorMessage(null);
                 }}
-                onKeyPress={handleKeyPress}
+                onKeyDown={handleKeyDown}
                 className="player-input w-full py-3 px-4 pl-12 pr-24 rounded-xl text-base bg-[var(--bg-secondary)] text-white border border-[var(--border-color)] focus:border-[var(--text-secondary)] focus:outline-none transition-all placeholder:text-[var(--text-secondary)]"
                 placeholder="Search for today's player..."
                 autoComplete="off"
               />
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[var(--text-secondary)] w-5 h-5" />
-              <button 
-                onClick={handleGuess}
+              <button
+                onClick={() => handleGuess()}
                 className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-1.5 rounded-lg bg-[var(--nba-blue)] hover:bg-[#15346e] text-white text-sm font-bold uppercase tracking-wider transition-colors border border-[var(--nba-blue)]"
               >
                 GUESS
               </button>
             </div>
-            
+
             {errorMessage && (
               <div className="text-red-500 mt-2 text-xs font-semibold">
                 {errorMessage}
@@ -512,15 +557,15 @@ function NBADailyGame() {
             )}
 
             {showSuggestions && searchResults.length > 0 && (
-              <div className="absolute z-50 w-full max-w-2xl mt-1 bg-[var(--bg-secondary)] rounded-xl shadow-2xl border border-[var(--border-color)] max-h-60 overflow-y-auto">
-                {searchResults.map((player) => (
+              <div className="absolute z-50 w-full max-w-2xl mt-1 bg-[var(--bg-secondary)]/85 backdrop-blur-md rounded-xl shadow-2xl border border-[var(--border-color)] max-h-60 overflow-y-auto">
+                {searchResults.map((player, index) => (
                   <button
                     key={player.Name}
-                    className="w-full text-left px-4 py-3 hover:bg-[var(--bg-tertiary)] transition-colors text-white font-medium text-sm border-b border-[var(--border-color)]/40 last:border-b-0"
-                    onClick={() => {
-                      setSearchQuery(player.Name);
-                      setShowSuggestions(false);
-                    }}
+                    className={`w-full text-left px-4 py-3 transition-colors text-white font-medium text-sm ${index === activeSuggestionIndex
+                        ? 'bg-[var(--bg-tertiary)] font-bold'
+                        : 'hover:bg-[var(--bg-tertiary)]/50'
+                      }`}
+                    onClick={() => handleGuess(player)}
                   >
                     {player.Name}
                   </button>
@@ -532,7 +577,7 @@ function NBADailyGame() {
 
         {/* End Game Stats Info Reveal */}
         {gameState === 'ended' && targetPlayer && (
-          <motion.div 
+          <motion.div
             className="mb-8 p-6 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)] text-center"
             initial={{ scale: 0.98, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -541,7 +586,7 @@ function NBADailyGame() {
               {guessedPlayers[0]?.Name === targetPlayer.Name ? 'Winner!' : 'Game Over'}
             </h3>
             <p className="text-sm text-[var(--text-secondary)] mb-5">
-              {guessedPlayers[0]?.Name === targetPlayer.Name 
+              {guessedPlayers[0]?.Name === targetPlayer.Name
                 ? `You correctly identified the mystery player in ${attempts} tries.`
                 : `The correct player was ${targetPlayer.Name}`}
             </p>
@@ -552,7 +597,7 @@ function NBADailyGame() {
                 <span className="text-xs text-[var(--text-secondary)] font-medium mr-1">Next player in:</span>
                 <span className="font-mono text-sm font-bold text-[var(--gold)]">{formatTime(secondsUntilMidnight)}</span>
               </div>
-              
+
               {!submittedDates[dateString] && (
                 <button
                   onClick={() => {
@@ -604,17 +649,17 @@ function NBADailyGame() {
           )}
 
           {/* User Guesses */}
-          <motion.div 
+          <motion.div
             className="space-y-4"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
-            {guessedPlayers.map((player, idx) => {
+            {guessedPlayers.map((player) => {
               const isWin = player.Name === targetPlayer?.Name;
               return (
-                <motion.div 
-                  key={player.Name} 
+                <motion.div
+                  key={player.Name}
                   className={`p-4 rounded-xl border ${isWin ? 'border-[var(--color-correct)]/40 bg-[var(--color-correct)]/5' : 'border-[var(--border-color)] bg-[var(--bg-secondary)]'}`}
                   variants={itemVariants}
                 >
@@ -635,11 +680,10 @@ function NBADailyGame() {
                       const guessedVal = player[key] as number;
                       const targetVal = targetPlayer ? (targetPlayer[key] as number) : 0;
                       const status = targetPlayer ? getStatStatus(key, guessedVal, targetVal) : 'incorrect';
-                      const tileIndex = (guessedPlayers.length - idx - 1) * 8 + statIdx;
 
                       return (
-                        <motion.div 
-                          key={key} 
+                        <motion.div
+                          key={key}
                           custom={statIdx}
                           variants={tileVariants}
                           className={`stat-tile ${status}`}
@@ -663,19 +707,19 @@ function NBADailyGame() {
       {/* Info Modal */}
       <AnimatePresence>
         {showModal && (
-          <motion.div 
+          <motion.div
             className="fixed inset-0 bg-black/70 flex items-center justify-center p-4 backdrop-blur-xs z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <motion.div 
+            <motion.div
               className="bg-[var(--bg-secondary)] rounded-2xl p-6 max-w-md w-full border border-[var(--border-color)] shadow-2xl relative"
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
             >
-              <button 
+              <button
                 onClick={() => setShowModal(false)}
                 className="absolute right-4 top-4 p-1.5 hover:bg-[var(--bg-tertiary)] rounded-lg transition-colors border border-[var(--border-color)]"
               >
@@ -700,19 +744,19 @@ function NBADailyGame() {
       {/* Score Modal */}
       <AnimatePresence>
         {showScoreModal && (
-          <motion.div 
+          <motion.div
             className="fixed inset-0 bg-black/70 flex items-center justify-center p-4 backdrop-blur-xs z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <motion.div 
+            <motion.div
               className="bg-[var(--bg-secondary)] rounded-2xl p-6 max-w-xl w-full border border-[var(--border-color)] shadow-2xl flex flex-col max-h-[80vh] relative"
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
             >
-              <button 
+              <button
                 onClick={() => setShowScoreModal(false)}
                 className="absolute right-4 top-4 p-1.5 hover:bg-[var(--bg-tertiary)] rounded-lg transition-colors border border-[var(--border-color)]"
               >
@@ -727,21 +771,19 @@ function NBADailyGame() {
               <div className="flex border-b border-[var(--border-color)] mb-6">
                 <button
                   onClick={() => setLeaderboardTab('local')}
-                  className={`flex-1 pb-3 text-sm font-semibold border-b-2 transition-all ${
-                    leaderboardTab === 'local' 
-                      ? 'border-[var(--nba-blue)] text-white font-bold' 
+                  className={`flex-1 pb-3 text-sm font-semibold border-b-2 transition-all ${leaderboardTab === 'local'
+                      ? 'border-[var(--nba-blue)] text-white font-bold'
                       : 'border-transparent text-[var(--text-secondary)] hover:text-white'
-                  }`}
+                    }`}
                 >
                   My Stats
                 </button>
                 <button
                   onClick={() => setLeaderboardTab('global')}
-                  className={`flex-1 pb-3 text-sm font-semibold border-b-2 transition-all ${
-                    leaderboardTab === 'global' 
-                      ? 'border-[var(--nba-blue)] text-white font-bold' 
+                  className={`flex-1 pb-3 text-sm font-semibold border-b-2 transition-all ${leaderboardTab === 'global'
+                      ? 'border-[var(--nba-blue)] text-white font-bold'
                       : 'border-transparent text-[var(--text-secondary)] hover:text-white'
-                  }`}
+                    }`}
                 >
                   Global Leaderboard
                 </button>
@@ -761,7 +803,7 @@ function NBADailyGame() {
                     <div className="p-4 bg-[var(--bg-primary)] rounded-xl border border-[var(--border-color)] text-center">
                       <div className="text-[var(--text-secondary)] text-[10px] uppercase font-bold tracking-wider mb-1">Win Rate</div>
                       <div className="text-2xl font-bold text-white">
-                        {stats.daysWon + stats.daysLost > 0 
+                        {stats.daysWon + stats.daysLost > 0
                           ? `${Math.round((stats.daysWon / (stats.daysWon + stats.daysLost)) * 100)}%`
                           : '0%'}
                       </div>
@@ -769,7 +811,7 @@ function NBADailyGame() {
                     <div className="p-4 bg-[var(--bg-primary)] rounded-xl border border-[var(--border-color)] text-center">
                       <div className="text-[var(--text-secondary)] text-[10px] uppercase font-bold tracking-wider mb-1">Avg Guesses (Wins)</div>
                       <div className="text-2xl font-bold text-[var(--gold)]">
-                        {stats.daysWon > 0 
+                        {stats.daysWon > 0
                           ? (stats.totalGuessesForWins / stats.daysWon).toFixed(2)
                           : 'N/A'}
                       </div>
@@ -801,7 +843,7 @@ function NBADailyGame() {
                             </thead>
                             <tbody className="divide-y divide-[var(--border-color)]/50">
                               {leaderboardRankings.map((entry, idx) => {
-                                const isUser = entry.username.toLowerCase() === leaderboardUsername.toLowerCase() || 
+                                const isUser = entry.username.toLowerCase() === leaderboardUsername.toLowerCase() ||
                                   (localStorage.getItem('nbaDaily_submittedName') === entry.username);
                                 let medal = null;
                                 if (idx === 0) medal = "🥇";
@@ -809,8 +851,8 @@ function NBADailyGame() {
                                 else if (idx === 2) medal = "🥉";
 
                                 return (
-                                  <tr 
-                                    key={idx} 
+                                  <tr
+                                    key={idx}
                                     className={`hover:bg-[var(--bg-tertiary)] ${isUser ? 'bg-[var(--nba-blue)]/10 font-bold border-l-2 border-l-[var(--nba-blue)]' : ''}`}
                                   >
                                     <td className="py-2.5 px-4 text-center text-xs">
@@ -843,7 +885,7 @@ function NBADailyGame() {
                           <span>Today: <span className={guessedPlayers[0]?.Name === targetPlayer?.Name ? 'text-[var(--color-correct)] font-bold' : 'text-[var(--color-incorrect)] font-bold'}>{guessedPlayers[0]?.Name === targetPlayer?.Name ? `WON (${attempts} guesses)` : 'LOST'}</span></span>
                           <span>Record: <span className="text-white font-bold">{stats.daysWon}W - {stats.daysLost}L</span></span>
                         </div>
-                        
+
                         {!submittedDates[dateString] ? (
                           <div className="space-y-2">
                             <p className="text-[10px] text-[var(--gold)] uppercase tracking-wider font-bold">Submit to Global Leaderboard</p>
@@ -890,12 +932,12 @@ function NBADailyGame() {
 
 // Inline Arrow Left icon
 const ArrowLeftIcon = ({ className }: { className?: string }) => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    fill="none" 
-    viewBox="0 0 24 24" 
-    strokeWidth={2.5} 
-    stroke="currentColor" 
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={2.5}
+    stroke="currentColor"
     className={className}
   >
     <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />

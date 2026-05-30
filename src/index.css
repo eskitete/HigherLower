@@ -5,15 +5,23 @@
 @tailwind utilities;
 
 :root {
-  --bg-primary: #0a0d14; /* Midnight navy */
-  --bg-secondary: #121620; /* Dark slate blue */
-  --bg-tertiary: #1b202e; /* Muted navy */
-  --border-color: #232a3b; /* Dark navy border */
+  --bg-primary: #0a0d14;
+  /* Midnight navy */
+  --bg-secondary: #121620;
+  /* Dark slate blue */
+  --bg-tertiary: #1b202e;
+  /* Muted navy */
+  --border-color: #232a3b;
+  /* Dark navy border */
   --text-primary: #ffffff;
-  --text-secondary: #8fa3c7; /* Muted slate blue text */
-  --color-correct: #1d428a; /* NBA Blue */
-  --color-close: #ffffff; /* White */
-  --color-incorrect: #c8102e; /* NBA Red */
+  --text-secondary: #8fa3c7;
+  /* Muted slate blue text */
+  --color-correct: #1d428a;
+  /* NBA Blue */
+  --color-close: #ffffff;
+  /* White */
+  --color-incorrect: #c8102e;
+  /* NBA Red */
   --nba-blue: #1d428a;
   --nba-red: #c8102e;
   --gold: #fdb927;
@@ -34,6 +42,46 @@ body::before {
   display: none !important;
 }
 
+/* ── NBA Light Theme ─────────────────────────────────────── */
+/* Scoped to the NBA game pages only so other games stay dark */
+.nba-page {
+  --bg-primary: hwb(0 17% 26% / 0.884);
+  /* court border red — outer wings */
+  --bg-secondary: #5b8db8;
+  /* court blue — cards/inputs */
+  --bg-tertiary: #4a7da8;
+  /* deeper court blue — hover */
+  --border-color: #3a6d98;
+  /* dark court blue border */
+  --text-primary: #ffffff;
+  /* white text on blue/red */
+  --text-secondary: #d4e8f7;
+  /* light blue-white secondary */
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Fixed warm column background — sits behind everything, always full height */
+.nba-page {
+  position: relative;
+}
+
+.nba-page::before {
+  display: none;
+}
+
+/* Make sure all direct children of nba-page sit above the column bg */
+.nba-page>* {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ensure fixed overlays (like modals) keep their fixed positioning */
+.nba-page > .fixed {
+  position: fixed;
+}
+
+/* Court portrait image – centred within the max-w-2xl column */
 .nba-court-bg {
   position: relative;
 }
@@ -46,22 +94,161 @@ body::before {
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 672px; /* Matches max-w-2xl game borders */
+  max-width: 672px;
   background-image: url('/nba_court.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.15;
+  opacity: .75;
   z-index: 0;
   pointer-events: none;
-  -webkit-mask-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 1) 8%, rgba(0, 0, 0, 1) 92%, transparent);
-  mask-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 1) 8%, rgba(0, 0, 0, 1) 92%, transparent);
+  filter: none;
 }
 
-.nba-court-bg > * {
+/* ── NBA Dark Theme override ─────────────────────────────── */
+.nba-page.dark {
+  --bg-primary: #410914b0;
+  --bg-secondary: #121620;
+  --bg-tertiary: #1b202e;
+  --border-color: #232a3b;
+  --text-primary: #ffffff;
+  --text-secondary: #8fa3c7;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Dark column background — wider than light to clear the px-4 outer padding */
+.nba-page.dark::before {
+  display: block;
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 672px;
+  background-color: #0d1117;
+  z-index: 0;
+}
+
+/* Dark court image — keep cool/blue tones */
+.nba-page.dark .nba-court-bg::before {
+  filter: none;
+  opacity: .65;
+  background-image: url('/nba_court_dark.png')
+}
+
+/* Dark card / tile bases */
+.nba-page.dark .stat-tile {
+  background-color: var(--bg-primary) !important;
+  border-color: var(--border-color) !important;
+  backdrop-filter: none;
+}
+
+.nba-page.dark .scoreboard {
+  background: var(--bg-secondary) !important;
+  border-color: var(--border-color) !important;
+  backdrop-filter: none;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35) !important;
+}
+
+.nba-page.dark .player-card {
+  background: var(--bg-secondary) !important;
+  border-color: var(--border-color) !important;
+  backdrop-filter: none;
+}
+
+.nba-page.dark input[type="text"] {
+  background: #14141459 !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+  backdrop-filter: blur(4px);
+}
+
+.nba-page.dark input[type="text"]::placeholder {
+  color: var(--text-secondary) !important;
+}
+
+/* Theme toggle button pulse on switch */
+.theme-toggle-btn {
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.theme-toggle-btn:active {
+  transform: scale(0.9) rotate(20deg);
+}
+
+
+.nba-court-bg>* {
   position: relative;
   z-index: 1;
 }
+
+.nba-court-bg > .z-40 {
+  z-index: 40;
+}
+
+.nba-court-bg > .z-50 {
+  z-index: 50;
+}
+
+/* ── Light-theme tile/card overrides (inside .nba-page) ─── */
+.nba-page .stat-tile {
+  background-color: rgba(255, 255, 255, 0.55);
+  border-color: var(--border-color);
+  backdrop-filter: blur(4px);
+}
+
+.nba-page .scoreboard {
+  background: rgba(255, 255, 255, 0.5);
+  border-color: var(--border-color);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.10);
+}
+
+.nba-page .player-card {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: var(--border-color);
+  backdrop-filter: blur(4px);
+}
+
+/* Keep correct/close/incorrect tile colours the same */
+.nba-page .stat-tile.correct {
+  background-color: var(--color-correct) !important;
+  border-color: var(--color-correct) !important;
+  color: #fff !important;
+}
+
+.nba-page .stat-tile.close {
+  background-color: var(--color-close) !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
+  color: #1a1a2e !important;
+}
+
+.nba-page .stat-tile.incorrect {
+  background-color: var(--color-incorrect) !important;
+  border-color: var(--color-incorrect) !important;
+  color: #fff !important;
+}
+
+/* Header border */
+.nba-page header {
+  border-color: var(--border-color) !important;
+}
+
+/* Input / search bar */
+.nba-page input[type="text"] {
+  background: rgba(255, 255, 255, 0.75) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+  backdrop-filter: blur(4px);
+}
+
+.nba-page input[type="text"]::placeholder {
+  color: var(--text-secondary) !important;
+}
+
 
 .game-title {
   font-family: 'Outfit', sans-serif;
@@ -127,7 +314,8 @@ body::before {
 .stat-tile.close {
   background-color: var(--color-close) !important;
   border-color: var(--color-close) !important;
-  color: #0a0d14 !important; /* Dark text for contrast on white background */
+  color: #0a0d14 !important;
+  /* Dark text for contrast on white background */
 }
 
 .stat-tile.incorrect {
@@ -195,10 +383,21 @@ body::before {
 
 /* Animations */
 @keyframes wrongAnswer {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .wrong-answer {

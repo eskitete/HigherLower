@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Trophy, Info, X, ArrowUp, ArrowDown, Check, Search } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Trophy, Info, X, ArrowUp, ArrowDown, Check, Search, Moon, Sun } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import playersData from '../../json/nba.json';
@@ -21,6 +21,13 @@ interface Player {
   imageUrl?: string;
 }
 
+interface LeaderboardEntry {
+  username: string;
+  wins: number;
+  losses: number;
+  date: string;
+}
+
 // Helper function to get player headshot image URL from basketball-reference
 const getPlayerImageUrl = (name: string): string => {
   try {
@@ -32,7 +39,7 @@ const getPlayerImageUrl = (name: string): string => {
     const first = parts[0].replace(/[^a-zA-Z]/g, '').substring(0, 2).toLowerCase();
 
     return `https://www.basketball-reference.com/req/202106291/images/headshots/${last}${first}01.jpg`;
-  } catch (error) {
+  } catch {
     return '/placeholder.svg';
   }
 };
@@ -199,6 +206,19 @@ function NBAGame() {
   const [leaderboardRankings, setLeaderboardRankings] = useState<{ username: string; wins: number; losses: number; date: string }[]>([]);
   const [leaderboardLoading, setLeaderboardLoading] = useState(false);
   const [leaderboardUsername, setLeaderboardUsername] = useState('');
+  const [isDark, setIsDark] = useState<boolean>(() => localStorage.getItem('nba_theme') === 'dark');
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [activeSuggestionIndex, setActiveSuggestionIndex] = useState<number>(0);
+
+  useEffect(() => {
+    setActiveSuggestionIndex(0);
+  }, [searchResults]);
+
+  const toggleTheme = () => setIsDark(prev => {
+    const next = !prev;
+    localStorage.setItem('nba_theme', next ? 'dark' : 'light');
+    return next;
+  });
 
   // Load saved scores and migrate if needed
   useEffect(() => {
@@ -288,7 +308,7 @@ function NBAGame() {
       localStorage.setItem(`nbaTrivia_submitted_name_${leaderboardDiff}`, username);
     } catch (err) {
       console.warn("Using simulated score submission fallback:", err);
-      let list = [];
+      let list: LeaderboardEntry[] = [];
       const localSimulated = localStorage.getItem(`nbaTrivia_simulated_leaderboard_${leaderboardDiff}`);
       if (localSimulated) {
         list = JSON.parse(localSimulated);
@@ -296,7 +316,7 @@ function NBAGame() {
         list = getMockLeaderboard("nba", leaderboardDiff);
       }
 
-      const existingIndex = list.findIndex((e: any) => e.username.toLowerCase() === username.toLowerCase());
+      const existingIndex = list.findIndex((e) => e.username.toLowerCase() === username.toLowerCase());
       if (existingIndex !== -1) {
         const existing = list[existingIndex];
         if (winsToSubmit > existing.wins || (winsToSubmit === existing.wins && lossesToSubmit < existing.losses)) {
@@ -308,7 +328,7 @@ function NBAGame() {
         list.push({ username, wins: winsToSubmit, losses: lossesToSubmit, date: new Date().toISOString() });
       }
 
-      list.sort((a: any, b: any) => {
+      list.sort((a, b) => {
         if (b.wins !== a.wins) return b.wins - a.wins;
         if (a.losses !== b.losses) return a.losses - b.losses;
         return new Date(a.date).getTime() - new Date(b.date).getTime();
@@ -345,18 +365,26 @@ function NBAGame() {
     }
   };
 
-  const handleGuess = () => {
-    if (!searchQuery || !targetPlayer) return;
+  const handleGuess = (playerToGuess?: Player) => {
+    const query = playerToGuess ? playerToGuess.Name : searchQuery;
+    if (!query || !targetPlayer) return;
 
-    let guessedPlayer = players.find(p => p.Name.toLowerCase() === searchQuery.toLowerCase());
+    let guessedPlayer = playerToGuess || players.find(p => p.Name.toLowerCase() === query.toLowerCase());
 
     if (!guessedPlayer) {
       const mainPlayer = (playersData.players as unknown as Player[]).find(p =>
-        p.Name.toLowerCase() === searchQuery.toLowerCase()
+        p.Name.toLowerCase() === query.toLowerCase()
       );
       if (mainPlayer) {
         guessedPlayer = mainPlayer;
       }
+    }
+
+    // Auto-select/fill top name if no exact match but suggestions exist
+    if (!guessedPlayer && searchResults.length > 0) {
+      const topMatch = searchResults[0];
+      guessedPlayer = players.find(p => p.Name.toLowerCase() === topMatch.Name.toLowerCase()) ||
+                      (playersData.players as unknown as Player[]).find(p => p.Name.toLowerCase() === topMatch.Name.toLowerCase());
     }
 
     if (!guessedPlayer) {
@@ -369,7 +397,14 @@ function NBAGame() {
     setAttempts(newAttempts);
     setGuessedPlayers(prev => [guessedPlayer!, ...prev]);
     setSearchQuery('');
+    setSearchResults([]);
     setShowSuggestions(false);
+    setActiveSuggestionIndex(0);
+    
+    // Focus the text box for the next guess
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 0);
 
     if (guessedPlayer.Name === targetPlayer.Name || newAttempts >= 6) {
       const isWin = guessedPlayer.Name === targetPlayer.Name;
@@ -395,8 +430,22 @@ function NBAGame() {
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (showSuggestions && searchResults.length > 0) {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setActiveSuggestionIndex(prev => (prev < searchResults.length - 1 ? prev + 1 : prev));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setActiveSuggestionIndex(prev => (prev > 0 ? prev - 1 : prev));
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        const selectedPlayer = searchResults[activeSuggestionIndex];
+        if (selectedPlayer) {
+          handleGuess(selectedPlayer);
+        }
+      }
+    } else if (e.key === 'Enter') {
       handleGuess();
     }
   };
@@ -443,7 +492,7 @@ function NBAGame() {
   };
 
   return (
-    <div className="min-h-screen py-8 px-4 bg-[var(--bg-primary)] text-white flex flex-col items-center">
+    <div className={`nba-page${isDark ? ' dark' : ''} min-h-screen py-8 px-4 flex flex-col items-center`}>
       <div className="max-w-2xl w-full nba-court-bg">
         {/* Header */}
         <motion.header
@@ -452,16 +501,18 @@ function NBAGame() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.4 }}
         >
-          <motion.button
-            onClick={() => navigate('/')}
-            className="p-2 rounded-lg hover:bg-[var(--bg-tertiary)] border border-[var(--border-color)] text-white transition-colors"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <ArrowLeftIcon className="w-5 h-5" />
-          </motion.button>
+          <div className="flex-1 flex justify-start">
+            <motion.button
+              onClick={() => navigate('/')}
+              className="p-2 rounded-lg hover:bg-[var(--bg-tertiary)] border border-[var(--border-color)] text-white transition-colors"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <ArrowLeftIcon className="w-5 h-5" />
+            </motion.button>
+          </div>
 
-          <div className="text-center">
+          <div className="text-center px-4">
             <h1 className="game-title text-2xl sm:text-3xl font-extrabold tracking-wider">
               NBA CLASSIC
             </h1>
@@ -470,14 +521,25 @@ function NBAGame() {
             </p>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex-1 flex justify-end gap-2">
+            <motion.button
+              onClick={toggleTheme}
+              className="theme-toggle-btn p-2 rounded-lg hover:bg-[var(--bg-tertiary)] border border-[var(--border-color)] transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.9, rotate: 20 }}
+              title={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+            >
+              {isDark
+                ? <Sun className="w-5 h-5 text-[var(--gold)]" />
+                : <Moon className="w-5 h-5 text-[var(--text-secondary)]" />}
+            </motion.button>
             <motion.button
               onClick={() => setShowModal(true)}
               className="p-2 rounded-lg hover:bg-[var(--bg-tertiary)] border border-[var(--border-color)] transition-colors"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Info className="w-5 h-5 text-[var(--text-secondary)] hover:text-white" />
+              <Info className="w-5 h-5 text-[var(--text-secondary)]" />
             </motion.button>
             <motion.button
               onClick={() => setShowScoreModal(true)}
@@ -507,7 +569,7 @@ function NBAGame() {
             >
               <motion.button
                 onClick={() => handleDifficultySelect('easy')}
-                className="py-4 px-8 rounded-xl bg-[#1a1a1b] text-green-500 font-bold border border-[#2f3032] hover:border-green-500/50 transition-colors uppercase tracking-wider"
+                className="py-4 px-8 rounded-xl bg-[#1a1a1b]/50 text-green-500 text-lg font-bold border border-[#2f3032] hover:border-green-500/50 transition-colors uppercase tracking-wider"
                 variants={itemVariants}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -516,7 +578,7 @@ function NBAGame() {
               </motion.button>
               <motion.button
                 onClick={() => handleDifficultySelect('medium')}
-                className="py-4 px-8 rounded-xl bg-[#1a1a1b] text-[#fdb927] font-bold border border-[#2f3032] hover:border-[#fdb927]/50 transition-colors uppercase tracking-wider"
+                className="py-4 px-8 rounded-xl bg-[#1a1a1b]/50 text-[#fdb927] text-lg font-bold border border-[#2f3032] hover:border-[#fdb927]/50 transition-colors uppercase tracking-wider"
                 variants={itemVariants}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -525,7 +587,7 @@ function NBAGame() {
               </motion.button>
               <motion.button
                 onClick={() => handleDifficultySelect('hard')}
-                className="py-4 px-8 rounded-xl bg-[#1a1a1b] text-red-500 font-bold border border-[#2f3032] hover:border-red-500/50 transition-colors uppercase tracking-wider"
+                className="py-4 px-8 rounded-xl bg-[#1a1a1b]/50 text-red-500 text-lg font-bold border border-[#2f3032] hover:border-red-500/50 transition-colors uppercase tracking-wider"
                 variants={itemVariants}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -553,12 +615,13 @@ function NBAGame() {
             {/* Input Guesser Block */}
             {gameState === 'playing' && (
               <motion.div
-                className="relative z-30"
+                className="relative z-40"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
               >
                 <div className="relative">
                   <input
+                    ref={inputRef}
                     type="text"
                     value={searchQuery}
                     onChange={(e) => {
@@ -567,14 +630,14 @@ function NBAGame() {
                       setShowSuggestions(true);
                       setErrorMessage(null);
                     }}
-                    onKeyPress={handleKeyPress}
+                    onKeyDown={handleKeyDown}
                     className="player-input w-full py-3 px-4 pl-12 pr-24 rounded-xl text-base bg-[var(--bg-secondary)] text-white border border-[var(--border-color)] focus:border-[var(--text-secondary)] focus:outline-none transition-all placeholder:text-[var(--text-secondary)]"
                     placeholder="Search for a player..."
                     autoComplete="off"
                   />
                   <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[var(--text-secondary)] w-5 h-5" />
                   <button
-                    onClick={handleGuess}
+                    onClick={() => handleGuess()}
                     className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-1.5 rounded-lg bg-[var(--nba-blue)] hover:bg-[#15346e] text-white text-sm font-bold uppercase tracking-wider transition-colors border border-[var(--nba-blue)]"
                   >
                     GUESS
@@ -588,15 +651,16 @@ function NBAGame() {
                 )}
 
                 {showSuggestions && searchResults.length > 0 && (
-                  <div className="absolute z-50 w-full mt-1 bg-[var(--bg-secondary)] rounded-xl shadow-2xl border border-[var(--border-color)] max-h-60 overflow-y-auto">
-                    {searchResults.map((player) => (
+                  <div className="absolute z-50 w-full mt-1 bg-[var(--bg-secondary)]/85 backdrop-blur-md rounded-xl shadow-2xl border border-[var(--border-color)] max-h-60 overflow-y-auto">
+                    {searchResults.map((player, index) => (
                       <button
                         key={player.Name}
-                        className="w-full text-left px-4 py-3 hover:bg-[var(--bg-tertiary)] transition-colors text-white font-medium text-sm border-b border-[var(--border-color)]/40 last:border-b-0"
-                        onClick={() => {
-                          setSearchQuery(player.Name);
-                          setShowSuggestions(false);
-                        }}
+                        className={`w-full text-left px-4 py-3 transition-colors text-white font-medium text-sm ${
+                          index === activeSuggestionIndex
+                            ? 'bg-[var(--bg-tertiary)] font-bold'
+                            : 'hover:bg-[var(--bg-tertiary)]/50'
+                        }`}
+                        onClick={() => handleGuess(player)}
                       >
                         {player.Name}
                       </button>
@@ -672,7 +736,7 @@ function NBAGame() {
                 initial="hidden"
                 animate="visible"
               >
-                {guessedPlayers.map((player, idx) => {
+                {guessedPlayers.map((player) => {
                   const isWin = player.Name === targetPlayer?.Name;
                   return (
                     <motion.div
@@ -796,8 +860,8 @@ function NBAGame() {
                 <button
                   onClick={() => setLeaderboardTab('local')}
                   className={`flex-1 pb-3 text-sm font-semibold border-b-2 transition-all ${leaderboardTab === 'local'
-                      ? 'border-[var(--nba-blue)] text-white font-bold'
-                      : 'border-transparent text-[var(--text-secondary)] hover:text-white'
+                    ? 'border-[var(--nba-blue)] text-white font-bold'
+                    : 'border-transparent text-[var(--text-secondary)] hover:text-white'
                     }`}
                 >
                   My Stats
@@ -805,8 +869,8 @@ function NBAGame() {
                 <button
                   onClick={() => setLeaderboardTab('global')}
                   className={`flex-1 pb-3 text-sm font-semibold border-b-2 transition-all ${leaderboardTab === 'global'
-                      ? 'border-[var(--nba-blue)] text-white font-bold'
-                      : 'border-transparent text-[var(--text-secondary)] hover:text-white'
+                    ? 'border-[var(--nba-blue)] text-white font-bold'
+                    : 'border-transparent text-[var(--text-secondary)] hover:text-white'
                     }`}
                 >
                   Global Leaderboard
@@ -846,8 +910,8 @@ function NBAGame() {
                           key={diff}
                           onClick={() => setLeaderboardDiff(diff)}
                           className={`flex-1 py-1.5 px-3 rounded-lg text-xs font-semibold uppercase tracking-wider border transition-all ${leaderboardDiff === diff
-                              ? 'bg-[var(--nba-blue)] text-white border-[var(--nba-blue)]'
-                              : 'bg-[var(--bg-primary)] text-[var(--text-secondary)] hover:text-white border-[var(--border-color)]'
+                            ? 'bg-[var(--nba-blue)] text-white border-[var(--nba-blue)]'
+                            : 'bg-[var(--bg-primary)] text-[var(--text-secondary)] hover:text-white border-[var(--border-color)]'
                             }`}
                         >
                           {diff}
@@ -955,7 +1019,7 @@ function NBAGame() {
       </AnimatePresence>
 
       {/* Footer */}
-      <footer className="text-center text-xs text-[var(--text-secondary)] font-medium py-8 border-t border-[var(--border-color)]/40 mt-12 max-w-2xl w-full">
+      <footer className="mt-auto text-center text-xs text-[var(--text-secondary)] font-medium py-8 border-t border-[var(--border-color)]/40 max-w-2xl w-full">
         <span>Created by Rayane Hamoudi & Rafay Syed • Headshots via Basketball Reference</span>
       </footer>
     </div>

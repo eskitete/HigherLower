@@ -17,6 +17,14 @@ interface DailyLeaderboardEntry {
   date: string;
 }
 
+interface RawLeaderboardEntry {
+  username: string;
+  wins?: number;
+  score?: number;
+  losses?: number;
+  date?: string;
+}
+
 export default async (req: Request) => {
   // Handle CORS options preflight
   if (req.method === "OPTIONS") {
@@ -183,8 +191,8 @@ export default async (req: Request) => {
 
         // Fetch existing scores
         const rawScores = (await store.get(key, { type: "json" })) || [];
-        let scores: LeaderboardEntry[] = rawScores.map((entry: any) => {
-          if (typeof entry.wins === "number") return entry;
+        let scores: LeaderboardEntry[] = (rawScores as RawLeaderboardEntry[]).map((entry: RawLeaderboardEntry) => {
+          if (typeof entry.wins === "number") return entry as LeaderboardEntry;
           const scoreVal = entry.score || 0;
           return {
             username: entry.username,
@@ -242,8 +250,9 @@ export default async (req: Request) => {
           },
         });
       }
-    } catch (error: any) {
-      return new Response(JSON.stringify({ error: error.message }), {
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      return new Response(JSON.stringify({ error: errorMessage }), {
         status: 500,
         headers: { 
           "Content-Type": "application/json",
@@ -256,8 +265,8 @@ export default async (req: Request) => {
   // Handle GET request to retrieve scores
   try {
     const rawScores = (await store.get(key, { type: "json" })) || [];
-    const scores: LeaderboardEntry[] = rawScores.map((entry: any) => {
-      if (typeof entry.wins === "number") return entry;
+    const scores: LeaderboardEntry[] = (rawScores as RawLeaderboardEntry[]).map((entry: RawLeaderboardEntry) => {
+      if (typeof entry.wins === "number") return entry as LeaderboardEntry;
       const scoreVal = entry.score || 0;
       return {
         username: entry.username,
@@ -273,8 +282,9 @@ export default async (req: Request) => {
         "Access-Control-Allow-Origin": "*",
       },
     });
-  } catch (error: any) {
-    return new Response(JSON.stringify({ error: error.message }), {
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    return new Response(JSON.stringify({ error: errorMessage }), {
       status: 500,
       headers: { 
         "Content-Type": "application/json",
