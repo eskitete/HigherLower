@@ -465,14 +465,14 @@ const NFLGame: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen py-8 px-4 bg-[var(--bg-primary)] text-white flex flex-col items-center">
+    <div className="min-h-screen pt-16 pb-8 px-4 bg-[var(--bg-primary)] text-white flex flex-col items-center">
       <div className="max-w-2xl w-full">
         {/* Header */}
         <motion.header
           className="flex justify-between items-center border-b border-[var(--border-color)] pb-4 mb-8"
-          initial={{ y: -10, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.4 }}
+          initial={{ y: -15 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         >
           <div className="flex-1 flex justify-start">
             <motion.button
@@ -515,14 +515,23 @@ const NFLGame: React.FC = () => {
         </motion.header>
 
         {gameState === 'selection' ? (
-          <div className="text-center py-8">
-            <motion.h2
-              className="game-title text-2xl mb-8 text-white font-bold"
-              initial={{ y: -10, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
+          <div className="text-center py-16 flex flex-col items-center mt-12">
+            <motion.div
+              className="relative text-center px-4 py-1 mb-8"
+              initial={{ y: -15 }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
             >
-              Select Difficulty
-            </motion.h2>
+              <div className="nba-title-blur" />
+              <motion.h2
+                className="relative z-10 game-title text-2xl text-white font-bold"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.1, duration: 0.3 }}
+              >
+                Select Difficulty
+              </motion.h2>
+            </motion.div>
             <motion.div
               className="flex flex-col gap-4 max-w-sm mx-auto"
               variants={containerVariants}
@@ -616,7 +625,7 @@ const NFLGame: React.FC = () => {
                   <div className="absolute z-50 w-full mt-1 bg-[var(--bg-secondary)]/85 backdrop-blur-md rounded-xl shadow-2xl border border-[var(--border-color)] max-h-60 overflow-y-auto">
                     {searchResults.map((player, index) => (
                       <button
-                        key={player.Name}
+                        key={`${player.Name}-${index}`}
                         className={`w-full text-left px-4 py-3 transition-colors text-white font-medium text-sm ${
                           index === activeSuggestionIndex
                             ? 'bg-[var(--bg-tertiary)] font-bold'
@@ -647,12 +656,24 @@ const NFLGame: React.FC = () => {
                     ? `You correctly identified the mystery player in ${attempts} tries.`
                     : `The correct player was ${targetPlayer.Name}`}
                 </p>
-                <button
-                  onClick={resetGame}
-                  className="px-6 py-2.5 rounded-lg bg-[var(--nba-blue)] hover:bg-[#15346e] text-white text-xs font-bold uppercase tracking-wider transition-colors border border-[var(--nba-blue)]"
-                >
-                  Play Again
-                </button>
+                <div className="flex justify-center gap-3">
+                  <button
+                    onClick={resetGame}
+                    className="px-6 py-2.5 rounded-lg bg-[var(--nba-blue)] hover:bg-[#15346e] text-white text-xs font-bold uppercase tracking-wider transition-colors border border-[var(--nba-blue)]"
+                  >
+                    Play Again
+                  </button>
+                  <button
+                    onClick={() => {
+                      setLeaderboardDiff(difficulty);
+                      setShowScoreModal(true);
+                      setLeaderboardTab('global');
+                    }}
+                    className="px-6 py-2.5 rounded-lg bg-[var(--bg-primary)] hover:bg-[var(--bg-tertiary)] text-white text-xs font-bold uppercase tracking-wider transition-colors border border-[var(--border-color)]"
+                  >
+                    Leaderboard
+                  </button>
+                </div>
               </motion.div>
             )}
 
@@ -699,11 +720,11 @@ const NFLGame: React.FC = () => {
                 initial="hidden"
                 animate="visible"
               >
-                {guessedPlayers.map((player) => {
+                {guessedPlayers.map((player, idx) => {
                   const isWin = player.Name === targetPlayer?.Name;
                   return (
                     <motion.div
-                      key={player.Name}
+                      key={`${player.Name}-${guessedPlayers.length - idx}`}
                       className={`p-4 rounded-xl border ${isWin ? 'border-[var(--color-correct)]/40 bg-[var(--color-correct)]/5' : 'border-[var(--border-color)] bg-[var(--bg-secondary)]'}`}
                       variants={itemVariants}
                     >

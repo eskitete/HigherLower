@@ -435,6 +435,9 @@ body::before {
   -webkit-backdrop-filter: blur(16px);
   mask-image: radial-gradient(ellipse at center, black 15%, transparent 70%);
   -webkit-mask-image: radial-gradient(ellipse at center, black 15%, transparent 70%);
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  will-change: backdrop-filter, transform;
 }
 
 .nba-page.dark .nba-title-blur {

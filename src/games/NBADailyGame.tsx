@@ -452,14 +452,14 @@ function NBADailyGame() {
   };
 
   return (
-    <div className={`nba-page${isDark ? ' dark' : ''} min-h-screen py-8 px-4 flex flex-col items-center`}>
+    <div className={`nba-page${isDark ? ' dark' : ''} min-h-screen pt-16 pb-8 px-4 flex flex-col items-center`}>
       <div className="max-w-2xl w-full nba-court-bg">
         {/* Header */}
         <motion.header
           className="flex justify-between items-center border-b border-[var(--border-color)] pb-4 mb-8"
-          initial={{ y: -10, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.4 }}
+          initial={{ y: -15 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         >
           <div className="flex-1 flex justify-start">
             <motion.button
@@ -561,7 +561,7 @@ function NBADailyGame() {
               <div className="absolute z-50 w-full max-w-2xl mt-1 bg-[var(--bg-secondary)]/85 backdrop-blur-md rounded-xl shadow-2xl border border-[var(--border-color)] max-h-60 overflow-y-auto">
                 {searchResults.map((player, index) => (
                   <button
-                    key={player.Name}
+                    key={`${player.Name}-${index}`}
                     className={`w-full text-left px-4 py-3 transition-colors text-white font-medium text-sm ${index === activeSuggestionIndex
                       ? 'bg-[var(--bg-tertiary)] font-bold'
                       : 'hover:bg-[var(--bg-tertiary)]/50'
@@ -592,24 +592,35 @@ function NBADailyGame() {
                 : `The correct player was ${targetPlayer.Name}`}
             </p>
 
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-md mx-auto">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-lg mx-auto">
               <div className="flex items-center gap-2 p-3 bg-[var(--bg-primary)] rounded-lg border border-[var(--border-color)] w-full sm:w-auto justify-center">
                 <Timer className="w-4 h-4 text-[var(--gold)]" />
                 <span className="text-xs text-[var(--text-secondary)] font-medium mr-1">Next player in:</span>
                 <span className="font-mono text-sm font-bold text-[var(--gold)]">{formatTime(secondsUntilMidnight)}</span>
               </div>
 
-              {!submittedDates[dateString] && (
+              <div className="flex gap-2 w-full sm:w-auto">
+                {!submittedDates[dateString] && (
+                  <button
+                    onClick={() => {
+                      setShowScoreModal(true);
+                      setLeaderboardTab('global');
+                    }}
+                    className="flex-1 sm:flex-initial px-5 py-3 rounded-lg bg-[var(--nba-red)] hover:bg-[#a60d24] text-white text-xs font-bold uppercase tracking-wider transition-colors border border-[var(--nba-red)] shadow-lg shadow-[#c8102e]/15"
+                  >
+                    Submit Score
+                  </button>
+                )}
                 <button
                   onClick={() => {
                     setShowScoreModal(true);
                     setLeaderboardTab('global');
                   }}
-                  className="w-full sm:w-auto px-5 py-3 rounded-lg bg-[var(--nba-red)] hover:bg-[#a60d24] text-white text-xs font-bold uppercase tracking-wider transition-colors border border-[var(--nba-red)] shadow-lg shadow-[#c8102e]/15"
+                  className="flex-1 sm:flex-initial px-5 py-3 rounded-lg bg-[var(--bg-primary)] hover:bg-[var(--bg-tertiary)] text-white text-xs font-bold uppercase tracking-wider transition-colors border border-[var(--border-color)]"
                 >
-                  Submit Score
+                  Leaderboard
                 </button>
-              )}
+              </div>
             </div>
           </motion.div>
         )}
@@ -656,11 +667,11 @@ function NBADailyGame() {
             initial="hidden"
             animate="visible"
           >
-            {guessedPlayers.map((player) => {
+            {guessedPlayers.map((player, idx) => {
               const isWin = player.Name === targetPlayer?.Name;
               return (
                 <motion.div
-                  key={player.Name}
+                  key={`${player.Name}-${guessedPlayers.length - idx}`}
                   className={`p-4 rounded-xl border ${isWin ? 'border-[var(--color-correct)]/40 bg-[var(--color-correct)]/5' : 'border-[var(--border-color)] bg-[var(--bg-secondary)]'}`}
                   variants={itemVariants}
                 >
