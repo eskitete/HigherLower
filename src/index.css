@@ -77,7 +77,7 @@ body::before {
 }
 
 /* Ensure fixed overlays (like modals) keep their fixed positioning */
-.nba-page > .fixed {
+.nba-page>.fixed {
   position: fixed;
 }
 
@@ -185,11 +185,11 @@ body::before {
   z-index: 1;
 }
 
-.nba-court-bg > .z-40 {
+.nba-court-bg>.z-40 {
   z-index: 40;
 }
 
-.nba-court-bg > .z-50 {
+.nba-court-bg>.z-50 {
   z-index: 50;
 }
 
@@ -239,10 +239,11 @@ body::before {
 
 /* Input / search bar */
 .nba-page input[type="text"] {
-  background: rgba(255, 255, 255, 0.75) !important;
+  background: var(--bg-secondary) !important;
   border-color: var(--border-color) !important;
   color: var(--text-primary) !important;
   backdrop-filter: blur(4px);
+  opacity: .75;
 }
 
 .nba-page input[type="text"]::placeholder {

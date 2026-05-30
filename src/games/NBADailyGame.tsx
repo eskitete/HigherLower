@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Trophy, Info, X, ArrowUp, ArrowDown, Check, Search, Timer, Moon, Sun } from 'lucide-react';
+import { Trophy, Info, X, ArrowUp, ArrowDown, Check, Search, Timer, Moon, Sun, RotateCw } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import playersData from '../../json/nba.json';
@@ -562,8 +562,8 @@ function NBADailyGame() {
                   <button
                     key={player.Name}
                     className={`w-full text-left px-4 py-3 transition-colors text-white font-medium text-sm ${index === activeSuggestionIndex
-                        ? 'bg-[var(--bg-tertiary)] font-bold'
-                        : 'hover:bg-[var(--bg-tertiary)]/50'
+                      ? 'bg-[var(--bg-tertiary)] font-bold'
+                      : 'hover:bg-[var(--bg-tertiary)]/50'
                       }`}
                     onClick={() => handleGuess(player)}
                   >
@@ -772,8 +772,8 @@ function NBADailyGame() {
                 <button
                   onClick={() => setLeaderboardTab('local')}
                   className={`flex-1 pb-3 text-sm font-semibold border-b-2 transition-all ${leaderboardTab === 'local'
-                      ? 'border-[var(--nba-blue)] text-white font-bold'
-                      : 'border-transparent text-[var(--text-secondary)] hover:text-white'
+                    ? 'border-[var(--nba-blue)] text-white font-bold'
+                    : 'border-transparent text-[var(--text-secondary)] hover:text-white'
                     }`}
                 >
                   My Stats
@@ -781,8 +781,8 @@ function NBADailyGame() {
                 <button
                   onClick={() => setLeaderboardTab('global')}
                   className={`flex-1 pb-3 text-sm font-semibold border-b-2 transition-all ${leaderboardTab === 'global'
-                      ? 'border-[var(--nba-blue)] text-white font-bold'
-                      : 'border-transparent text-[var(--text-secondary)] hover:text-white'
+                    ? 'border-[var(--nba-blue)] text-white font-bold'
+                    : 'border-transparent text-[var(--text-secondary)] hover:text-white'
                     }`}
                 >
                   Global Leaderboard
@@ -817,8 +817,20 @@ function NBADailyGame() {
                       </div>
                     </div>
                   </div>
-                ) : (
+                 ) : (
                   <div className="space-y-4">
+                    <div className="flex justify-end">
+                      <button
+                        onClick={() => fetchLeaderboard()}
+                        disabled={leaderboardLoading}
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] hover:bg-[var(--bg-tertiary)] border border-[var(--border-color)] text-xs font-semibold text-[var(--text-secondary)] hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        title="Refresh leaderboard"
+                      >
+                        <RotateCw className={`w-3.5 h-3.5 ${leaderboardLoading ? 'animate-spin' : ''}`} />
+                        Refresh
+                      </button>
+                    </div>
+
                     <div className="min-h-[200px]">
                       {leaderboardLoading ? (
                         <div className="flex flex-col items-center justify-center py-12 space-y-2">
@@ -923,7 +935,7 @@ function NBADailyGame() {
       </AnimatePresence>
 
       {/* Footer */}
-      <footer className="text-center text-xs text-[var(--text-secondary)] font-medium py-8 border-t border-[var(--border-color)]/40 mt-12 max-w-2xl w-full">
+      <footer className="mt-auto text-center text-xs text-[var(--text-secondary)] font-medium py-8 border-t border-[var(--border-color)]/40 max-w-2xl w-full">
         <span>Created by Rayane Hamoudi & Rafay Syed • Headshots via Basketball Reference</span>
       </footer>
     </div>

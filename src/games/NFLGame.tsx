@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, Trophy, Info, Check, ArrowDown, ArrowUp } from 'lucide-react';
+import { Search, X, Trophy, Info, Check, ArrowDown, ArrowUp, RotateCw } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import playersData from '../../json/nfl.json';
 import easyPlayers from '../../json/nfl_easy.json';
@@ -868,19 +868,29 @@ const NFLGame: React.FC = () => {
                 ) : (
                   <div className="space-y-4">
                     {/* Difficulty selector for leaderboard */}
-                    <div className="flex gap-2">
-                      {(['easy', 'medium', 'hard'] as const).map((diff) => (
-                        <button
-                          key={diff}
-                          onClick={() => setLeaderboardDiff(diff)}
-                          className={`flex-1 py-1.5 px-3 rounded-lg text-xs font-semibold uppercase tracking-wider border transition-all ${leaderboardDiff === diff
-                              ? 'bg-[var(--nba-blue)] text-white border-[var(--nba-blue)]'
-                              : 'bg-[var(--bg-primary)] text-[var(--text-secondary)] hover:text-white border-[var(--border-color)]'
-                            }`}
-                        >
-                          {diff}
-                        </button>
-                      ))}
+                    <div className="flex gap-2 items-center">
+                      <div className="flex-1 flex gap-2">
+                        {(['easy', 'medium', 'hard'] as const).map((diff) => (
+                          <button
+                            key={diff}
+                            onClick={() => setLeaderboardDiff(diff)}
+                            className={`flex-1 py-1.5 px-3 rounded-lg text-xs font-semibold uppercase tracking-wider border transition-all ${leaderboardDiff === diff
+                                ? 'bg-[var(--nba-blue)] text-white border-[var(--nba-blue)]'
+                                : 'bg-[var(--bg-primary)] text-[var(--text-secondary)] hover:text-white border-[var(--border-color)]'
+                              }`}
+                          >
+                            {diff}
+                          </button>
+                        ))}
+                      </div>
+                      <button
+                        onClick={() => fetchLeaderboard(leaderboardDiff)}
+                        disabled={leaderboardLoading}
+                        className="flex items-center justify-center p-2 rounded-lg bg-[var(--bg-primary)] hover:bg-[var(--bg-tertiary)] border border-[var(--border-color)] text-[var(--text-secondary)] hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        title="Refresh leaderboard"
+                      >
+                        <RotateCw className={`w-4 h-4 ${leaderboardLoading ? 'animate-spin' : ''}`} />
+                      </button>
                     </div>
 
                     <div className="min-h-[200px]">
