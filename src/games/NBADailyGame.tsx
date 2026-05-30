@@ -452,7 +452,7 @@ function NBADailyGame() {
   };
 
   return (
-    <div className={`nba-page${isDark ? ' dark' : ''} min-h-screen pt-16 pb-8 px-4 flex flex-col items-center`}>
+    <div className={`nba-page${isDark ? ' dark' : ''} min-h-screen pt-6 pb-8 px-4 flex flex-col items-center`}>
       <div className="max-w-2xl w-full nba-court-bg">
         {/* Header */}
         <motion.header

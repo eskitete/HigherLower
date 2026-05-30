@@ -465,7 +465,7 @@ const NFLGame: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen pt-16 pb-8 px-4 bg-[var(--bg-primary)] text-white flex flex-col items-center">
+    <div className="min-h-screen pt-6 pb-8 px-4 bg-[var(--bg-primary)] text-white flex flex-col items-center">
       <div className="max-w-2xl w-full">
         {/* Header */}
         <motion.header

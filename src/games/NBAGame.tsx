@@ -492,7 +492,7 @@ function NBAGame() {
   };
 
   return (
-    <div className={`nba-page${isDark ? ' dark' : ''} min-h-screen pt-16 pb-8 px-4 flex flex-col items-center`}>
+    <div className={`nba-page${isDark ? ' dark' : ''} min-h-screen pt-6 pb-8 px-4 flex flex-col items-center`}>
       <div className="max-w-2xl w-full nba-court-bg">
         {/* Header */}
         <motion.header
@@ -554,7 +554,7 @@ function NBAGame() {
         </motion.header>
 
         {gameState === 'selection' ? (
-          <div className="text-center py-10 flex flex-col items-center mt-12">
+          <div className="text-center py-12 flex flex-col items-center mt-12">
             <motion.div
               className="relative text-center px-4 py-1 mb-8"
               initial={{ y: -15 }}
