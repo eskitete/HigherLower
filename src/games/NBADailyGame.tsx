@@ -472,11 +472,12 @@ function NBADailyGame() {
             </motion.button>
           </div>
 
-          <div className="text-center px-4">
-            <h1 className="game-title text-2xl sm:text-3xl font-extrabold tracking-wider">
+          <div className="relative text-center px-4 py-1">
+            <div className="nba-title-blur" />
+            <h1 className="relative z-10 game-title text-2xl sm:text-3xl font-extrabold tracking-wider">
               NBA DAILY
             </h1>
-            <p className="text-xs text-[var(--text-secondary)] uppercase tracking-wider font-semibold">
+            <p className="relative z-10 text-xs text-[var(--text-secondary)] uppercase tracking-wider font-semibold">
               Today: {dateString}
             </p>
           </div>

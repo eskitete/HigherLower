@@ -423,3 +423,20 @@ body::before {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-secondary);
 }
+
+/* ── NBA Title Gradient Blur ─────────────────────────────── */
+.nba-title-blur {
+  position: absolute;
+  inset: -40px -80px;
+  z-index: 0;
+  pointer-events: none;
+  background: transparent !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  mask-image: radial-gradient(ellipse at center, black 15%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 15%, transparent 70%);
+}
+
+.nba-page.dark .nba-title-blur {
+  background: transparent !important;
+}
